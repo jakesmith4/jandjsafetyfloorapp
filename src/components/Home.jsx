@@ -1,9 +1,10 @@
 import SingleOwner from './SingleOwner';
-import { owners } from '../data';
 import { useGlobalContext } from '../context';
 const Home = () => {
-  const ownersArray = [...owners];
-  const { isModalOpen, openModal } = useGlobalContext();
+  const { isModalOpen, openModal, owners } = useGlobalContext();
+
+  const ownersArray = Array.from(owners.entries());
+  console.log(owners);
 
   if (ownersArray.length === 0) {
     return (
@@ -11,6 +12,9 @@ const Home = () => {
         <header>
           <h2>J&J Safety Floor</h2>
           <h4 className="empty-owners">Add an owner to display info</h4>
+          <button className="btn btn-hipster" onClick={openModal}>
+            add owner
+          </button>
         </header>
       </section>
     );
@@ -22,7 +26,8 @@ const Home = () => {
       </header>
       <div>
         {ownersArray.map(owner => {
-          return <SingleOwner key={owner.id} {...owner} />;
+          const [id, item] = owner;
+          return <SingleOwner key={id} {...item} />;
         })}
       </div>
       <footer>

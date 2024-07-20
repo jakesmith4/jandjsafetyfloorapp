@@ -8,12 +8,13 @@ import {
   REMOVE_OWNER,
   EDIT_OWNER,
 } from './actions';
+import { owners } from './data';
 
 const AppContext = createContext();
 
 const initialState = {
   isModalOpen: false,
-  owners: [],
+  owners: new Map(owners.map(owner => [owner.id, owner])),
 };
 
 export const AppProvider = ({ children }) => {
