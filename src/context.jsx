@@ -7,7 +7,7 @@ import {
   ADD_OWNER,
   REMOVE_OWNER,
   EDIT_OWNER,
-  CHANGE_CURRENT_OWNER_INFO,
+  CHANGE_NEW_OWNER_INFO,
 } from './actions';
 import { owners } from './data';
 
@@ -46,7 +46,7 @@ export const AppProvider = ({ children }) => {
 
   function changeCurrentOwnerInfo(name, price, amount) {
     dispatch({
-      type: CHANGE_CURRENT_OWNER_INFO,
+      type: CHANGE_NEW_OWNER_INFO,
       payload: { name, price, amount },
     });
   }

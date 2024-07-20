@@ -6,7 +6,7 @@ import {
   ADD_OWNER,
   REMOVE_OWNER,
   EDIT_OWNER,
-  CHANGE_CURRENT_OWNER_INFO,
+  CHANGE_NEW_OWNER_INFO,
 } from './actions';
 import { owners } from './data';
 import { useGlobalContext } from './context';
@@ -41,9 +41,7 @@ const reducer = (state, action) => {
     });
     return { ...state, owners: newOwners };
   }
-  if (action.type === CHANGE_CURRENT_OWNER_INFO) {
-    console.log('hello world');
-    console.log(action.payload.name);
+  if (action.type === CHANGE_NEW_OWNER_INFO) {
     return {
       ...state,
       newOwnerName: action.payload.name,
