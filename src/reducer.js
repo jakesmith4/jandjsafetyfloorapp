@@ -31,15 +31,16 @@ const reducer = (state, action) => {
   }
   if (action.type === ADD_OWNER) {
     action.payload.e.preventDefault();
+    const { newOwnerName, newOwnerPrice, newOwnerAmount } = state;
     const newOwners = new Map(state.owners);
     const newId = nanoid();
     newOwners.set(newId, {
       id: newId,
-      name: state.newOwnerName,
-      price: state.newOwnerPrice,
-      amount: state.newOwnerAmount,
+      name: newOwnerName,
+      price: newOwnerPrice,
+      amount: newOwnerAmount,
     });
-    return { ...state, owners: newOwners };
+    return { ...state, owners: newOwners, isModalOpen: false };
   }
   if (action.type === CHANGE_NEW_OWNER_INFO) {
     return {
