@@ -180,13 +180,14 @@ ul {
 /* form */
 
 .form {
-  width: 90vw;
+  width: 90%;
   max-width: var(--fixed-width);
   background: var(--white);
   border-radius: var(--borderRadius);
   box-shadow: var(--shadow-2);
   padding: 2rem 2.5rem;
   margin: 3rem auto;
+  background: orangered;
 }
 .form-label {
   display: block;
@@ -325,7 +326,6 @@ Modal
 .modal-container {
   background: var(--white);
   width: 90vw;
-  height: 30vh;
   border-radius: var(--borderRadius);
   max-width: var(--fixed-width);
   text-align: center;

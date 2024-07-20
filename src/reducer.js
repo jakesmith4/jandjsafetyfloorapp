@@ -28,6 +28,7 @@ const reducer = (state, action) => {
     return { ...state };
   }
   if (action.type === ADD_OWNER) {
+    action.payload.e.preventDefault();
     const newOwners = new Map(state.owners);
     const newId = nanoid();
     newOwners.set(newId, {

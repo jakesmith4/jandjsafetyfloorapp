@@ -36,8 +36,8 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: REMOVE_OWNER, payload: { id } });
   }
 
-  function addOwner() {
-    dispatch({ type: ADD_OWNER });
+  function addOwner(e) {
+    dispatch({ type: ADD_OWNER, payload: { e } });
   }
 
   return (
