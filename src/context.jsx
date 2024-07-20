@@ -44,7 +44,7 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: ADD_OWNER, payload: { e } });
   }
 
-  function changeCurrentOwnerInfo(name, price, amount) {
+  function changeNewOwnerInfo(name, price, amount) {
     dispatch({
       type: CHANGE_NEW_OWNER_INFO,
       payload: { name, price, amount },
@@ -59,7 +59,7 @@ export const AppProvider = ({ children }) => {
         closeModal,
         removeOwner,
         addOwner,
-        changeCurrentOwnerInfo,
+        changeNewOwnerInfo,
       }}
     >
       {children}

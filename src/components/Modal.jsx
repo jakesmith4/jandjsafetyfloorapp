@@ -3,7 +3,7 @@ import { useGlobalContext } from '../context';
 import { useState } from 'react';
 
 const Modal = () => {
-  const { isModalOpen, closeModal, addOwner, changeCurrentOwnerInfo } =
+  const { isModalOpen, closeModal, addOwner, changeNewOwnerInfo } =
     useGlobalContext();
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
@@ -53,7 +53,7 @@ const Modal = () => {
           </div>
           <button
             onClick={e => {
-              changeCurrentOwnerInfo(name, price, amount);
+              changeNewOwnerInfo(name, price, amount);
               addOwner(e);
             }}
           >
