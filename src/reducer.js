@@ -6,6 +6,7 @@ import {
   REMOVE_OWNER,
   EDIT_OWNER,
   CHANGE_NEW_OWNER_INFO,
+  SET_CURRENT_OWNER_ID,
 } from './actions';
 
 const reducer = (state, action) => {
@@ -20,6 +21,8 @@ const reducer = (state, action) => {
       `Are you sure you want to delete this owner?`
     );
     if (confirmed) {
+      // USE THIS ID TO DELETE THE OWNER NOT THE ACTION.PAYLOAD.ID
+      console.log(state.currentOwnerId);
       const newOwners = new Map(state.owners);
       newOwners.delete(action.payload.id);
       return { ...state, owners: newOwners };
@@ -46,6 +49,10 @@ const reducer = (state, action) => {
       newOwnerPrice: action.payload.price,
       newOwnerAmount: action.payload.amount,
     };
+  }
+  if (action.type === SET_CURRENT_OWNER_ID) {
+    console.log(action.payload.id);
+    return { ...state, currentOwnerId: action.payload.id };
   }
   throw new Error(`no matching action type : ${action.type}`);
 };

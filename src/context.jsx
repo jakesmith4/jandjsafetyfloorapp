@@ -8,6 +8,7 @@ import {
   REMOVE_OWNER,
   EDIT_OWNER,
   CHANGE_NEW_OWNER_INFO,
+  SET_CURRENT_OWNER_ID,
 } from './actions';
 import { owners } from './data';
 
@@ -19,6 +20,7 @@ const initialState = {
   newOwnerName: '',
   newOwnerPrice: '',
   newOwnerAmount: '',
+  currentOwnerId: '',
 };
 
 export const AppProvider = ({ children }) => {
@@ -51,6 +53,10 @@ export const AppProvider = ({ children }) => {
     });
   }
 
+  function setCurrentOwnerId(id) {
+    dispatch({ type: SET_CURRENT_OWNER_ID, payload: { id } });
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -60,6 +66,7 @@ export const AppProvider = ({ children }) => {
         removeOwner,
         addOwner,
         changeNewOwnerInfo,
+        setCurrentOwnerId,
       }}
     >
       {children}
