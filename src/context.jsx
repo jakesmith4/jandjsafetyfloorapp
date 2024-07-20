@@ -7,6 +7,7 @@ import {
   ADD_OWNER,
   REMOVE_OWNER,
   EDIT_OWNER,
+  CHANGE_CURRENT_OWNER_INFO,
 } from './actions';
 import { owners } from './data';
 
@@ -15,6 +16,9 @@ const AppContext = createContext();
 const initialState = {
   isModalOpen: false,
   owners: new Map(owners.map(owner => [owner.id, owner])),
+  currentOwnerName: '',
+  currentOwnerPrice: '',
+  currentOwnerAmount: '',
 };
 
 export const AppProvider = ({ children }) => {
@@ -40,9 +44,23 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: ADD_OWNER, payload: { e } });
   }
 
+  function changeCurrentOwnerInfo(name, price, amount) {
+    dispatch({
+      type: CHANGE_CURRENT_OWNER_INFO,
+      payload: { name, price, amount },
+    });
+  }
+
   return (
     <AppContext.Provider
-      value={{ ...state, openModal, closeModal, removeOwner, addOwner }}
+      value={{
+        ...state,
+        openModal,
+        closeModal,
+        removeOwner,
+        addOwner,
+        changeCurrentOwnerInfo,
+      }}
     >
       {children}
     </AppContext.Provider>

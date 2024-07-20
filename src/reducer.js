@@ -6,8 +6,10 @@ import {
   ADD_OWNER,
   REMOVE_OWNER,
   EDIT_OWNER,
+  CHANGE_CURRENT_OWNER_INFO,
 } from './actions';
 import { owners } from './data';
+import { useGlobalContext } from './context';
 
 const reducer = (state, action) => {
   if (action.type === OPEN_MODAL) {
@@ -33,11 +35,21 @@ const reducer = (state, action) => {
     const newId = nanoid();
     newOwners.set(newId, {
       id: newId,
-      name: 'new owner',
-      price: '785',
-      amount: 7,
+      name: state.currentOwnerName,
+      price: state.currentOwnerPrice,
+      amount: state.currentOwnerAmount,
     });
     return { ...state, owners: newOwners };
+  }
+  if (action.type === CHANGE_CURRENT_OWNER_INFO) {
+    console.log('hello world');
+    console.log(action.payload.name);
+    return {
+      ...state,
+      currentOwnerName: action.payload.name,
+      currentOwnerPrice: action.payload.price,
+      currentOwnerAmount: action.payload.amount,
+    };
   }
   throw new Error(`no matching action type : ${action.type}`);
 };
