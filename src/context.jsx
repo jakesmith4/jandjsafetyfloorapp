@@ -16,9 +16,9 @@ const AppContext = createContext();
 const initialState = {
   isModalOpen: false,
   owners: new Map(owners.map(owner => [owner.id, owner])),
-  currentOwnerName: '',
-  currentOwnerPrice: '',
-  currentOwnerAmount: '',
+  newOwnerName: '',
+  newOwnerPrice: '',
+  newOwnerAmount: '',
 };
 
 export const AppProvider = ({ children }) => {

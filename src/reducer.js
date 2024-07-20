@@ -35,9 +35,9 @@ const reducer = (state, action) => {
     const newId = nanoid();
     newOwners.set(newId, {
       id: newId,
-      name: state.currentOwnerName,
-      price: state.currentOwnerPrice,
-      amount: state.currentOwnerAmount,
+      name: state.newOwnerName,
+      price: state.newOwnerPrice,
+      amount: state.newOwnerAmount,
     });
     return { ...state, owners: newOwners };
   }
@@ -46,9 +46,9 @@ const reducer = (state, action) => {
     console.log(action.payload.name);
     return {
       ...state,
-      currentOwnerName: action.payload.name,
-      currentOwnerPrice: action.payload.price,
-      currentOwnerAmount: action.payload.amount,
+      newOwnerName: action.payload.name,
+      newOwnerPrice: action.payload.price,
+      newOwnerAmount: action.payload.amount,
     };
   }
   throw new Error(`no matching action type : ${action.type}`);

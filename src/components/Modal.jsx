@@ -53,7 +53,6 @@ const Modal = () => {
           </div>
           <button
             onClick={e => {
-              console.log(name);
               changeCurrentOwnerInfo(name, price, amount);
               addOwner(e);
             }}
