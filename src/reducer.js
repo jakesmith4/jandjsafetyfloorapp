@@ -13,6 +13,11 @@ const reducer = (state, action) => {
   if (action.type === CLOSE_MODAL) {
     return { ...state, isModalOpen: false };
   }
+  if (action.type === REMOVE_OWNER) {
+    const newOwners = new Map(state.owners);
+    newOwners.delete(action.payload.id);
+    return { ...state, owners: newOwners };
+  }
   throw new Error(`no matching action type : ${action.type}`);
 };
 

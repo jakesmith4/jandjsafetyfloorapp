@@ -32,8 +32,14 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: CLOSE_MODAL });
   }
 
+  function removeOwner(id) {
+    dispatch({ type: REMOVE_OWNER, payload: { id } });
+  }
+
   return (
-    <AppContext.Provider value={{ ...state, openModal, closeModal }}>
+    <AppContext.Provider
+      value={{ ...state, openModal, closeModal, removeOwner }}
+    >
       {children}
     </AppContext.Provider>
   );

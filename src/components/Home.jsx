@@ -4,7 +4,6 @@ const Home = () => {
   const { isModalOpen, openModal, owners } = useGlobalContext();
 
   const ownersArray = Array.from(owners.entries());
-  console.log(owners);
 
   if (ownersArray.length === 0) {
     return (
