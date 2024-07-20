@@ -253,12 +253,53 @@ ul {
 }
 /* ============= PROJECT CSS =============== */
 
+main {
+  display: grid;
+  grid-template-columns: 75px auto;
+}
+
+/*
+=============== 
+Sidebar
+===============
+*/
+.sidebar {
+  background: #333;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.sidebar-item:hover {
+  background: orangered;
+}
+
+.sidebar-item:hover .sidebar-btn {
+  color: #333;
+}
+
+.sidebar-btn {
+  width: 100%;
+  font-size: 2rem;
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: transparent;
+  background: transparent;
+  cursor: pointer;
+  color: var(--white);
+}
+
 /*
 =============== 
 Modal
 ===============
 */
-
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -306,70 +347,23 @@ Modal
 
 /*
 =============== 
-Navbar
+Owner
 ===============
 */
-
-nav {
-  background: var(--primary-500);
-  height: 5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.nav-center {
-  width: var(--view-width);
-  max-width: var(--fixed-width);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-nav h4 {
-  color: var(--white);
-}
-.nav-container {
-  display: block;
-  position: relative;
-}
-.cart-icon {
-  font-size: 2.25rem;
-  color: var(--white);
-}
-.amount-container {
-  position: absolute;
-  top: -0.85rem;
-  right: -0.85rem;
-  width: 1.75rem;
-  height: 1.75rem;
-  background: var(--primary-300);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.total-amount {
-  color: var(--white);
-  font-size: 1.25rem;
-}
-/*
-=============== 
-Cart
-===============
-*/
-.cart {
+.owner-info {
   min-height: calc(100vh - 5rem);
-  width: var(--view-width);
-  max-width: var(--fixed-width);
-  margin: 0 auto;
-  margin-top: 40px;
-  padding: 2.5rem 0;
+  /* width: var(--view-width); */
+  /* max-width: var(--fixed-width); */
+  /* margin: 0 auto; */
+  /* margin-top: 40px; */
+  padding: 2.5rem;
 }
-.cart h2 {
+.owner-info h2 {
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 3rem;
 }
-.empty-cart {
+.empty-owners {
   text-transform: lowercase;
   color: var(--grey-500);
   margin-top: 1rem;
@@ -381,17 +375,14 @@ hr {
   margin-bottom: 1rem;
   border-width: 1px;
 }
-.cart footer {
-  margin-top: 5rem;
-  /* text-align: center; */
-}
-.cart-total {
+
+.owner-total {
   text-transform: capitalize;
   /* display: flex; */
   justify-content: space-between;
   margin-bottom: 1rem;
 }
-.cart-total span {
+.owner-total span {
   background: var(--primary-500);
   display: inline-block;
   padding: 0.25rem 0.5rem;
@@ -400,33 +391,34 @@ hr {
 }
 /*
 =============== 
-Cart Item
+Single Owner
 ===============
 */
-.cart-item {
-  display: grid;
-  align-items: center;
-  grid-template-columns: auto 1fr auto;
-  column-gap: 1.5rem;
+.single-owner {
+  /* display: grid; */
+  /* align-items: center; */
+  /* grid-template-columns: auto 1fr auto; */
+  /* column-gap: 1.5rem; */
   margin: 1.5rem 0;
+  background: #333;
+  color: var(--white);
+  padding: 0.375rem 0.75rem;
+  cursor: pointer;
 }
 
-.cart-item img {
-  width: 5rem;
-  height: 5rem;
-  object-fit: cover;
-}
-.cart-item h5 {
+.single-owner h5 {
   margin-bottom: 0.5rem;
   font-weight: 500;
   letter-spacing: 2px;
-  color: var(--grey-700);
 }
 
-.item-price {
-  color: var(--grey-500);
+.owner-price,
+.owner-amount {
+  color: var(--grey-400);
   display: block;
+  margin-bottom: 0.5rem;
 }
+
 .remove-btn {
   color: var(--primary-500);
   letter-spacing: var(--letterSpacing);
@@ -434,28 +426,8 @@ Cart Item
   font-size: 0.85rem;
   background: transparent;
   border-color: transparent;
-  margin-top: 0.375rem;
   transition: var(--transition);
 }
 .remove-btn:hover {
   color: var(--primary-600);
-}
-.amount-btn {
-  width: 1.5rem;
-  background: transparent;
-  border-color: transparent;
-  cursor: pointer;
-}
-.amount-icon {
-  font-size: 1.25rem;
-  color: var(--primary-500);
-  transition: var(--transition);
-}
-.amount-icon:hover {
-  color: var(--primary-700);
-}
-.amount {
-  font-size: 1.25rem;
-  display: block;
-  text-align: center;
 }

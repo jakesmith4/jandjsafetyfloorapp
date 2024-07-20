@@ -3,31 +3,27 @@ import { FaHome, FaUser, FaMapMarkerAlt, FaCog } from 'react-icons/fa';
 export const owners = [
   {
     id: 'rec1JZlfCIBOPdcT2',
-    title: 'Samsung Galaxy S8',
-    price: '399.99',
-    img: 'https://www.course-api.com/images/cart/phone-1.png',
-    amount: 1,
+    name: 'larry miller',
+    price: '695',
+    amount: 7,
   },
   {
     id: 'recB6qcHPxb62YJ75',
-    title: 'google pixel',
-    price: '499.99',
-    img: 'https://www.course-api.com/images/cart/phone-2.png',
-    amount: 1,
+    name: 'david guitierrez',
+    price: '695',
+    amount: 13,
   },
   {
     id: 'recdRxBsE14Rr2VuJ',
-    title: 'Xiaomi Redmi Note 2',
-    price: '699.99',
-    img: 'https://www.course-api.com/images/cart/phone-3.png',
-    amount: 1,
+    name: 'fred delbarrio',
+    price: '795',
+    amount: 12,
   },
   {
     id: 'recwTo160XST3PIoW',
-    title: 'Samsung Galaxy S7',
-    price: '599.99 ',
-    img: 'https://www.course-api.com/images/cart/phone-4.png',
-    amount: 1,
+    name: 'mike marasco',
+    price: '795 ',
+    amount: 13,
   },
 ];
 

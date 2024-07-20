@@ -1,4 +1,4 @@
-import CartItem from './CartItem';
+import SingleOwner from './SingleOwner';
 import { owners } from '../data';
 import { useGlobalContext } from '../context';
 const Home = () => {
@@ -7,32 +7,28 @@ const Home = () => {
 
   if (ownersArray.length === 0) {
     return (
-      <section className="cart">
-        {/* cart header */}
+      <section className="owner-info">
         <header>
           <h2>J&J Safety Floor</h2>
-          <h4 className="empty-cart">Add an owner to display info</h4>
+          <h4 className="empty-owners">Add an owner to display info</h4>
         </header>
       </section>
     );
   }
   return (
-    <section className="cart">
-      {/* cart header */}
+    <section className="owner-info">
       <header>
         <h2>J&J Safety Floor</h2>
       </header>
-      {/* cart items */}
       <div>
-        {ownersArray.map(cartItem => {
-          return <CartItem key={cartItem.id} {...cartItem} />;
+        {ownersArray.map(owner => {
+          return <SingleOwner key={owner.id} {...owner} />;
         })}
       </div>
-      {/* cart footer */}
       <footer>
         <hr />
         <div>
-          <h5 className="cart-total">
+          <h5 className="owner-total">
             total owners: <span>10</span>
           </h5>
         </div>
