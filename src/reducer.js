@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import {
   OPEN_MODAL,
@@ -8,8 +7,6 @@ import {
   EDIT_OWNER,
   CHANGE_NEW_OWNER_INFO,
 } from './actions';
-import { owners } from './data';
-import { useGlobalContext } from './context';
 
 const reducer = (state, action) => {
   if (action.type === OPEN_MODAL) {
