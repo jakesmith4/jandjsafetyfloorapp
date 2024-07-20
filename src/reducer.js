@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   OPEN_MODAL,
   CLOSE_MODAL,
@@ -14,9 +15,15 @@ const reducer = (state, action) => {
     return { ...state, isModalOpen: false };
   }
   if (action.type === REMOVE_OWNER) {
-    const newOwners = new Map(state.owners);
-    newOwners.delete(action.payload.id);
-    return { ...state, owners: newOwners };
+    const confirmed = window.confirm(
+      `Are you sure you want to delete this owner?`
+    );
+    if (confirmed) {
+      const newOwners = new Map(state.owners);
+      newOwners.delete(action.payload.id);
+      return { ...state, owners: newOwners };
+    }
+    return { ...state };
   }
   throw new Error(`no matching action type : ${action.type}`);
 };
