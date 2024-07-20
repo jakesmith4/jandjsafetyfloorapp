@@ -36,9 +36,13 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: REMOVE_OWNER, payload: { id } });
   }
 
+  function addOwner() {
+    dispatch({ type: ADD_OWNER });
+  }
+
   return (
     <AppContext.Provider
-      value={{ ...state, openModal, closeModal, removeOwner }}
+      value={{ ...state, openModal, closeModal, removeOwner, addOwner }}
     >
       {children}
     </AppContext.Provider>

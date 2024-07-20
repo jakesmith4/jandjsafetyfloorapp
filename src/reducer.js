@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { nanoid } from 'nanoid';
 import {
   OPEN_MODAL,
   CLOSE_MODAL,
@@ -6,6 +7,7 @@ import {
   REMOVE_OWNER,
   EDIT_OWNER,
 } from './actions';
+import { owners } from './data';
 
 const reducer = (state, action) => {
   if (action.type === OPEN_MODAL) {
@@ -24,6 +26,17 @@ const reducer = (state, action) => {
       return { ...state, owners: newOwners };
     }
     return { ...state };
+  }
+  if (action.type === ADD_OWNER) {
+    const newOwners = new Map(state.owners);
+    const newId = nanoid();
+    newOwners.set(newId, {
+      id: newId,
+      name: 'new owner',
+      price: '785',
+      amount: 7,
+    });
+    return { ...state, owners: newOwners };
   }
   throw new Error(`no matching action type : ${action.type}`);
 };
