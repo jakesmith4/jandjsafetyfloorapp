@@ -12,6 +12,7 @@ import {
   CHANGE_NEW_OWNER_INFO,
   SET_CURRENT_OWNER,
   CHANGE_CURRENT_OWNER_NAME,
+  ADD_JOB_TO_CURRENT_OWNER,
 } from './actions';
 import { owners } from './data';
 
@@ -30,8 +31,6 @@ const initialState = {
 };
 
 export const AppProvider = ({ children }) => {
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-
   const [state, dispatch] = useReducer(reducer, initialState);
 
   function openModal() {
@@ -73,6 +72,13 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: CHANGE_CURRENT_OWNER_NAME, payload: { name } });
   }
 
+  function addJobToCurrentOwner(e, storeNumber, address, price) {
+    dispatch({
+      type: ADD_JOB_TO_CURRENT_OWNER,
+      payload: { e, storeNumber, address, price },
+    });
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -86,6 +92,7 @@ export const AppProvider = ({ children }) => {
         changeNewOwnerInfo,
         setCurrentOwner,
         changeCurrentOwnerName,
+        addJobToCurrentOwner,
       }}
     >
       {children}

@@ -10,7 +10,9 @@ import {
   CHANGE_NEW_OWNER_INFO,
   SET_CURRENT_OWNER,
   CHANGE_CURRENT_OWNER_NAME,
+  ADD_JOB_TO_CURRENT_OWNER,
 } from './actions';
+import { owners } from './data';
 
 const reducer = (state, action) => {
   if (action.type === OPEN_MODAL) {
@@ -53,6 +55,7 @@ const reducer = (state, action) => {
       name: newOwnerName,
       price: newOwnerPrice,
       amount: newOwnerAmount,
+      jobs: new Map(),
     });
     return { ...state, owners: newOwners, isModalOpen: false };
   }
@@ -83,6 +86,20 @@ const reducer = (state, action) => {
     newOwners.set(currentOwnerId, {
       ...currentOwner,
       name: action.payload.name,
+    });
+    return { ...state, owners: newOwners };
+  }
+
+  if (action.type === ADD_JOB_TO_CURRENT_OWNER) {
+    const { storeNumber, address, price, e } = action.payload;
+    e.preventDefault();
+    const newOwners = new Map(state.owners);
+    const currentOwner = newOwners.get(state.currentOwnerId);
+    const newId = nanoid();
+    currentOwner.jobs.set(newId, {
+      storeNumber,
+      address,
+      price,
     });
     return { ...state, owners: newOwners };
   }
