@@ -70,7 +70,7 @@ export const AppProvider = ({ children }) => {
     });
   }
 
-  function setCurrentOwnerId(id) {
+  function setCurrentOwner(id) {
     dispatch({ type: SET_CURRENT_OWNER, payload: { id } });
   }
 
@@ -85,7 +85,7 @@ export const AppProvider = ({ children }) => {
         removeOwner,
         addOwner,
         changeNewOwnerInfo,
-        setCurrentOwnerId,
+        setCurrentOwner,
       }}
     >
       {children}

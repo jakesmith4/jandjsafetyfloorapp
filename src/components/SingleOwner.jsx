@@ -1,12 +1,12 @@
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 import { useGlobalContext } from '../context';
 const SingleOwner = ({ id, name, price, amount }) => {
-  const { removeOwner, setCurrentOwnerId } = useGlobalContext();
+  const { removeOwner, setCurrentOwner } = useGlobalContext();
   return (
     <article
       className="single-owner"
       onClick={() => {
-        setCurrentOwnerId(id);
+        setCurrentOwner(id);
       }}
     >
       <div>
