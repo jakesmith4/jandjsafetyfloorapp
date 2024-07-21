@@ -347,6 +347,7 @@ Modal
 Owner
 ===============
 */
+.current-owner,
 .owner-info {
   min-height: 100vh;
   /* width: var(--view-width); */
@@ -355,11 +356,20 @@ Owner
   /* margin-top: 40px; */
   padding: 2.5rem;
 }
+.current-owner h2,
 .owner-info h2 {
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 3rem;
 }
+
+.current-owner-name {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
 .empty-owners {
   text-transform: lowercase;
   color: var(--grey-500);
@@ -427,4 +437,14 @@ Single Owner
 }
 .remove-btn:hover {
   color: var(--primary-600);
+}
+
+/*
+=============== 
+Current Owner
+===============
+*/
+
+.current-owner {
+  text-align: center;
 }

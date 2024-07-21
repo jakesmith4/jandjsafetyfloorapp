@@ -3,11 +3,11 @@ import { useGlobalContext } from '../context';
 
 const CurrentOwner = () => {
   const { currentOwner, changeCurrentOwnerName } = useGlobalContext();
-  const [name, setName] = useState(currentOwner.name);
+  const [name, setName] = useState(currentOwner?.name);
 
   if (!currentOwner) {
     return (
-      <section className="owner-info">
+      <section className="current-owner">
         <header>
           <h2>Please select an owner</h2>
         </header>
@@ -15,10 +15,10 @@ const CurrentOwner = () => {
     );
   }
   return (
-    <section className="owner-info">
+    <section className="current-owner">
       <header>
-        <h2>{currentOwner.name}</h2>
         <input
+          className="current-owner-name"
           type="text"
           id="name"
           value={name}
