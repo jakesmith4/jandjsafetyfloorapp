@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { useGlobalContext } from '../context';
 
 const CurrentOwner = () => {
-  const { currentOwner } = useGlobalContext();
+  const { currentOwner, changeCurrentOwnerName } = useGlobalContext();
+  const [name, setName] = useState(currentOwner.name);
 
   if (!currentOwner) {
     return (
@@ -16,6 +18,15 @@ const CurrentOwner = () => {
     <section className="owner-info">
       <header>
         <h2>{currentOwner.name}</h2>
+        <input
+          type="text"
+          id="name"
+          value={name}
+          onChange={e => {
+            setName(e.target.value);
+            changeCurrentOwnerName(e.target.value);
+          }}
+        />
       </header>
 
       <footer>

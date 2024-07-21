@@ -9,22 +9,26 @@ import {
   EDIT_OWNER,
   CHANGE_NEW_OWNER_INFO,
   SET_CURRENT_OWNER,
+  CHANGE_CURRENT_OWNER_NAME,
 } from './actions';
-import CurrentOwner from './components/CurrentOwner';
 
 const reducer = (state, action) => {
   if (action.type === OPEN_MODAL) {
     return { ...state, isModalOpen: true };
   }
+
   if (action.type === CLOSE_MODAL) {
     return { ...state, isModalOpen: false };
   }
+
   if (action.type === OPEN_HOME) {
     return { ...state, isHomeOpen: true, isCurrentOwnerOpen: false };
   }
+
   if (action.type === OPEN_CURRENT_OWNER) {
     return { ...state, isCurrentOwnerOpen: true, isHomeOpen: false };
   }
+
   if (action.type === REMOVE_OWNER) {
     const confirmed = window.confirm(
       `Are you sure you want to delete this owner?`
@@ -38,6 +42,7 @@ const reducer = (state, action) => {
     }
     return { ...state };
   }
+
   if (action.type === ADD_OWNER) {
     action.payload.e.preventDefault();
     const { newOwnerName, newOwnerPrice, newOwnerAmount } = state;
@@ -51,6 +56,7 @@ const reducer = (state, action) => {
     });
     return { ...state, owners: newOwners, isModalOpen: false };
   }
+
   if (action.type === CHANGE_NEW_OWNER_INFO) {
     return {
       ...state,
@@ -59,6 +65,7 @@ const reducer = (state, action) => {
       newOwnerAmount: action.payload.amount,
     };
   }
+
   if (action.type === SET_CURRENT_OWNER) {
     const id = action.payload.id;
     return {
@@ -69,6 +76,17 @@ const reducer = (state, action) => {
       isCurrentOwnerOpen: true,
     };
   }
+
+  if (action.type === CHANGE_CURRENT_OWNER_NAME) {
+    const { currentOwnerId, currentOwner, owners } = state;
+    const newOwners = new Map(owners);
+    newOwners.set(currentOwnerId, {
+      ...currentOwner,
+      name: action.payload.name,
+    });
+    return { ...state, owners: newOwners };
+  }
+
   throw new Error(`no matching action type : ${action.type}`);
 };
 

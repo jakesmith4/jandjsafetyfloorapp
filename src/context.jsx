@@ -11,6 +11,7 @@ import {
   EDIT_OWNER,
   CHANGE_NEW_OWNER_INFO,
   SET_CURRENT_OWNER,
+  CHANGE_CURRENT_OWNER_NAME,
 } from './actions';
 import { owners } from './data';
 
@@ -34,12 +35,10 @@ export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   function openModal() {
-    // setIsModalOpen(true);
     dispatch({ type: OPEN_MODAL });
   }
 
   function closeModal() {
-    // setIsModalOpen(false);
     dispatch({ type: CLOSE_MODAL });
   }
 
@@ -47,13 +46,9 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: OPEN_HOME });
   }
 
-  function closeHome() {}
-
   function openCurrentOwner() {
     dispatch({ type: OPEN_CURRENT_OWNER });
   }
-
-  function closeCurrentOwner() {}
 
   function removeOwner(id) {
     dispatch({ type: REMOVE_OWNER, payload: { id } });
@@ -74,6 +69,10 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: SET_CURRENT_OWNER, payload: { id } });
   }
 
+  function changeCurrentOwnerName(name) {
+    dispatch({ type: CHANGE_CURRENT_OWNER_NAME, payload: { name } });
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -86,6 +85,7 @@ export const AppProvider = ({ children }) => {
         addOwner,
         changeNewOwnerInfo,
         setCurrentOwner,
+        changeCurrentOwnerName,
       }}
     >
       {children}
