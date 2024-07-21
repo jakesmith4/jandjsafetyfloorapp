@@ -29,6 +29,29 @@ const CurrentOwner = () => {
         />
       </header>
 
+      <div className="form">
+        <h3>add job</h3>
+        <div className="form-row">
+          <label htmlFor="store-number" className="form-label">
+            store number
+          </label>
+          <input type="text" id="store-number" className="form-input" />
+        </div>
+        <div className="form-row">
+          <label htmlFor="address" className="form-label">
+            address
+          </label>
+          <textarea id="address" className="form-textarea"></textarea>
+        </div>
+        <div className="form-row">
+          <label htmlFor="price" className="form-label">
+            price
+          </label>
+          <input type="number" id="price" className="form-input" />
+        </div>
+        <button className="btn">add job</button>
+      </div>
+
       <footer>
         <hr />
       </footer>
