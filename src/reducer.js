@@ -2,12 +2,15 @@ import { nanoid } from 'nanoid';
 import {
   OPEN_MODAL,
   CLOSE_MODAL,
+  OPEN_HOME,
+  OPEN_CURRENT_OWNER,
   ADD_OWNER,
   REMOVE_OWNER,
   EDIT_OWNER,
   CHANGE_NEW_OWNER_INFO,
-  SET_CURRENT_OWNER_ID,
+  SET_CURRENT_OWNER,
 } from './actions';
+import CurrentOwner from './components/CurrentOwner';
 
 const reducer = (state, action) => {
   if (action.type === OPEN_MODAL) {
@@ -15,6 +18,12 @@ const reducer = (state, action) => {
   }
   if (action.type === CLOSE_MODAL) {
     return { ...state, isModalOpen: false };
+  }
+  if (action.type === OPEN_HOME) {
+    return { ...state, isHomeOpen: true, isCurrentOwnerOpen: false };
+  }
+  if (action.type === OPEN_CURRENT_OWNER) {
+    return { ...state, isCurrentOwnerOpen: true, isHomeOpen: false };
   }
   if (action.type === REMOVE_OWNER) {
     const confirmed = window.confirm(
@@ -50,9 +59,15 @@ const reducer = (state, action) => {
       newOwnerAmount: action.payload.amount,
     };
   }
-  if (action.type === SET_CURRENT_OWNER_ID) {
-    console.log(action.payload.id);
-    return { ...state, currentOwnerId: action.payload.id };
+  if (action.type === SET_CURRENT_OWNER) {
+    const id = action.payload.id;
+    return {
+      ...state,
+      currentOwnerId: id,
+      currentOwner: state.owners.get(id),
+      isHomeOpen: false,
+      isCurrentOwnerOpen: true,
+    };
   }
   throw new Error(`no matching action type : ${action.type}`);
 };

@@ -4,11 +4,13 @@ import reducer from './reducer';
 import {
   OPEN_MODAL,
   CLOSE_MODAL,
+  OPEN_HOME,
+  OPEN_CURRENT_OWNER,
   ADD_OWNER,
   REMOVE_OWNER,
   EDIT_OWNER,
   CHANGE_NEW_OWNER_INFO,
-  SET_CURRENT_OWNER_ID,
+  SET_CURRENT_OWNER,
 } from './actions';
 import { owners } from './data';
 
@@ -16,11 +18,14 @@ const AppContext = createContext();
 
 const initialState = {
   isModalOpen: false,
+  isHomeOpen: true,
+  isCurrentOwnerOpen: false,
   owners: new Map(owners.map(owner => [owner.id, owner])),
   newOwnerName: '',
   newOwnerPrice: '',
   newOwnerAmount: '',
   currentOwnerId: '',
+  currentOwner: null,
 };
 
 export const AppProvider = ({ children }) => {
@@ -38,6 +43,18 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: CLOSE_MODAL });
   }
 
+  function openHome() {
+    dispatch({ type: OPEN_HOME });
+  }
+
+  function closeHome() {}
+
+  function openCurrentOwner() {
+    dispatch({ type: OPEN_CURRENT_OWNER });
+  }
+
+  function closeCurrentOwner() {}
+
   function removeOwner(id) {
     dispatch({ type: REMOVE_OWNER, payload: { id } });
   }
@@ -54,7 +71,7 @@ export const AppProvider = ({ children }) => {
   }
 
   function setCurrentOwnerId(id) {
-    dispatch({ type: SET_CURRENT_OWNER_ID, payload: { id } });
+    dispatch({ type: SET_CURRENT_OWNER, payload: { id } });
   }
 
   return (
@@ -63,6 +80,8 @@ export const AppProvider = ({ children }) => {
         ...state,
         openModal,
         closeModal,
+        openHome,
+        openCurrentOwner,
         removeOwner,
         addOwner,
         changeNewOwnerInfo,

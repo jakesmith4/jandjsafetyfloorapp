@@ -1,7 +1,7 @@
 import SingleOwner from './SingleOwner';
 import { useGlobalContext } from '../context';
 const Home = () => {
-  const { isModalOpen, openModal, owners } = useGlobalContext();
+  const { isModalOpen, openModal, owners, currentOwner } = useGlobalContext();
 
   const ownersArray = Array.from(owners.entries());
 

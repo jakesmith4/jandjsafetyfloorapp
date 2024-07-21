@@ -275,14 +275,6 @@ Sidebar
   transition: var(--transition);
 }
 
-.sidebar-item:hover {
-  background: orangered;
-}
-
-.sidebar-item:hover .sidebar-btn {
-  color: #333;
-}
-
 .sidebar-btn {
   width: 100%;
   font-size: 2rem;
@@ -294,6 +286,11 @@ Sidebar
   background: transparent;
   cursor: pointer;
   color: var(--white);
+}
+
+.sidebar-btn-open {
+  background: orangered;
+  color: #333;
 }
 
 /*
@@ -351,7 +348,7 @@ Owner
 ===============
 */
 .owner-info {
-  min-height: calc(100vh - 5rem);
+  min-height: 100vh;
   /* width: var(--view-width); */
   /* max-width: var(--fixed-width); */
   /* margin: 0 auto; */
