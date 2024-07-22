@@ -360,7 +360,7 @@ Owner
 .owner-info h2 {
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 .current-owner-name {
@@ -447,4 +447,22 @@ Current Owner
 
 .current-owner {
   text-align: center;
+}
+
+.jobs-item {
+  background: #333;
+  color: var(--white);
+  margin-bottom: 2rem;
+  padding: 0.5rem 0;
+}
+
+.job-item h3 {
+}
+
+.jobs-item-info {
+  margin: 0.5rem auto;
+  display: block;
+  background: orangered;
+  padding: 0.3rem 0;
+  width: 70%;
 }

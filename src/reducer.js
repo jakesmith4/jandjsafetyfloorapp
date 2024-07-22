@@ -95,7 +95,7 @@ const reducer = (state, action) => {
   }
 
   if (action.type === ADD_JOB_TO_CURRENT_OWNER) {
-    const { storeNumber, address, price, e } = action.payload;
+    const { storeNumber, address, price, e, date } = action.payload;
     if (!storeNumber || !address || !price) {
       e.preventDefault();
       return { ...state };
@@ -108,6 +108,7 @@ const reducer = (state, action) => {
       storeNumber,
       address,
       price,
+      date: new Date(date),
     });
     return {
       ...state,

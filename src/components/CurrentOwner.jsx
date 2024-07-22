@@ -10,10 +10,10 @@ const CurrentOwner = () => {
     isCurrentOwnerFormOpen,
   } = useGlobalContext();
   const [name, setName] = useState(currentOwner?.name);
+  const [date, setDate] = useState('');
   const [storeNumber, setStoreNumber] = useState('');
   const [address, setAddress] = useState('');
   const [price, setPrice] = useState('');
-  const [isFormOpen, setIsFormOpen] = useState(false);
 
   const jobsArray = Array.from(currentOwner ? currentOwner.jobs.entries() : []);
 
@@ -50,16 +50,28 @@ const CurrentOwner = () => {
           className="form"
           onSubmit={e => {
             if (!storeNumber || !address || !price) {
-              addJobToCurrentOwner(e, storeNumber, address, price);
+              addJobToCurrentOwner(e, storeNumber, address, price, date);
               return;
             }
-            addJobToCurrentOwner(e, storeNumber, address, price);
+            addJobToCurrentOwner(e, storeNumber, address, price, date);
             setStoreNumber('');
             setAddress('');
             setPrice('');
           }}
         >
           <h3>add job</h3>
+          <div className="form-row">
+            <label htmlFor="date" className="form-label">
+              date
+            </label>
+            <input
+              type="date"
+              id="date"
+              className="form-input"
+              value={date}
+              onChange={e => setDate(e.target.value)}
+            />
+          </div>
           <div className="form-row">
             <label htmlFor="store-number" className="form-label">
               store number
@@ -99,10 +111,28 @@ const CurrentOwner = () => {
         </form>
       )}
 
-      {jobsArray.map(job => {
-        const [id, item] = job;
-        return <div key={id}>{item.storeNumber}</div>;
-      })}
+      <h2>Jobs</h2>
+      <ul>
+        {jobsArray.map(job => {
+          const [id, item] = job;
+
+          return (
+            <li key={id} className="jobs-item">
+              <h3>store number:</h3>
+              <span className="jobs-item-info">#{item.storeNumber}</span>
+
+              <h3>date:</h3>
+              <span className="jobs-item-info">
+                {Intl.DateTimeFormat('en-US').format(item.date)}
+              </span>
+              <h3>address:</h3>
+              <span className="jobs-item-info">{item.address}</span>
+              <h3>price</h3>
+              <span className="jobs-item-info">${item.price}</span>
+            </li>
+          );
+        })}
+      </ul>
 
       <footer>
         <hr />

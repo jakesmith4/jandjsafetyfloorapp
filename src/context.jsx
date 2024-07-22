@@ -78,10 +78,10 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: CHANGE_CURRENT_OWNER_NAME, payload: { name } });
   }
 
-  function addJobToCurrentOwner(e, storeNumber, address, price) {
+  function addJobToCurrentOwner(e, storeNumber, address, price, date) {
     dispatch({
       type: ADD_JOB_TO_CURRENT_OWNER,
-      payload: { e, storeNumber, address, price },
+      payload: { e, storeNumber, address, price, date },
     });
   }
 
