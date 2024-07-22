@@ -11,8 +11,8 @@ import {
   SET_CURRENT_OWNER,
   CHANGE_CURRENT_OWNER_NAME,
   ADD_JOB_TO_CURRENT_OWNER,
+  TOGGLE_CURRENT_OWNER_FORM,
 } from './actions';
-import { owners } from './data';
 
 const reducer = (state, action) => {
   if (action.type === OPEN_MODAL) {
@@ -21,6 +21,10 @@ const reducer = (state, action) => {
 
   if (action.type === CLOSE_MODAL) {
     return { ...state, isModalOpen: false };
+  }
+
+  if (action.type === TOGGLE_CURRENT_OWNER_FORM) {
+    return { ...state, isCurrentOwnerFormOpen: !state.isCurrentOwnerFormOpen };
   }
 
   if (action.type === OPEN_HOME) {
@@ -92,6 +96,10 @@ const reducer = (state, action) => {
 
   if (action.type === ADD_JOB_TO_CURRENT_OWNER) {
     const { storeNumber, address, price, e } = action.payload;
+    if (!storeNumber || !address || !price) {
+      e.preventDefault();
+      return { ...state };
+    }
     e.preventDefault();
     const newOwners = new Map(state.owners);
     const currentOwner = newOwners.get(state.currentOwnerId);
@@ -101,7 +109,11 @@ const reducer = (state, action) => {
       address,
       price,
     });
-    return { ...state, owners: newOwners };
+    return {
+      ...state,
+      owners: newOwners,
+      isCurrentOwnerFormOpen: !state.isCurrentOwnerFormOpen,
+    };
   }
 
   throw new Error(`no matching action type : ${action.type}`);

@@ -13,6 +13,7 @@ import {
   SET_CURRENT_OWNER,
   CHANGE_CURRENT_OWNER_NAME,
   ADD_JOB_TO_CURRENT_OWNER,
+  TOGGLE_CURRENT_OWNER_FORM,
 } from './actions';
 import { owners } from './data';
 
@@ -20,6 +21,7 @@ const AppContext = createContext();
 
 const initialState = {
   isModalOpen: false,
+  isCurrentOwnerFormOpen: false,
   isHomeOpen: true,
   isCurrentOwnerOpen: false,
   owners: new Map(owners.map(owner => [owner.id, owner])),
@@ -39,6 +41,10 @@ export const AppProvider = ({ children }) => {
 
   function closeModal() {
     dispatch({ type: CLOSE_MODAL });
+  }
+
+  function toggleCurrentOwnerForm() {
+    dispatch({ type: TOGGLE_CURRENT_OWNER_FORM });
   }
 
   function openHome() {
@@ -93,6 +99,7 @@ export const AppProvider = ({ children }) => {
         setCurrentOwner,
         changeCurrentOwnerName,
         addJobToCurrentOwner,
+        toggleCurrentOwnerForm,
       }}
     >
       {children}
