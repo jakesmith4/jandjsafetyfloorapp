@@ -37,7 +37,12 @@ const CurrentOwner = () => {
 
       <form
         className="form"
-        onSubmit={e => addJobToCurrentOwner(e, storeNumber, address, price)}
+        onSubmit={e => {
+          addJobToCurrentOwner(e, storeNumber, address, price);
+          setStoreNumber('');
+          setAddress('');
+          setPrice('');
+        }}
       >
         <h3>add job</h3>
         <div className="form-row">
