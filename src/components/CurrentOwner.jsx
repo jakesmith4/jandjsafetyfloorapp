@@ -123,10 +123,14 @@ const CurrentOwner = () => {
 
               <h3>date:</h3>
               <span className="jobs-item-info">
-                {Intl.DateTimeFormat('en-US').format(item.date)}
+                {Intl.DateTimeFormat('en-US').format(new Date(item.dateObject))}
               </span>
+
+              <input type="date" defaultValue={item.date} />
+
               <h3>address:</h3>
               <span className="jobs-item-info">{item.address}</span>
+
               <h3>price</h3>
               <span className="jobs-item-info">${item.price}</span>
             </li>

@@ -104,11 +104,20 @@ const reducer = (state, action) => {
     const newOwners = new Map(state.owners);
     const currentOwner = newOwners.get(state.currentOwnerId);
     const newId = nanoid();
+
+    // Convert Date One Day Forward Because Of Time Zone Issues
+    const dateArray = date.split('-');
+    const year = dateArray[0];
+    const month = parseInt(dateArray[1], 10) - 1;
+    const date1 = dateArray[2];
+    const dateObject = new Date(year, month, date1);
+
     currentOwner.jobs.set(newId, {
       storeNumber,
       address,
       price,
-      date: new Date(date),
+      date,
+      dateObject,
     });
     return {
       ...state,
