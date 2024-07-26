@@ -4,6 +4,7 @@ import {
   CLOSE_MODAL,
   OPEN_HOME,
   OPEN_CURRENT_OWNER,
+  OPEN_CURRENT_JOB,
   ADD_OWNER,
   REMOVE_OWNER,
   EDIT_OWNER,
@@ -13,6 +14,7 @@ import {
   ADD_JOB_TO_CURRENT_OWNER,
   TOGGLE_CURRENT_OWNER_FORM,
 } from './actions';
+import { owners } from './data';
 
 const reducer = (state, action) => {
   if (action.type === OPEN_MODAL) {
@@ -28,11 +30,30 @@ const reducer = (state, action) => {
   }
 
   if (action.type === OPEN_HOME) {
-    return { ...state, isHomeOpen: true, isCurrentOwnerOpen: false };
+    return {
+      ...state,
+      isHomeOpen: true,
+      isCurrentOwnerOpen: false,
+      isCurrentJobOpen: false,
+    };
   }
 
   if (action.type === OPEN_CURRENT_OWNER) {
-    return { ...state, isCurrentOwnerOpen: true, isHomeOpen: false };
+    return {
+      ...state,
+      isCurrentOwnerOpen: true,
+      isHomeOpen: false,
+      isCurrentJobOpen: false,
+    };
+  }
+
+  if (action.type === OPEN_CURRENT_JOB) {
+    return {
+      ...state,
+      isCurrentJobOpen: true,
+      isHomeOpen: false,
+      isCurrentOwnerOpen: false,
+    };
   }
 
   if (action.type === REMOVE_OWNER) {
@@ -112,13 +133,15 @@ const reducer = (state, action) => {
     const date1 = dateArray[2];
     const dateObject = new Date(year, month, date1);
 
-    currentOwner.jobs.set(newId, {
+    currentOwner.jobs.push({
+      id: newId,
       storeNumber,
       address,
       price,
       date,
       dateObject,
     });
+
     return {
       ...state,
       owners: newOwners,

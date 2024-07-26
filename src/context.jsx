@@ -6,6 +6,7 @@ import {
   CLOSE_MODAL,
   OPEN_HOME,
   OPEN_CURRENT_OWNER,
+  OPEN_CURRENT_JOB,
   ADD_OWNER,
   REMOVE_OWNER,
   EDIT_OWNER,
@@ -21,15 +22,17 @@ const AppContext = createContext();
 
 const initialState = {
   isModalOpen: false,
-  isCurrentOwnerFormOpen: false,
   isHomeOpen: true,
   isCurrentOwnerOpen: false,
+  isCurrentOwnerFormOpen: false,
+  isCurrentJobOpen: false,
   owners: new Map(owners.map(owner => [owner.id, owner])),
   newOwnerName: '',
   newOwnerPrice: '',
   newOwnerAmount: '',
   currentOwnerId: '',
   currentOwner: null,
+  currentJob: null,
 };
 
 export const AppProvider = ({ children }) => {
@@ -53,6 +56,10 @@ export const AppProvider = ({ children }) => {
 
   function openCurrentOwner() {
     dispatch({ type: OPEN_CURRENT_OWNER });
+  }
+
+  function openCurrentJob() {
+    dispatch({ type: OPEN_CURRENT_JOB });
   }
 
   function removeOwner(id) {
@@ -93,6 +100,7 @@ export const AppProvider = ({ children }) => {
         closeModal,
         openHome,
         openCurrentOwner,
+        openCurrentJob,
         removeOwner,
         addOwner,
         changeNewOwnerInfo,

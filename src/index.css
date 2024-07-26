@@ -363,13 +363,6 @@ Owner
   margin-bottom: 1rem;
 }
 
-.current-owner-name {
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
 .empty-owners {
   text-transform: lowercase;
   color: var(--grey-500);
@@ -447,6 +440,13 @@ Current Owner
 
 .current-owner {
   text-align: center;
+}
+
+.current-owner-name {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
 .jobs-item {

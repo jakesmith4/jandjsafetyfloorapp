@@ -6,28 +6,28 @@ export const owners = [
     name: 'larry miller',
     price: '695',
     amount: 7,
-    jobs: new Map(),
+    jobs: [],
   },
   {
     id: 'recB6qcHPxb62YJ75',
     name: 'david guitierrez',
     price: '695',
     amount: 13,
-    jobs: new Map(),
+    jobs: [],
   },
   {
     id: 'recdRxBsE14Rr2VuJ',
     name: 'fred delbarrio',
     price: '795',
     amount: 12,
-    jobs: new Map(),
+    jobs: [],
   },
   {
     id: 'recwTo160XST3PIoW',
     name: 'mike marasco',
     price: '795 ',
     amount: 13,
-    jobs: new Map(),
+    jobs: [],
   },
 ];
 
