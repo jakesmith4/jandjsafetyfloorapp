@@ -13,6 +13,7 @@ import {
   CHANGE_CURRENT_OWNER_NAME,
   ADD_JOB_TO_CURRENT_OWNER,
   TOGGLE_CURRENT_OWNER_FORM,
+  CHANGE_CURRENT_SINGLE_JOB,
 } from './actions';
 import { owners } from './data';
 
@@ -35,6 +36,7 @@ const reducer = (state, action) => {
       isHomeOpen: true,
       isCurrentOwnerOpen: false,
       isCurrentJobOpen: false,
+      currentSingleJob: null,
     };
   }
 
@@ -44,6 +46,7 @@ const reducer = (state, action) => {
       isCurrentOwnerOpen: true,
       isHomeOpen: false,
       isCurrentJobOpen: false,
+      currentSingleJob: null,
     };
   }
 
@@ -147,6 +150,10 @@ const reducer = (state, action) => {
       owners: newOwners,
       isCurrentOwnerFormOpen: !state.isCurrentOwnerFormOpen,
     };
+  }
+
+  if (action.type === CHANGE_CURRENT_SINGLE_JOB) {
+    return { ...state, currentSingleJob: action.payload.id };
   }
 
   throw new Error(`no matching action type : ${action.type}`);

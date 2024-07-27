@@ -15,6 +15,7 @@ import {
   CHANGE_CURRENT_OWNER_NAME,
   ADD_JOB_TO_CURRENT_OWNER,
   TOGGLE_CURRENT_OWNER_FORM,
+  CHANGE_CURRENT_SINGLE_JOB,
 } from './actions';
 import { owners } from './data';
 
@@ -33,6 +34,7 @@ const initialState = {
   currentOwnerId: '',
   currentOwner: null,
   currentJob: null,
+  currentSingleJob: null,
 };
 
 export const AppProvider = ({ children }) => {
@@ -92,6 +94,10 @@ export const AppProvider = ({ children }) => {
     });
   }
 
+  function changeCurrentSingleJob(id) {
+    dispatch({ type: CHANGE_CURRENT_SINGLE_JOB, payload: { id } });
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -108,6 +114,7 @@ export const AppProvider = ({ children }) => {
         changeCurrentOwnerName,
         addJobToCurrentOwner,
         toggleCurrentOwnerForm,
+        changeCurrentSingleJob,
       }}
     >
       {children}

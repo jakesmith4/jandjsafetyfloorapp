@@ -1,7 +1,8 @@
 import { useGlobalContext } from '../context';
 
 const CurrentJob = () => {
-  const { owners } = useGlobalContext();
+  const { owners, currentSingleJob } = useGlobalContext();
+  console.log(currentSingleJob);
 
   const currentDate = new Date();
 
@@ -22,6 +23,14 @@ const CurrentJob = () => {
   );
 
   console.log(todaysJobs);
+
+  if (currentSingleJob) {
+    return (
+      <section className="current-owner">
+        {currentSingleJob.storeNumber}
+      </section>
+    );
+  }
 
   if (todaysJobs.length === 0) {
     return (

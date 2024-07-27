@@ -8,6 +8,8 @@ const CurrentOwner = () => {
     addJobToCurrentOwner,
     toggleCurrentOwnerForm,
     isCurrentOwnerFormOpen,
+    openCurrentJob,
+    changeCurrentSingleJob,
   } = useGlobalContext();
   const [name, setName] = useState(currentOwner?.name);
   const [date, setDate] = useState('');
@@ -15,7 +17,7 @@ const CurrentOwner = () => {
   const [address, setAddress] = useState('');
   const [price, setPrice] = useState('');
 
-  const jobsArray = Array.from(currentOwner ? currentOwner.jobs.entries() : []);
+  const jobsArray = currentOwner ? currentOwner.jobs : [];
 
   if (!currentOwner) {
     return (
@@ -114,25 +116,32 @@ const CurrentOwner = () => {
       <h2>Jobs</h2>
       <ul>
         {jobsArray.map(job => {
-          const [id, item] = job;
+          const { id } = job;
 
           return (
-            <li key={id} className="jobs-item">
+            <li
+              key={id}
+              className="jobs-item"
+              onClick={() => {
+                openCurrentJob();
+                changeCurrentSingleJob(job);
+              }}
+            >
               <h3>store number:</h3>
-              <span className="jobs-item-info">#{item.storeNumber}</span>
+              <span className="jobs-item-info">#{job.storeNumber}</span>
 
               <h3>date:</h3>
               <span className="jobs-item-info">
-                {Intl.DateTimeFormat('en-US').format(new Date(item.dateObject))}
+                {Intl.DateTimeFormat('en-US').format(new Date(job.dateObject))}
               </span>
 
-              <input type="date" defaultValue={item.date} />
+              <input type="date" defaultValue={job.date} />
 
               <h3>address:</h3>
-              <span className="jobs-item-info">{item.address}</span>
+              <span className="jobs-item-info">{job.address}</span>
 
               <h3>price</h3>
-              <span className="jobs-item-info">${item.price}</span>
+              <span className="jobs-item-info">${job.price}</span>
             </li>
           );
         })}
