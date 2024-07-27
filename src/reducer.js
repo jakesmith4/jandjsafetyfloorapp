@@ -83,7 +83,7 @@ const reducer = (state, action) => {
       name: newOwnerName,
       price: newOwnerPrice,
       amount: newOwnerAmount,
-      jobs: new Map(),
+      jobs: [],
     });
     return { ...state, owners: newOwners, isModalOpen: false };
   }
