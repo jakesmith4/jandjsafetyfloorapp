@@ -7,6 +7,7 @@ const SingleJob = ({ job }) => {
   const [price, setPrice] = useState(job.price);
   return (
     <article className="single-job">
+      <h2>{job.owner}</h2>
       <div className="form-row">
         <label htmlFor="date" className="form-label">
           date

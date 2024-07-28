@@ -28,7 +28,7 @@ const CurrentJob = () => {
     console.log(currentSingleJob);
     return (
       <section className="current-owner">
-        {/* {currentSingleJob.storeNumber} */}
+        <h1>current selected job</h1>
         <SingleJob job={currentSingleJob} />
       </section>
     );
@@ -45,6 +45,7 @@ const CurrentJob = () => {
   }
   return (
     <section className="current-owner">
+      <h1>todays jobs</h1>
       {/* <header></header>
 
       <footer>

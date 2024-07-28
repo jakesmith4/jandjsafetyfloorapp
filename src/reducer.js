@@ -138,6 +138,7 @@ const reducer = (state, action) => {
 
     currentOwner.jobs.push({
       id: newId,
+      owner: currentOwner.name,
       storeNumber,
       address,
       price,
