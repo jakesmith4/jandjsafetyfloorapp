@@ -466,3 +466,15 @@ Current Owner
   padding: 0.3rem 0;
   width: 70%;
 }
+
+/*
+=============== 
+Single Job
+===============
+*/
+
+.single-job {
+  background: orangered;
+  padding: 1rem 0.5rem;
+  margin-bottom: 1rem;
+}

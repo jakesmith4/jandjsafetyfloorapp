@@ -1,8 +1,8 @@
 import { useGlobalContext } from '../context';
+import SingleJob from './SingleJob';
 
 const CurrentJob = () => {
   const { owners, currentSingleJob } = useGlobalContext();
-  console.log(currentSingleJob);
 
   const currentDate = new Date();
 
@@ -25,9 +25,11 @@ const CurrentJob = () => {
   console.log(todaysJobs);
 
   if (currentSingleJob) {
+    console.log(currentSingleJob);
     return (
       <section className="current-owner">
-        {currentSingleJob.storeNumber}
+        {/* {currentSingleJob.storeNumber} */}
+        <SingleJob job={currentSingleJob} />
       </section>
     );
   }
@@ -49,7 +51,7 @@ const CurrentJob = () => {
         <hr />
       </footer> */}
       {todaysJobs.map(job => (
-        <article key={job.id}>{job.date}</article>
+        <SingleJob key={job.id} job={job} />
       ))}
     </section>
   );
