@@ -16,6 +16,7 @@ import {
   ADD_JOB_TO_CURRENT_OWNER,
   TOGGLE_CURRENT_OWNER_FORM,
   CHANGE_CURRENT_SINGLE_JOB,
+  EDIT_JOB,
 } from './actions';
 import { owners } from './data';
 
@@ -98,6 +99,13 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: CHANGE_CURRENT_SINGLE_JOB, payload: { id } });
   }
 
+  function editJob(id, date, storeNumber, address, price, owner, e) {
+    dispatch({
+      type: EDIT_JOB,
+      payload: { id, date, storeNumber, address, price, owner, e },
+    });
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -115,6 +123,7 @@ export const AppProvider = ({ children }) => {
         addJobToCurrentOwner,
         toggleCurrentOwnerForm,
         changeCurrentSingleJob,
+        editJob,
       }}
     >
       {children}
@@ -125,8 +134,3 @@ export const AppProvider = ({ children }) => {
 export const useGlobalContext = () => {
   return useContext(AppContext);
 };
-
-// Then you can use the it in any component, just import the useGlobalContext like shown below:
-// import { useGlobalContext } from '../context';
-// Then you can you it like show below:
-// const { isSidebarOpen, openSidebar } = useGlobalContext();

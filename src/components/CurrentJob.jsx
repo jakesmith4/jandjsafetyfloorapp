@@ -22,10 +22,7 @@ const CurrentJob = () => {
     job => job.dateObject.getTime() === currentTime
   );
 
-  console.log(todaysJobs);
-
   if (currentSingleJob) {
-    console.log(currentSingleJob);
     return (
       <section className="current-owner">
         <h1>current selected job</h1>

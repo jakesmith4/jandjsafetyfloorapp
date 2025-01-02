@@ -8,6 +8,7 @@ import {
   ADD_OWNER,
   REMOVE_OWNER,
   EDIT_OWNER,
+  EDIT_JOB,
   CHANGE_NEW_OWNER_INFO,
   SET_CURRENT_OWNER,
   CHANGE_CURRENT_OWNER_NAME,
@@ -15,7 +16,7 @@ import {
   TOGGLE_CURRENT_OWNER_FORM,
   CHANGE_CURRENT_SINGLE_JOB,
 } from './actions';
-import { owners } from './data';
+import { convertDateOneDayForward } from './utils';
 
 const reducer = (state, action) => {
   if (action.type === OPEN_MODAL) {
@@ -120,7 +121,7 @@ const reducer = (state, action) => {
 
   if (action.type === ADD_JOB_TO_CURRENT_OWNER) {
     const { storeNumber, address, price, e, date } = action.payload;
-    if (!storeNumber || !address || !price) {
+    if (!storeNumber || !address || !price || !date) {
       e.preventDefault();
       return { ...state };
     }
@@ -130,11 +131,7 @@ const reducer = (state, action) => {
     const newId = nanoid();
 
     // Convert Date One Day Forward Because Of Time Zone Issues
-    const dateArray = date.split('-');
-    const year = dateArray[0];
-    const month = parseInt(dateArray[1], 10) - 1;
-    const date1 = dateArray[2];
-    const dateObject = new Date(year, month, date1);
+    const dateObject = convertDateOneDayForward(date);
 
     currentOwner.jobs.push({
       id: newId,
@@ -155,6 +152,33 @@ const reducer = (state, action) => {
 
   if (action.type === CHANGE_CURRENT_SINGLE_JOB) {
     return { ...state, currentSingleJob: action.payload.id };
+  }
+
+  if (action.type === EDIT_JOB) {
+    const { e, id, date, price, address, storeNumber, owner } = action.payload;
+    e.preventDefault();
+
+    const ownersArray = Array.from(state.owners.entries());
+
+    const singleOwnersArray = ownersArray.map(owner => {
+      const [id, item] = owner;
+      return item;
+    });
+
+    const currentOwner = singleOwnersArray.find(item => item.name === owner);
+
+    const currentJob = currentOwner.jobs.find(job => job.id === id);
+
+    // Convert Date One Day Forward Because Of Time Zone Issues
+    const dateObject = convertDateOneDayForward(date);
+
+    currentJob.date = date;
+    currentJob.dateObject = dateObject;
+    currentJob.price = price;
+    currentJob.address = address;
+    currentJob.storeNumber = storeNumber;
+
+    return { ...state };
   }
 
   throw new Error(`no matching action type : ${action.type}`);

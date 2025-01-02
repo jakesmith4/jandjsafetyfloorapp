@@ -1,12 +1,19 @@
 import { useState } from 'react';
+import { useGlobalContext } from '../context';
 
 const SingleJob = ({ job }) => {
+  const { editJob } = useGlobalContext();
   const [date, setDate] = useState(job.date);
   const [storeNumber, setStoreNumber] = useState(job.storeNumber);
   const [address, setAddress] = useState(job.address);
   const [price, setPrice] = useState(job.price);
   return (
-    <article className="single-job">
+    <form
+      className="single-job"
+      onSubmit={e => {
+        editJob(job.id, date, storeNumber, address, price, job.owner, e);
+      }}
+    >
       <h2>{job.owner}</h2>
       <div className="form-row">
         <label htmlFor="date" className="form-label">
@@ -15,7 +22,7 @@ const SingleJob = ({ job }) => {
         <input
           type="date"
           className="form-input"
-          value={job.date}
+          value={date}
           onChange={e => setDate(e.target.value)}
         />
       </div>
@@ -26,7 +33,7 @@ const SingleJob = ({ job }) => {
         <input
           type="text"
           id="store-number"
-          value={job.storeNumber}
+          value={storeNumber}
           onChange={e => setStoreNumber(e.target.value)}
         />
       </div>
@@ -36,7 +43,7 @@ const SingleJob = ({ job }) => {
         </label>
         <textarea
           id="address"
-          value={job.address}
+          value={address}
           onChange={e => setAddress(e.target.value)}
         ></textarea>
       </div>
@@ -47,11 +54,12 @@ const SingleJob = ({ job }) => {
         <input
           type="number"
           id="price"
-          value={job.price}
+          value={price}
           onChange={e => setPrice(e.target.value)}
         />
       </div>
-    </article>
+      <button className="btn">edit job</button>
+    </form>
   );
 };
 export default SingleJob;

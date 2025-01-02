@@ -6,7 +6,17 @@ export const owners = [
     name: 'larry miller',
     price: '695',
     amount: 7,
-    jobs: [],
+    jobs: [
+      {
+        address: '1',
+        date: '2025-01-01',
+        dateObject: new Date('01/02/2025'),
+        id: '34342134312',
+        owner: 'larry miller',
+        price: '1',
+        storeNumber: '1',
+      },
+    ],
   },
   {
     id: 'recB6qcHPxb62YJ75',
