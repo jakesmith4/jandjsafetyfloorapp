@@ -19,8 +19,6 @@ const CurrentOwner = () => {
 
   const jobsArray = currentOwner ? currentOwner.jobs : [];
 
-  console.log(currentOwner);
-
   if (!currentOwner) {
     return (
       <section className="current-owner">
