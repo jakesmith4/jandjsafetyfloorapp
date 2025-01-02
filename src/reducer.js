@@ -121,10 +121,6 @@ const reducer = (state, action) => {
 
   if (action.type === ADD_JOB_TO_CURRENT_OWNER) {
     const { storeNumber, address, price, e, date } = action.payload;
-    if (!storeNumber || !address || !price || !date) {
-      e.preventDefault();
-      return { ...state };
-    }
     e.preventDefault();
     const newOwners = new Map(state.owners);
     const currentOwner = newOwners.get(state.currentOwnerId);

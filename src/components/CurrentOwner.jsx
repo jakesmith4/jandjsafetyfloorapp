@@ -19,6 +19,8 @@ const CurrentOwner = () => {
 
   const jobsArray = currentOwner ? currentOwner.jobs : [];
 
+  console.log(currentOwner);
+
   if (!currentOwner) {
     return (
       <section className="current-owner">
@@ -51,8 +53,8 @@ const CurrentOwner = () => {
         <form
           className="form"
           onSubmit={e => {
-            if (!storeNumber || !address || !price) {
-              addJobToCurrentOwner(e, storeNumber, address, price, date);
+            if (!storeNumber || !address || !price || !date) {
+              e.preventDefault();
               return;
             }
             addJobToCurrentOwner(e, storeNumber, address, price, date);
