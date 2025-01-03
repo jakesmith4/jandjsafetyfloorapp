@@ -4,7 +4,7 @@ import { useGlobalContext } from '../context';
 const CurrentOwner = () => {
   const {
     currentOwner,
-    changeCurrentOwnerName,
+    editOwner,
     addJobToCurrentOwner,
     toggleCurrentOwnerForm,
     isCurrentOwnerFormOpen,
@@ -12,6 +12,8 @@ const CurrentOwner = () => {
     changeCurrentSingleJob,
   } = useGlobalContext();
   const [name, setName] = useState(currentOwner?.name);
+  const [numberOfStores, setNumberOfStores] = useState(currentOwner?.amount);
+  const [ownerPrice, setOwnerPrice] = useState(currentOwner?.price);
   const [date, setDate] = useState('');
   const [storeNumber, setStoreNumber] = useState('');
   const [address, setAddress] = useState('');
@@ -38,10 +40,39 @@ const CurrentOwner = () => {
           value={name}
           onChange={e => {
             setName(e.target.value);
-            changeCurrentOwnerName(e.target.value);
+            editOwner(e.target.value, numberOfStores, ownerPrice);
           }}
         />
       </header>
+
+      <div className="owner-inputs">
+        <div className="form-row">
+          <label htmlFor="number-of-stores">number of stores</label>
+          <input
+            type="number"
+            name="number-of-stores"
+            id="number-of-stores"
+            value={numberOfStores}
+            onChange={e => {
+              setNumberOfStores(+e.target.value);
+              editOwner(name, +e.target.value, ownerPrice);
+            }}
+          />
+        </div>
+        <div className="form-row">
+          <label htmlFor="owner-price">owner price</label>
+          <input
+            type="number"
+            name="owner-price"
+            id="owner-price"
+            value={ownerPrice}
+            onChange={e => {
+              setOwnerPrice(+e.target.value);
+              editOwner(name, numberOfStores, +e.target.value);
+            }}
+          />
+        </div>
+      </div>
 
       <button className="btn" onClick={toggleCurrentOwnerForm}>
         {isCurrentOwnerFormOpen ? 'close form' : 'add job'}

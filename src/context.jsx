@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useReducer } from 'react';
+import { createContext, useContext, useReducer } from 'react';
 import reducer from './reducer';
 
 import {
@@ -12,7 +12,6 @@ import {
   EDIT_OWNER,
   CHANGE_NEW_OWNER_INFO,
   SET_CURRENT_OWNER,
-  CHANGE_CURRENT_OWNER_NAME,
   ADD_JOB_TO_CURRENT_OWNER,
   TOGGLE_CURRENT_OWNER_FORM,
   CHANGE_CURRENT_SINGLE_JOB,
@@ -84,8 +83,8 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: SET_CURRENT_OWNER, payload: { id } });
   }
 
-  function changeCurrentOwnerName(name) {
-    dispatch({ type: CHANGE_CURRENT_OWNER_NAME, payload: { name } });
+  function editOwner(name, amount, price) {
+    dispatch({ type: EDIT_OWNER, payload: { name, amount, price } });
   }
 
   function addJobToCurrentOwner(e, storeNumber, address, price, date) {
@@ -119,7 +118,7 @@ export const AppProvider = ({ children }) => {
         addOwner,
         changeNewOwnerInfo,
         setCurrentOwner,
-        changeCurrentOwnerName,
+        editOwner,
         addJobToCurrentOwner,
         toggleCurrentOwnerForm,
         changeCurrentSingleJob,

@@ -11,7 +11,6 @@ import {
   EDIT_JOB,
   CHANGE_NEW_OWNER_INFO,
   SET_CURRENT_OWNER,
-  CHANGE_CURRENT_OWNER_NAME,
   ADD_JOB_TO_CURRENT_OWNER,
   TOGGLE_CURRENT_OWNER_FORM,
   CHANGE_CURRENT_SINGLE_JOB,
@@ -109,12 +108,15 @@ const reducer = (state, action) => {
     };
   }
 
-  if (action.type === CHANGE_CURRENT_OWNER_NAME) {
+  if (action.type === EDIT_OWNER) {
     const { currentOwnerId, currentOwner, owners } = state;
+    const { name, amount, price } = action.payload;
     const newOwners = new Map(owners);
     newOwners.set(currentOwnerId, {
       ...currentOwner,
-      name: action.payload.name,
+      name,
+      amount,
+      price,
     });
     return { ...state, owners: newOwners };
   }
