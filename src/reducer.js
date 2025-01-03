@@ -169,7 +169,12 @@ const reducer = (state, action) => {
       return item;
     });
 
-    const currentOwner = singleOwnersArray.find(item => item.name === owner);
+    const currentOwnerFromArray = singleOwnersArray.find(
+      item => item.name === owner
+    );
+
+    const newOwners = new Map(state.owners);
+    const currentOwner = newOwners.get(currentOwnerFromArray.id);
 
     const currentJob = currentOwner.jobs.find(job => job.id === id);
 
@@ -182,7 +187,7 @@ const reducer = (state, action) => {
     currentJob.address = address;
     currentJob.storeNumber = storeNumber;
 
-    return { ...state };
+    return { ...state, owners: newOwners };
   }
 
   if (action.type === DELETE_JOB) {
