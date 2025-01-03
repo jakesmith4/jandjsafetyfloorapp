@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { useGlobalContext } from '../context';
 
 const SingleJob = ({ job }) => {
-  const { editJob } = useGlobalContext();
+  const { editJob, deleteJob } = useGlobalContext();
   const [date, setDate] = useState(job.date);
   const [storeNumber, setStoreNumber] = useState(job.storeNumber);
   const [address, setAddress] = useState(job.address);
   const [price, setPrice] = useState(job.price);
+
   return (
     <form
       className="single-job"
@@ -58,7 +59,14 @@ const SingleJob = ({ job }) => {
           onChange={e => setPrice(e.target.value)}
         />
       </div>
-      <button className="btn">edit job</button>
+      <div className="btn-container">
+        <button className="btn" type="submit">
+          edit job
+        </button>
+        <button className="btn" type="button">
+          delete job
+        </button>
+      </div>
     </form>
   );
 };

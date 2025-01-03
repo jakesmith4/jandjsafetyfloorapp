@@ -7,6 +7,7 @@ export const ADD_OWNER = 'ADD_OWNER';
 export const REMOVE_OWNER = 'REMOVE_OWNER';
 export const EDIT_OWNER = 'EDIT_OWNER';
 export const EDIT_JOB = 'EDIT_JOB';
+export const DELETE_JOB = 'DELETE_JOB';
 export const CHANGE_NEW_OWNER_INFO = 'CHANGE_NEW_OWNER_INFO';
 export const SET_CURRENT_OWNER = 'SET_CURRENT_OWNER';
 export const CHANGE_CURRENT_OWNER_NAME = 'CHANGE_CURRENT_OWNER_NAME';

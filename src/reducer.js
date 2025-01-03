@@ -9,6 +9,7 @@ import {
   REMOVE_OWNER,
   EDIT_OWNER,
   EDIT_JOB,
+  DELETE_JOB,
   CHANGE_NEW_OWNER_INFO,
   SET_CURRENT_OWNER,
   ADD_JOB_TO_CURRENT_OWNER,
@@ -118,6 +119,11 @@ const reducer = (state, action) => {
       amount,
       price,
     });
+
+    newOwners.get(currentOwnerId).jobs.forEach(job => {
+      job.owner = name;
+    });
+
     return { ...state, owners: newOwners };
   }
 
@@ -177,6 +183,9 @@ const reducer = (state, action) => {
     currentJob.storeNumber = storeNumber;
 
     return { ...state };
+  }
+
+  if (action.type === DELETE_JOB) {
   }
 
   throw new Error(`no matching action type : ${action.type}`);

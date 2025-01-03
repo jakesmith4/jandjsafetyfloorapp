@@ -9,7 +9,7 @@ export const owners = [
     jobs: [
       {
         address: '1',
-        date: '2025-01-01',
+        date: '2025-01-02',
         dateObject: new Date('01/02/2025'),
         id: '34342134312',
         owner: 'larry miller',

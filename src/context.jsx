@@ -16,6 +16,7 @@ import {
   TOGGLE_CURRENT_OWNER_FORM,
   CHANGE_CURRENT_SINGLE_JOB,
   EDIT_JOB,
+  DELETE_JOB,
 } from './actions';
 import { owners } from './data';
 
@@ -105,6 +106,10 @@ export const AppProvider = ({ children }) => {
     });
   }
 
+  function deleteJob() {
+    dispatch({ type: DELETE_JOB });
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -123,6 +128,7 @@ export const AppProvider = ({ children }) => {
         toggleCurrentOwnerForm,
         changeCurrentSingleJob,
         editJob,
+        deleteJob,
       }}
     >
       {children}
