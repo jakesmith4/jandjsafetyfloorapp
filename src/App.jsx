@@ -1,4 +1,5 @@
 // components
+import CompletedJobs from './components/CompletedJobs';
 import CurrentJob from './components/CurrentJob';
 import CurrentOwner from './components/CurrentOwner';
 import Home from './components/Home';
@@ -7,8 +8,12 @@ import Sidebar from './components/Sidebar';
 import { useGlobalContext } from './context';
 
 function App() {
-  const { isHomeOpen, isCurrentOwnerOpen, isCurrentJobOpen } =
-    useGlobalContext();
+  const {
+    isHomeOpen,
+    isCurrentOwnerOpen,
+    isCurrentJobOpen,
+    isCompletedJobsOpen,
+  } = useGlobalContext();
 
   return (
     <main>
@@ -16,6 +21,7 @@ function App() {
       {isHomeOpen && <Home />}
       {isCurrentOwnerOpen && <CurrentOwner />}
       {isCurrentJobOpen && <CurrentJob />}
+      {isCompletedJobsOpen && <CompletedJobs />}
       <Modal />
     </main>
   );

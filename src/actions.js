@@ -3,6 +3,7 @@ export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const OPEN_HOME = 'OPEN_HOME';
 export const OPEN_CURRENT_OWNER = 'OPEN_CURRENT_OWNER';
 export const OPEN_CURRENT_JOB = 'OPEN_CURRENT_JOB';
+export const OPEN_COMPLETED_JOBS = 'OPEN_COMPLETED_JOBS';
 export const ADD_OWNER = 'ADD_OWNER';
 export const REMOVE_OWNER = 'REMOVE_OWNER';
 export const EDIT_OWNER = 'EDIT_OWNER';

@@ -15,6 +15,7 @@ import {
   ADD_JOB_TO_CURRENT_OWNER,
   TOGGLE_CURRENT_OWNER_FORM,
   CHANGE_CURRENT_SINGLE_JOB,
+  OPEN_COMPLETED_JOBS,
 } from './actions';
 import { convertDateOneDayForward, getCurrentOwner } from './utils';
 
@@ -37,6 +38,7 @@ const reducer = (state, action) => {
       isHomeOpen: true,
       isCurrentOwnerOpen: false,
       isCurrentJobOpen: false,
+      isCompletedJobsOpen: false,
       currentSingleJob: null,
     };
   }
@@ -47,6 +49,7 @@ const reducer = (state, action) => {
       isCurrentOwnerOpen: true,
       isHomeOpen: false,
       isCurrentJobOpen: false,
+      isCompletedJobsOpen: false,
       currentSingleJob: null,
     };
   }
@@ -55,6 +58,17 @@ const reducer = (state, action) => {
     return {
       ...state,
       isCurrentJobOpen: true,
+      isHomeOpen: false,
+      isCurrentOwnerOpen: false,
+      isCompletedJobsOpen: false,
+    };
+  }
+
+  if (action.type === OPEN_COMPLETED_JOBS) {
+    return {
+      ...state,
+      isCompletedJobsOpen: true,
+      isCurrentJobOpen: false,
       isHomeOpen: false,
       isCurrentOwnerOpen: false,
     };

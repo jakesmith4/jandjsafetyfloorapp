@@ -348,7 +348,8 @@ Owner
 ===============
 */
 .current-owner,
-.owner-info {
+.owner-info,
+.completed-jobs {
   min-height: 100vh;
   /* width: var(--view-width); */
   /* max-width: var(--fixed-width); */

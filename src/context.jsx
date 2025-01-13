@@ -17,6 +17,7 @@ import {
   CHANGE_CURRENT_SINGLE_JOB,
   EDIT_JOB,
   DELETE_JOB,
+  OPEN_COMPLETED_JOBS,
 } from './actions';
 import { owners } from './data';
 
@@ -28,6 +29,7 @@ const initialState = {
   isCurrentOwnerOpen: false,
   isCurrentOwnerFormOpen: false,
   isCurrentJobOpen: false,
+  isCompletedJobsOpen: false,
   owners: new Map(owners.map(owner => [owner.id, owner])),
   newOwnerName: '',
   newOwnerPrice: '',
@@ -63,6 +65,10 @@ export const AppProvider = ({ children }) => {
 
   function openCurrentJob() {
     dispatch({ type: OPEN_CURRENT_JOB });
+  }
+
+  function openCompletedJobs() {
+    dispatch({ type: OPEN_COMPLETED_JOBS });
   }
 
   function removeOwner(id) {
@@ -119,6 +125,7 @@ export const AppProvider = ({ children }) => {
         openHome,
         openCurrentOwner,
         openCurrentJob,
+        openCompletedJobs,
         removeOwner,
         addOwner,
         changeNewOwnerInfo,

@@ -1,4 +1,11 @@
-import { FaCog, FaHome, FaMap, FaUser, FaCalendarDay } from 'react-icons/fa';
+import {
+  FaCog,
+  FaHome,
+  FaMap,
+  FaUser,
+  FaCalendarDay,
+  FaCalendarCheck,
+} from 'react-icons/fa';
 import { links } from '../data';
 import { useGlobalContext } from '../context';
 
@@ -7,9 +14,11 @@ const Sidebar = () => {
     openHome,
     openCurrentOwner,
     openCurrentJob,
+    openCompletedJobs,
     isHomeOpen,
     isCurrentOwnerOpen,
     isCurrentJobOpen,
+    isCompletedJobsOpen,
   } = useGlobalContext();
   return (
     <aside className="sidebar sidebar-item-open">
@@ -41,7 +50,7 @@ const Sidebar = () => {
             <FaUser />
           </button>
         </li>
-        <li>
+        <li className="sidebar-item">
           <button
             className={
               isCurrentJobOpen ? 'sidebar-btn sidebar-btn-open' : 'sidebar-btn'
@@ -49,6 +58,18 @@ const Sidebar = () => {
             onClick={openCurrentJob}
           >
             <FaCalendarDay />
+          </button>
+        </li>
+        <li className="sidebar-item">
+          <button
+            className={
+              isCompletedJobsOpen
+                ? 'sidebar-btn sidebar-btn-open'
+                : 'sidebar-btn'
+            }
+            onClick={openCompletedJobs}
+          >
+            <FaCalendarCheck />
           </button>
         </li>
       </ul>
