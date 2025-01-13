@@ -106,8 +106,8 @@ export const AppProvider = ({ children }) => {
     });
   }
 
-  function deleteJob() {
-    dispatch({ type: DELETE_JOB });
+  function deleteJob(id, owner) {
+    dispatch({ type: DELETE_JOB, payload: { id, owner } });
   }
 
   return (

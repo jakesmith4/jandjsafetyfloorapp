@@ -16,7 +16,7 @@ import {
   TOGGLE_CURRENT_OWNER_FORM,
   CHANGE_CURRENT_SINGLE_JOB,
 } from './actions';
-import { convertDateOneDayForward } from './utils';
+import { convertDateOneDayForward, getCurrentOwner } from './utils';
 
 const reducer = (state, action) => {
   if (action.type === OPEN_MODAL) {
@@ -162,16 +162,7 @@ const reducer = (state, action) => {
     const { e, id, date, price, address, storeNumber, owner } = action.payload;
     e.preventDefault();
 
-    const ownersArray = Array.from(state.owners.entries());
-
-    const singleOwnersArray = ownersArray.map(owner => {
-      const [id, item] = owner;
-      return item;
-    });
-
-    const currentOwnerFromArray = singleOwnersArray.find(
-      item => item.name === owner
-    );
+    const currentOwnerFromArray = getCurrentOwner(state.owners, owner);
 
     const newOwners = new Map(state.owners);
     const currentOwner = newOwners.get(currentOwnerFromArray.id);
@@ -191,6 +182,29 @@ const reducer = (state, action) => {
   }
 
   if (action.type === DELETE_JOB) {
+    const confirmed = window.confirm(
+      `Are you sure you want to delete this job?`
+    );
+
+    if (confirmed) {
+      const currentOwnerFromArray = getCurrentOwner(
+        state.owners,
+        action.payload.owner
+      );
+
+      const newOwners = new Map(state.owners);
+      const currentOwner = newOwners.get(currentOwnerFromArray.id);
+
+      const newJobs = currentOwner.jobs.filter(
+        job => job.id !== action.payload.id
+      );
+
+      currentOwner.jobs = newJobs;
+
+      return { ...state, owners: newOwners, currentSingleJob: null };
+    }
+
+    return { ...state };
   }
 
   throw new Error(`no matching action type : ${action.type}`);
