@@ -17,8 +17,13 @@ import {
   CHANGE_CURRENT_SINGLE_JOB,
   OPEN_COMPLETED_JOBS,
   MARK_JOB_AS_COMPLETED,
+  SET_LOCAL_STORAGE,
 } from './actions';
-import { convertDateOneDayForward, getCurrentOwner } from './utils';
+import {
+  convertDateOneDayForward,
+  getCurrentOwner,
+  setLocalStorage,
+} from './utils';
 
 const reducer = (state, action) => {
   if (action.type === OPEN_MODAL) {
@@ -101,6 +106,17 @@ const reducer = (state, action) => {
       amount: newOwnerAmount,
       jobs: [],
     });
+
+    const ownersArray = Array.from(newOwners.entries());
+    const singleOwnersArray = ownersArray.map(owner => {
+      const [id, item] = owner;
+      return item;
+    });
+
+    console.log(singleOwnersArray);
+
+    setLocalStorage(singleOwnersArray);
+
     return { ...state, owners: newOwners, isModalOpen: false };
   }
 

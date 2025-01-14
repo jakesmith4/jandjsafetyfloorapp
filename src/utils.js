@@ -23,3 +23,14 @@ export function getCurrentOwner(stateOwners, owner) {
 
   return currentOwnerFromArray;
 }
+
+export function setLocalStorage(items) {
+  console.log(items);
+  console.log(JSON.stringify(items));
+  localStorage.setItem('owners', JSON.stringify(items));
+}
+
+export function getLocalStorage() {
+  const defaultList = JSON.parse(localStorage.getItem('owners') || '[]');
+  return defaultList;
+}

@@ -20,9 +20,12 @@ import {
   OPEN_COMPLETED_JOBS,
   MARK_JOB_AS_COMPLETED,
 } from './actions';
-import { owners } from './data';
+// import { owners } from './data';
+import { getLocalStorage } from './utils';
 
 const AppContext = createContext();
+
+const owners = getLocalStorage();
 
 const initialState = {
   isModalOpen: false,
