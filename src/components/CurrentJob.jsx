@@ -1,4 +1,5 @@
 import { useGlobalContext } from '../context';
+import { convertDateOneDayForward } from '../utils';
 import SingleJob from './SingleJob';
 
 const CurrentJob = () => {
@@ -19,7 +20,7 @@ const CurrentJob = () => {
   const allJobs = newItemsArray.flatMap(job => job);
 
   const todaysJobs = allJobs.filter(
-    job => job.dateObject.getTime() === currentTime
+    job => convertDateOneDayForward(job.date).getTime() === currentTime
   );
 
   if (currentSingleJob) {

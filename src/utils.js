@@ -29,8 +29,6 @@ export function getCurrentOwner(stateOwners, owner) {
 }
 
 export function setLocalStorage(items) {
-  console.log(items);
-  console.log(JSON.stringify(items));
   localStorage.setItem('owners', JSON.stringify(items));
 }
 

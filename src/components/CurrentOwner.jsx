@@ -43,7 +43,7 @@ const CurrentOwner = () => {
   ).getTime();
 
   const thisTimeJobs = currentOwner?.jobs.filter(
-    job => job.dateObject.getTime() >= date4MonthsAgo
+    job => new Date(job.date).getTime() >= date4MonthsAgo
   );
 
   let thisTimesPrice = 0;

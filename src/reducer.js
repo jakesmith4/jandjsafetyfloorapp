@@ -86,9 +86,14 @@ const reducer = (state, action) => {
     );
     if (confirmed) {
       // USE THIS ID TO DELETE THE OWNER NOT THE ACTION.PAYLOAD.ID
-      console.log(state.currentOwnerId);
+
       const newOwners = new Map(state.owners);
       newOwners.delete(action.payload.id);
+
+      // Set Local Storage
+      const ownersArray = turnMapIntoArray(newOwners);
+      setLocalStorage(ownersArray);
+
       return { ...state, owners: newOwners };
     }
     return { ...state };
@@ -107,10 +112,8 @@ const reducer = (state, action) => {
       jobs: [],
     });
 
+    // Set Local Storage
     const ownersArray = turnMapIntoArray(newOwners);
-
-    console.log(ownersArray);
-
     setLocalStorage(ownersArray);
 
     return { ...state, owners: newOwners, isModalOpen: false };
@@ -151,6 +154,10 @@ const reducer = (state, action) => {
       job.owner = name;
     });
 
+    // Set Local Storage
+    const ownersArray = turnMapIntoArray(newOwners);
+    setLocalStorage(ownersArray);
+
     return { ...state, owners: newOwners };
   }
 
@@ -161,9 +168,6 @@ const reducer = (state, action) => {
     const currentOwner = newOwners.get(state.currentOwnerId);
     const newId = nanoid();
 
-    // Convert Date One Day Forward Because Of Time Zone Issues
-    const dateObject = convertDateOneDayForward(date);
-
     currentOwner.jobs.push({
       id: newId,
       owner: currentOwner.name,
@@ -171,9 +175,12 @@ const reducer = (state, action) => {
       address,
       price,
       date,
-      dateObject,
       completed: false,
     });
+
+    // Set Local Storage
+    const ownersArray = turnMapIntoArray(newOwners);
+    setLocalStorage(ownersArray);
 
     return {
       ...state,
@@ -197,14 +204,14 @@ const reducer = (state, action) => {
 
     const currentJob = currentOwner.jobs.find(job => job.id === id);
 
-    // Convert Date One Day Forward Because Of Time Zone Issues
-    const dateObject = convertDateOneDayForward(date);
-
     currentJob.date = date;
-    currentJob.dateObject = dateObject;
     currentJob.price = price;
     currentJob.address = address;
     currentJob.storeNumber = storeNumber;
+
+    // Set Local Storage
+    const ownersArray = turnMapIntoArray(newOwners);
+    setLocalStorage(ownersArray);
 
     return { ...state, owners: newOwners };
   }
@@ -229,6 +236,10 @@ const reducer = (state, action) => {
 
       currentOwner.jobs = newJobs;
 
+      // Set Local Storage
+      const ownersArray = turnMapIntoArray(newOwners);
+      setLocalStorage(ownersArray);
+
       return { ...state, owners: newOwners, currentSingleJob: null };
     }
 
@@ -249,6 +260,10 @@ const reducer = (state, action) => {
     );
 
     currentJob.completed = !currentJob.completed;
+
+    // Set Local Storage
+    const ownersArray = turnMapIntoArray(newOwners);
+    setLocalStorage(ownersArray);
 
     return { ...state, owners: newOwners };
   }
