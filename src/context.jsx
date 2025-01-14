@@ -18,6 +18,7 @@ import {
   EDIT_JOB,
   DELETE_JOB,
   OPEN_COMPLETED_JOBS,
+  MARK_JOB_AS_COMPLETED,
 } from './actions';
 import { owners } from './data';
 
@@ -116,6 +117,10 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: DELETE_JOB, payload: { id, owner } });
   }
 
+  function markJobAsCompleted(id, owner) {
+    dispatch({ type: MARK_JOB_AS_COMPLETED, payload: { id, owner } });
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -136,6 +141,7 @@ export const AppProvider = ({ children }) => {
         changeCurrentSingleJob,
         editJob,
         deleteJob,
+        markJobAsCompleted,
       }}
     >
       {children}

@@ -15,6 +15,7 @@ export const owners = [
         owner: 'larry miller',
         price: '1',
         storeNumber: '1',
+        completed: false,
       },
     ],
   },

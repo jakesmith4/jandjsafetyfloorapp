@@ -16,6 +16,7 @@ import {
   TOGGLE_CURRENT_OWNER_FORM,
   CHANGE_CURRENT_SINGLE_JOB,
   OPEN_COMPLETED_JOBS,
+  MARK_JOB_AS_COMPLETED,
 } from './actions';
 import { convertDateOneDayForward, getCurrentOwner } from './utils';
 
@@ -159,6 +160,7 @@ const reducer = (state, action) => {
       price,
       date,
       dateObject,
+      completed: false,
     });
 
     return {
@@ -219,6 +221,24 @@ const reducer = (state, action) => {
     }
 
     return { ...state };
+  }
+
+  if (action.type === MARK_JOB_AS_COMPLETED) {
+    const currentOwnerFromArray = getCurrentOwner(
+      state.owners,
+      action.payload.owner
+    );
+
+    const newOwners = new Map(state.owners);
+    const currentOwner = newOwners.get(currentOwnerFromArray.id);
+
+    const currentJob = currentOwner.jobs.find(
+      job => job.id === action.payload.id
+    );
+
+    currentJob.completed = !currentJob.completed;
+
+    return { ...state, owners: newOwners };
   }
 
   throw new Error(`no matching action type : ${action.type}`);

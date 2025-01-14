@@ -18,8 +18,23 @@ const CurrentOwner = () => {
   const [storeNumber, setStoreNumber] = useState('');
   const [address, setAddress] = useState('');
   const [price, setPrice] = useState('');
+  const [showCompletedJobs, setShowCompletedJobs] = useState(false);
 
   const jobsArray = currentOwner ? currentOwner.jobs : [];
+
+  const completedJobs = currentOwner?.jobs.filter(
+    job => job.completed === true
+  );
+
+  const unCompletedJobs = currentOwner?.jobs.filter(
+    job => job.completed === false
+  );
+
+  let currentJobs;
+
+  showCompletedJobs === false
+    ? (currentJobs = unCompletedJobs)
+    : (currentJobs = completedJobs);
 
   if (!currentOwner) {
     return (
@@ -145,8 +160,24 @@ const CurrentOwner = () => {
       )}
 
       <h2>Jobs</h2>
+
+      <div className="btn-container">
+        <button
+          style={!showCompletedJobs ? { background: 'green' } : {}}
+          onClick={() => setShowCompletedJobs(false)}
+        >
+          upcoming jobs
+        </button>
+        <button
+          style={showCompletedJobs ? { background: 'green' } : {}}
+          onClick={() => setShowCompletedJobs(true)}
+        >
+          completed jobs
+        </button>
+      </div>
+
       <ul>
-        {jobsArray.map(job => {
+        {currentJobs.map(job => {
           const { id } = job;
 
           return (

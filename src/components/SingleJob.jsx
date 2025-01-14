@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useGlobalContext } from '../context';
 
 const SingleJob = ({ job }) => {
-  const { editJob, deleteJob } = useGlobalContext();
+  const { editJob, deleteJob, markJobAsCompleted } = useGlobalContext();
   const [date, setDate] = useState(job.date);
   const [storeNumber, setStoreNumber] = useState(job.storeNumber);
   const [address, setAddress] = useState(job.address);
@@ -88,6 +88,18 @@ const SingleJob = ({ job }) => {
               e
             );
           }}
+        />
+      </div>
+      <div className="form-row">
+        <label htmlFor="completed" className="form-label">
+          completed
+        </label>
+        <input
+          type="checkbox"
+          name="completed"
+          id="completed"
+          checked={job.completed}
+          onChange={() => markJobAsCompleted(job.id, job.owner)}
         />
       </div>
       <div className="btn-container">
