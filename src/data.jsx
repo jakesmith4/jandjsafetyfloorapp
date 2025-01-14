@@ -13,7 +13,7 @@ export const owners = [
         dateObject: new Date('01/02/2025'),
         id: '34342134312',
         owner: 'larry miller',
-        price: '1',
+        price: '795',
         storeNumber: '1',
         completed: false,
       },

@@ -36,6 +36,31 @@ const CurrentOwner = () => {
     ? (currentJobs = unCompletedJobs)
     : (currentJobs = completedJobs);
 
+  const currentDate = new Date();
+
+  const date4MonthsAgo = new Date(
+    currentDate.setMonth(currentDate.getMonth() - 4)
+  ).getTime();
+
+  const thisTimeJobs = currentOwner?.jobs.filter(
+    job => job.dateObject.getTime() >= date4MonthsAgo
+  );
+
+  let thisTimesPrice = 0;
+  let johnsCut = 0;
+  let jakesCut = 0;
+
+  thisTimeJobs?.forEach(job => {
+    thisTimesPrice += +job.price;
+    if (+job.price >= 795) {
+      jakesCut += +job.price - 250;
+      johnsCut += 250;
+    } else {
+      jakesCut += +job.price - 200;
+      johnsCut += 200;
+    }
+  });
+
   if (!currentOwner) {
     return (
       <section className="current-owner">
@@ -211,6 +236,17 @@ const CurrentOwner = () => {
 
       <footer>
         <hr />
+        <div>
+          <h5 className="owner-total">
+            total amount: <span>${thisTimesPrice}</span>
+          </h5>
+          <h5 className="owner-total">
+            jake's cut: <span>${jakesCut}</span>
+          </h5>
+          <h5 className="owner-total">
+            john's cut: <span>${johnsCut}</span>
+          </h5>
+        </div>
       </footer>
     </section>
   );
