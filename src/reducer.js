@@ -17,12 +17,12 @@ import {
   CHANGE_CURRENT_SINGLE_JOB,
   OPEN_COMPLETED_JOBS,
   MARK_JOB_AS_COMPLETED,
-  SET_LOCAL_STORAGE,
 } from './actions';
 import {
   convertDateOneDayForward,
   getCurrentOwner,
   setLocalStorage,
+  turnMapIntoArray,
 } from './utils';
 
 const reducer = (state, action) => {
@@ -107,15 +107,11 @@ const reducer = (state, action) => {
       jobs: [],
     });
 
-    const ownersArray = Array.from(newOwners.entries());
-    const singleOwnersArray = ownersArray.map(owner => {
-      const [id, item] = owner;
-      return item;
-    });
+    const ownersArray = turnMapIntoArray(newOwners);
 
-    console.log(singleOwnersArray);
+    console.log(ownersArray);
 
-    setLocalStorage(singleOwnersArray);
+    setLocalStorage(ownersArray);
 
     return { ...state, owners: newOwners, isModalOpen: false };
   }

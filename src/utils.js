@@ -9,7 +9,7 @@ export function convertDateOneDayForward(date) {
   return dateObject;
 }
 
-export function getCurrentOwner(stateOwners, owner) {
+export function turnMapIntoArray(stateOwners) {
   const ownersArray = Array.from(stateOwners.entries());
 
   const singleOwnersArray = ownersArray.map(owner => {
@@ -17,9 +17,13 @@ export function getCurrentOwner(stateOwners, owner) {
     return item;
   });
 
-  const currentOwnerFromArray = singleOwnersArray.find(
-    item => item.name === owner
-  );
+  return singleOwnersArray;
+}
+
+export function getCurrentOwner(stateOwners, owner) {
+  const ownersArray = turnMapIntoArray(stateOwners);
+
+  const currentOwnerFromArray = ownersArray.find(item => item.name === owner);
 
   return currentOwnerFromArray;
 }
