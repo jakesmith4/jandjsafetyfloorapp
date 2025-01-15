@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useGlobalContext } from '../context';
+import { convertDateOneDayForward } from '../utils';
 
 const CurrentOwner = () => {
   const {
@@ -156,7 +157,9 @@ const CurrentOwner = () => {
 
               <h3>date:</h3>
               <span className="jobs-item-info">
-                {Intl.DateTimeFormat('en-US').format(new Date(job.date))}
+                {Intl.DateTimeFormat('en-US').format(
+                  convertDateOneDayForward(job.date)
+                )}
               </span>
 
               <input type="date" defaultValue={job.date} />
