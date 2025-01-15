@@ -2,13 +2,17 @@ import { useState } from 'react';
 import { useGlobalContext } from '../context';
 
 const AddJob = () => {
-  const { addJobToCurrentOwner, closeCurrentOwnerForm, closeModal } =
-    useGlobalContext();
+  const {
+    addJobToCurrentOwner,
+    closeCurrentOwnerForm,
+    closeModal,
+    currentOwner,
+  } = useGlobalContext();
 
   const [date, setDate] = useState('');
   const [storeNumber, setStoreNumber] = useState('');
   const [address, setAddress] = useState('');
-  const [price, setPrice] = useState('');
+  const [price, setPrice] = useState(currentOwner.price);
 
   return (
     <form
