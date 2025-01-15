@@ -14,16 +14,16 @@ import {
   SET_CURRENT_OWNER,
   ADD_JOB_TO_CURRENT_OWNER,
   TOGGLE_CURRENT_OWNER_FORM,
+  OPEN_CURRENT_OWNER_FORM,
+  CLOSE_CURRENT_OWNER_FORM,
+  OPEN_ADD_OWNER_FORM,
+  CLOSE_ADD_OWNER_FORM,
   CHANGE_CURRENT_SINGLE_JOB,
   OPEN_COMPLETED_JOBS,
   MARK_JOB_AS_COMPLETED,
 } from './actions';
-import {
-  convertDateOneDayForward,
-  getCurrentOwner,
-  setLocalStorage,
-  turnMapIntoArray,
-} from './utils';
+
+import { getCurrentOwner, setLocalStorage, turnMapIntoArray } from './utils';
 
 const reducer = (state, action) => {
   if (action.type === OPEN_MODAL) {
@@ -36,6 +36,22 @@ const reducer = (state, action) => {
 
   if (action.type === TOGGLE_CURRENT_OWNER_FORM) {
     return { ...state, isCurrentOwnerFormOpen: !state.isCurrentOwnerFormOpen };
+  }
+
+  if (action.type === OPEN_CURRENT_OWNER_FORM) {
+    return { ...state, isCurrentOwnerFormOpen: true };
+  }
+
+  if (action.type === CLOSE_CURRENT_OWNER_FORM) {
+    return { ...state, isCurrentOwnerFormOpen: false };
+  }
+
+  if (action.type === OPEN_ADD_OWNER_FORM) {
+    return { ...state, isAddOwnerFormOpen: true };
+  }
+
+  if (action.type === CLOSE_ADD_OWNER_FORM) {
+    return { ...state, isAddOwnerFormOpen: false };
   }
 
   if (action.type === OPEN_HOME) {

@@ -6,11 +6,12 @@ const CurrentOwner = () => {
   const {
     currentOwner,
     editOwner,
-    toggleCurrentOwnerForm,
-    isCurrentOwnerFormOpen,
+    openCurrentOwnerForm,
     openCurrentJob,
+    openModal,
     changeCurrentSingleJob,
   } = useGlobalContext();
+
   const [name, setName] = useState(currentOwner?.name);
   const [numberOfStores, setNumberOfStores] = useState(currentOwner?.amount);
   const [ownerPrice, setOwnerPrice] = useState(currentOwner?.price);
@@ -111,11 +112,15 @@ const CurrentOwner = () => {
         </div>
       </div>
 
-      <button className="btn" onClick={toggleCurrentOwnerForm}>
-        {isCurrentOwnerFormOpen ? 'close form' : 'add job'}
+      <button
+        className="btn"
+        onClick={() => {
+          openCurrentOwnerForm();
+          openModal();
+        }}
+      >
+        add job
       </button>
-
-      {isCurrentOwnerFormOpen && <AddJob />}
 
       <h2>Jobs</h2>
 

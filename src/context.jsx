@@ -14,6 +14,10 @@ import {
   SET_CURRENT_OWNER,
   ADD_JOB_TO_CURRENT_OWNER,
   TOGGLE_CURRENT_OWNER_FORM,
+  OPEN_CURRENT_OWNER_FORM,
+  CLOSE_CURRENT_OWNER_FORM,
+  OPEN_ADD_OWNER_FORM,
+  CLOSE_ADD_OWNER_FORM,
   CHANGE_CURRENT_SINGLE_JOB,
   EDIT_JOB,
   DELETE_JOB,
@@ -32,6 +36,7 @@ const initialState = {
   isHomeOpen: true,
   isCurrentOwnerOpen: false,
   isCurrentOwnerFormOpen: false,
+  isAddOwnerFormOpen: false,
   isCurrentJobOpen: false,
   isCompletedJobsOpen: false,
   owners: new Map(owners.map(owner => [owner.id, owner])),
@@ -57,6 +62,22 @@ export const AppProvider = ({ children }) => {
 
   function toggleCurrentOwnerForm() {
     dispatch({ type: TOGGLE_CURRENT_OWNER_FORM });
+  }
+
+  function openCurrentOwnerForm() {
+    dispatch({ type: OPEN_CURRENT_OWNER_FORM });
+  }
+
+  function closeCurrentOwnerForm() {
+    dispatch({ type: CLOSE_CURRENT_OWNER_FORM });
+  }
+
+  function openAddOwnerForm() {
+    dispatch({ type: OPEN_ADD_OWNER_FORM });
+  }
+
+  function closeAddOwnerForm() {
+    dispatch({ type: CLOSE_ADD_OWNER_FORM });
   }
 
   function openHome() {
@@ -141,6 +162,10 @@ export const AppProvider = ({ children }) => {
         editOwner,
         addJobToCurrentOwner,
         toggleCurrentOwnerForm,
+        openCurrentOwnerForm,
+        closeCurrentOwnerForm,
+        openAddOwnerForm,
+        closeAddOwnerForm,
         changeCurrentSingleJob,
         editJob,
         deleteJob,

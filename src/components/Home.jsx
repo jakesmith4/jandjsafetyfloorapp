@@ -1,7 +1,8 @@
 import SingleOwner from './SingleOwner';
 import { useGlobalContext } from '../context';
 const Home = () => {
-  const { isModalOpen, openModal, owners, currentOwner } = useGlobalContext();
+  const { openModal, owners, toggleAddOwnerForm, openAddOwnerForm } =
+    useGlobalContext();
 
   const ownersArray = Array.from(owners.entries());
 
@@ -11,7 +12,13 @@ const Home = () => {
         <header>
           <h2>J&J Safety Floor</h2>
           <h4 className="empty-owners">Add an owner to display info</h4>
-          <button className="btn btn-hipster" onClick={openModal}>
+          <button
+            className="btn btn-hipster"
+            onClick={() => {
+              openModal();
+              openAddOwnerForm();
+            }}
+          >
             add owner
           </button>
         </header>
@@ -36,7 +43,13 @@ const Home = () => {
             total owners: <span>10</span>
           </h5>
         </div>
-        <button className="btn btn-hipster" onClick={openModal}>
+        <button
+          className="btn btn-hipster"
+          onClick={() => {
+            openModal();
+            openAddOwnerForm();
+          }}
+        >
           add owner
         </button>
       </footer>
