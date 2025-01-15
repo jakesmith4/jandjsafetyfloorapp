@@ -1,4 +1,3 @@
-import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 import { useGlobalContext } from '../context';
 const SingleOwner = ({ id, name, price, amount }) => {
   const { removeOwner, setCurrentOwner } = useGlobalContext();

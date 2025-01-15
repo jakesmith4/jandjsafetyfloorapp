@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useGlobalContext } from '../context';
-import AddJob from './AddJob';
 
 const CurrentOwner = () => {
   const {
