@@ -13,7 +13,6 @@ import {
   CHANGE_NEW_OWNER_INFO,
   SET_CURRENT_OWNER,
   ADD_JOB_TO_CURRENT_OWNER,
-  TOGGLE_CURRENT_OWNER_FORM,
   OPEN_CURRENT_OWNER_FORM,
   CLOSE_CURRENT_OWNER_FORM,
   OPEN_ADD_OWNER_FORM,
@@ -58,10 +57,6 @@ export const AppProvider = ({ children }) => {
 
   function closeModal() {
     dispatch({ type: CLOSE_MODAL });
-  }
-
-  function toggleCurrentOwnerForm() {
-    dispatch({ type: TOGGLE_CURRENT_OWNER_FORM });
   }
 
   function openCurrentOwnerForm() {
@@ -161,7 +156,6 @@ export const AppProvider = ({ children }) => {
         setCurrentOwner,
         editOwner,
         addJobToCurrentOwner,
-        toggleCurrentOwnerForm,
         openCurrentOwnerForm,
         closeCurrentOwnerForm,
         openAddOwnerForm,

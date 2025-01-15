@@ -13,7 +13,6 @@ import {
   CHANGE_NEW_OWNER_INFO,
   SET_CURRENT_OWNER,
   ADD_JOB_TO_CURRENT_OWNER,
-  TOGGLE_CURRENT_OWNER_FORM,
   OPEN_CURRENT_OWNER_FORM,
   CLOSE_CURRENT_OWNER_FORM,
   OPEN_ADD_OWNER_FORM,
@@ -32,10 +31,6 @@ const reducer = (state, action) => {
 
   if (action.type === CLOSE_MODAL) {
     return { ...state, isModalOpen: false };
-  }
-
-  if (action.type === TOGGLE_CURRENT_OWNER_FORM) {
-    return { ...state, isCurrentOwnerFormOpen: !state.isCurrentOwnerFormOpen };
   }
 
   if (action.type === OPEN_CURRENT_OWNER_FORM) {
