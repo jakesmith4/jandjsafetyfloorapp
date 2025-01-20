@@ -30,10 +30,10 @@ const AddJob = () => {
         setPrice('');
       }}
     >
-      <h3>add job</h3>
+      <h3 className="form-heading">add job</h3>
       <div className="form-row">
         <label htmlFor="date" className="form-label">
-          date
+          date:
         </label>
         <input
           type="date"
@@ -45,7 +45,7 @@ const AddJob = () => {
       </div>
       <div className="form-row">
         <label htmlFor="store-number" className="form-label">
-          store number
+          store number:
         </label>
         <input
           type="text"
@@ -57,7 +57,7 @@ const AddJob = () => {
       </div>
       <div className="form-row">
         <label htmlFor="address" className="form-label">
-          address
+          address:
         </label>
         <textarea
           id="address"
@@ -68,7 +68,7 @@ const AddJob = () => {
       </div>
       <div className="form-row">
         <label htmlFor="price" className="form-label">
-          price
+          price:
         </label>
         <input
           type="number"

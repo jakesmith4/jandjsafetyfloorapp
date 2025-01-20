@@ -11,7 +11,7 @@ const AddOwner = () => {
 
   return (
     <form className="form">
-      <h3>add owner</h3>
+      <h3 className="form-heading">add owner</h3>
       <div className="form-row">
         <label htmlFor="name" className="form-label">
           name:
@@ -51,6 +51,7 @@ const AddOwner = () => {
         />
       </div>
       <button
+        className="btn"
         onClick={e => {
           if (name && price && amount) {
             changeNewOwnerInfo(name, price, amount);
