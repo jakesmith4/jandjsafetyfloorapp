@@ -29,7 +29,7 @@ const Home = () => {
       <header>
         <h2>J&J Safety Floor</h2>
       </header>
-      <div>
+      <div className="single-owner-container">
         {ownersArray.map(owner => {
           const [id, item] = owner;
           return <SingleOwner key={id} {...item} />;
@@ -39,7 +39,7 @@ const Home = () => {
         <hr />
         <div>
           <h5 className="owner-total">
-            total owners: <span>10</span>
+            total owners: <span>{owners.size}</span>
           </h5>
         </div>
         <button

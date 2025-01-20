@@ -1,4 +1,6 @@
 import { useGlobalContext } from '../context';
+import { FaTrashAlt } from 'react-icons/fa';
+
 const SingleOwner = ({ id, name, price, amount }) => {
   const { removeOwner, setCurrentOwner } = useGlobalContext();
   return (
@@ -10,10 +12,13 @@ const SingleOwner = ({ id, name, price, amount }) => {
     >
       <div>
         <h5>{name}</h5>
-        <span className="owner-price">${price}</span>
-        <span className="owner-amount">{amount} stores</span>
+        <div className="owner-price">
+          <span>${price}</span>
+        </div>
+        <div className="owner-amount">{amount} stores</div>
         <button className="remove-btn" onClick={() => removeOwner(id)}>
-          remove
+          <span>remove</span>
+          <FaTrashAlt />
         </button>
       </div>
     </article>

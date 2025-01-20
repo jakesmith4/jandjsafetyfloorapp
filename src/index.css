@@ -14,15 +14,15 @@ html {
 
 :root {
   /* colors */
-  --primary-100: #e2e0ff;
-  --primary-200: #c1beff;
-  --primary-300: #a29dff;
-  --primary-400: #837dff;
-  --primary-500: #645cff;
-  --primary-600: #504acc;
-  --primary-700: #3c3799;
-  --primary-800: #282566;
-  --primary-900: #141233;
+  --primary-100: #ff8f66;
+  --primary-200: #ff7d4d;
+  --primary-300: #ff6a33;
+  --primary-400: #ff5819;
+  --primary-500: #ff4500;
+  --primary-600: #e63e00;
+  --primary-700: #cc3700;
+  --primary-800: #b33000;
+  --primary-900: #992900;
 
   /* grey */
   --grey-50: #f8fafc;
@@ -150,7 +150,7 @@ ul {
   box-shadow: var(--shadow-3);
 }
 .btn-hipster {
-  color: var(--primary-500);
+  color: var(--white);
   background: var(--primary-200);
 }
 .btn-hipster:hover {
@@ -187,7 +187,7 @@ ul {
   box-shadow: var(--shadow-2);
   padding: 2rem 2.5rem;
   margin: 3rem auto;
-  background: orangered;
+  background: #ff4500;
 }
 .form-label {
   display: block;
@@ -265,7 +265,7 @@ Sidebar
 ===============
 */
 .sidebar {
-  background: #333;
+  background: #16191b;
 }
 
 .sidebar-item {
@@ -289,7 +289,7 @@ Sidebar
 }
 
 .sidebar-btn-open {
-  background: orangered;
+  background: var(--primary-500);
   color: #333;
 }
 
@@ -361,7 +361,17 @@ Owner
 .owner-info h2 {
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 1rem;
+}
+
+.owner-info h2 {
+  font-size: 2rem;
+  color: #16191b;
+  background: var(--primary-500);
+  padding: 0.375rem 0.75rem;
+  max-width: var(--max-width);
+  max-width: var(--fixed-width);
+  margin: 0 auto;
+  box-shadow: var(--shadow-3);
 }
 
 .empty-owners {
@@ -401,26 +411,44 @@ Single Owner
   /* grid-template-columns: auto 1fr auto; */
   /* column-gap: 1.5rem; */
   margin: 1.5rem 0;
-  background: #333;
+  background: #16191b;
   color: var(--white);
   padding: 0.375rem 0.75rem;
   cursor: pointer;
+  border-radius: 10px;
+  box-shadow: var(--shadow-3);
 }
 
 .single-owner h5 {
   margin-bottom: 0.5rem;
   font-weight: 500;
   letter-spacing: 2px;
+  font-size: 1.5rem;
 }
 
 .owner-price,
 .owner-amount {
-  color: var(--grey-400);
   display: block;
   margin-bottom: 0.5rem;
+  background: #333;
+  padding: 0.375rem 0.75rem;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.owner-price {
+  color: rgb(8, 196, 112);
+}
+
+.owner-amount {
+  color: var(--grey-400);
 }
 
 .remove-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  text-transform: capitalize;
   color: var(--primary-500);
   letter-spacing: var(--letterSpacing);
   cursor: pointer;
@@ -431,6 +459,26 @@ Single Owner
 }
 .remove-btn:hover {
   color: var(--primary-600);
+}
+
+@media screen and (min-width: 768px) {
+  .single-owner-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1.5rem;
+  }
+  .single-owner {
+    margin-bottom: 0;
+  }
+  .owner-info hr {
+    margin-top: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .single-owner-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /*
