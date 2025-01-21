@@ -163,9 +163,11 @@ const CurrentOwner = () => {
 
               <h3>date:</h3>
               <span className="jobs-item-info">
-                {Intl.DateTimeFormat('en-US').format(
-                  convertDateOneDayForward(job.date || '2025-01-01')
-                )}
+                {job.date === ''
+                  ? 'Please enter a valid date!'
+                  : Intl.DateTimeFormat('en-US').format(
+                      convertDateOneDayForward(job.date || '2025-01-01')
+                    )}
               </span>
 
               {/* <input type="date" defaultValue={job.date} /> */}
