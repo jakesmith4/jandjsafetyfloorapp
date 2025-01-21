@@ -125,8 +125,6 @@ const CurrentOwner = () => {
         <FaPlus className="plus-icon" title="Add Owner" />
       </button>
 
-      <h2 className="jobs-item-heading">Jobs</h2>
-
       <div className="jobs-item-btn-container">
         <button
           className="jobs-item-btn"
@@ -143,6 +141,8 @@ const CurrentOwner = () => {
           completed jobs
         </button>
       </div>
+
+      <h2 className="jobs-item-heading">Jobs</h2>
 
       <ul className="current-owner-list">
         {currentJobs.map(job => {
