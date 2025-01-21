@@ -1,5 +1,6 @@
 import { useGlobalContext } from '../context';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const AddOwner = () => {
   const { addOwner, changeNewOwnerInfo, closeAddOwnerForm } =
@@ -53,15 +54,31 @@ const AddOwner = () => {
       <button
         className="btn"
         onClick={e => {
-          if (name && price && amount) {
-            changeNewOwnerInfo(name, price, amount);
-            addOwner(e);
-            closeAddOwnerForm();
-            setName('');
-            setPrice('');
-            setAmount('');
-          }
           e.preventDefault();
+          if (!name) {
+            toast.error(`Please enter a "name"`);
+            return;
+          }
+
+          if (!price) {
+            toast.error(`Please enter a "price"`);
+            return;
+          }
+
+          if (!amount) {
+            toast.error(`Please enter an "amount of stores"`);
+            return;
+          }
+
+          // if (name && price && amount) {
+          // }
+          changeNewOwnerInfo(name, price, amount);
+          addOwner(e);
+          closeAddOwnerForm();
+          toast.success(`Owner added: ${name.toUpperCase()}`);
+          setName('');
+          setPrice('');
+          setAmount('');
         }}
       >
         add owner

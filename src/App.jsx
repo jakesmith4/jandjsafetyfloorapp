@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Modal from './components/Modal';
 import Sidebar from './components/Sidebar';
 import { useGlobalContext } from './context';
+import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
   const {
@@ -23,6 +24,7 @@ function App() {
       {isCurrentJobOpen && <CurrentJob />}
       {isCompletedJobsOpen && <CompletedJobs />}
       <Modal />
+      <ToastContainer position="top-center" />
     </main>
   );
 }
