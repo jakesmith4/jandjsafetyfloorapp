@@ -39,7 +39,8 @@ const Home = () => {
         <hr />
         <div>
           <h5 className="owner-total">
-            total owners: <span>{owners.size}</span>
+            <span className="owner-total-heading">total owners:</span>{' '}
+            <span className="owner-total-value">{owners.size}</span>
           </h5>
         </div>
         <button

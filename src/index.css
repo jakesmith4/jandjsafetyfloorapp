@@ -217,9 +217,7 @@ ul {
 
 .form-input:focus,
 .form-textarea:focus {
-  /* outline: 2px solid var(--primary-700); */
   outline-color: var(--primary-500);
-  /* border: transparent; */
   box-shadow: var(--shadow-4);
 }
 
@@ -407,17 +405,27 @@ hr {
 
 .owner-total {
   text-transform: capitalize;
-  /* display: flex; */
+  display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 1rem;
+  background: var(--grey-200);
+  padding: var(--padding);
 }
-.owner-total span {
+.owner-total-heading {
+  background: var(--black);
+  padding: var(--padding);
+  color: var(--white);
+}
+
+.owner-total-value {
   background: var(--primary-500);
   display: inline-block;
-  padding: 0.25rem 0.5rem;
+  padding: var(--padding);
   border-radius: var(--borderRadius);
   color: var(--white);
 }
+
 /*
 =============== 
 Single Owner
@@ -516,7 +524,12 @@ Current Owner
   margin-bottom: 3rem;
 }
 
-.current-owner .form-input:not(.current-owner-name) {
+.current-owner
+  .form-input:not(
+    .current-owner-name,
+    .single-job-input,
+    .single-job-textarea
+  ) {
   width: 100px;
 }
 
@@ -542,6 +555,20 @@ Current Owner
 
 .plus-icon {
   font-size: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .current-owner-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .current-owner-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .jobs-item-heading {
@@ -579,9 +606,6 @@ Current Owner
   box-shadow: var(--shadow-3);
 }
 
-.job-item h3 {
-}
-
 .jobs-item-info {
   margin: 0.5rem auto;
   display: block;
@@ -608,8 +632,41 @@ Single Job
 ===============
 */
 
+.single-job-heading {
+  background: var(--grey-200);
+  padding: var(--padding);
+}
+
+.single-job-header {
+  padding: var(--padding);
+  /* margin-bottom: 1rem; */
+  background: var(--primary-500);
+  max-width: fit-content;
+  margin: 0 auto 0.3rem;
+}
+
 .single-job {
-  background: orangered;
+  background: var(--black);
+  color: var(--white);
   padding: 1rem 0.5rem;
   margin-bottom: 1rem;
+  border-radius: var(--borderRadius);
+  box-shadow: var(--shadow-3);
+  max-width: 400px;
+  margin: 1.5rem auto;
+}
+
+.single-job-input,
+.single-job-textarea {
+  width: fit-content;
+  background: var(--grey-500);
+  color: var(--white);
+  letter-spacing: var(--letterSpacing);
+  text-align: center;
+}
+
+.single-job-textarea {
+  width: 80%;
+  max-width: 300px;
+  resize: none;
 }

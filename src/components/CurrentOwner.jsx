@@ -144,7 +144,7 @@ const CurrentOwner = () => {
         </button>
       </div>
 
-      <ul>
+      <ul className="current-owner-list">
         {currentJobs.map(job => {
           const { id } = job;
 
@@ -168,7 +168,7 @@ const CurrentOwner = () => {
                 )}
               </span>
 
-              <input type="date" defaultValue={job.date} />
+              {/* <input type="date" defaultValue={job.date} /> */}
 
               <h3>address:</h3>
               <span className="jobs-item-info">{job.address}</span>
@@ -191,13 +191,16 @@ const CurrentOwner = () => {
         <hr />
         <div>
           <h5 className="owner-total">
-            total amount: <span>${thisTimesPrice}</span>
+            <span className="owner-total-heading">total amount:</span>{' '}
+            <span className="owner-total-value">${thisTimesPrice}</span>
           </h5>
           <h5 className="owner-total">
-            jake's cut: <span>${jakesCut}</span>
+            <span className="owner-total-heading">jake's cut:</span>{' '}
+            <span className="owner-total-value">${jakesCut}</span>
           </h5>
           <h5 className="owner-total">
-            john's cut: <span>${johnsCut}</span>
+            <span className="owner-total-heading">john's cut:</span>{' '}
+            <span className="owner-total-value">${johnsCut}</span>
           </h5>
         </div>
       </footer>

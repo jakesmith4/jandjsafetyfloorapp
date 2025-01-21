@@ -10,14 +10,14 @@ const SingleJob = ({ job }) => {
 
   return (
     <form className="single-job">
-      <h2>{job.owner}</h2>
+      <h2 className="single-job-header">{job.owner}</h2>
       <div className="form-row">
         <label htmlFor="date" className="form-label">
-          date
+          date:
         </label>
         <input
           type="date"
-          className="form-input"
+          className="form-input single-job-input"
           value={date}
           onChange={e => {
             setDate(e.target.value);
@@ -35,9 +35,10 @@ const SingleJob = ({ job }) => {
       </div>
       <div className="form-row">
         <label htmlFor="store-number" className="form-label">
-          store number
+          store number:
         </label>
         <input
+          className="form-input single-job-input"
           type="text"
           id="store-number"
           value={storeNumber}
@@ -49,9 +50,10 @@ const SingleJob = ({ job }) => {
       </div>
       <div className="form-row">
         <label htmlFor="address" className="form-label">
-          address
+          address:
         </label>
         <textarea
+          className="form-input single-job-textarea"
           id="address"
           value={address}
           onChange={e => {
@@ -70,9 +72,10 @@ const SingleJob = ({ job }) => {
       </div>
       <div className="form-row">
         <label htmlFor="price" className="form-label">
-          price
+          price:
         </label>
         <input
+          className="form-input single-job-input"
           type="number"
           id="price"
           value={price}
@@ -92,7 +95,7 @@ const SingleJob = ({ job }) => {
       </div>
       <div className="form-row">
         <label htmlFor="completed" className="form-label">
-          completed
+          completed:
         </label>
         <input
           type="checkbox"

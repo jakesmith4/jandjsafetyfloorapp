@@ -61,7 +61,7 @@ const Sidebar = () => {
           </button>
         </li>
         <li className="sidebar-item">
-          <button
+          {/* <button
             className={
               isCompletedJobsOpen
                 ? 'sidebar-btn sidebar-btn-open'
@@ -70,7 +70,7 @@ const Sidebar = () => {
             onClick={openCompletedJobs}
           >
             <FaCalendarCheck />
-          </button>
+          </button> */}
         </li>
       </ul>
     </aside>

@@ -26,7 +26,7 @@ const CurrentJob = () => {
   if (currentSingleJob) {
     return (
       <section className="current-owner">
-        <h1>current selected job</h1>
+        <h1 className="single-job-heading">current selected job</h1>
         <SingleJob job={currentSingleJob} />
       </section>
     );
@@ -43,12 +43,7 @@ const CurrentJob = () => {
   }
   return (
     <section className="current-owner">
-      <h1>todays jobs</h1>
-      {/* <header></header>
-
-      <footer>
-        <hr />
-      </footer> */}
+      <h1 className="single-job-heading">todays jobs</h1>
       {todaysJobs.map(job => (
         <SingleJob key={job.id} job={job} />
       ))}
