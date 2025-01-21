@@ -35,6 +35,10 @@ const CurrentOwner = () => {
     ? (currentJobs = unCompletedJobs)
     : (currentJobs = completedJobs);
 
+  const sortedJobs = currentJobs.slice();
+
+  sortedJobs.sort((a, b) => new Date(a.date) - new Date(b.date));
+
   const currentDate = new Date();
 
   const date4MonthsAgo = new Date(
@@ -145,7 +149,7 @@ const CurrentOwner = () => {
       <h2 className="jobs-item-heading">Jobs</h2>
 
       <ul className="current-owner-list">
-        {currentJobs.map(job => {
+        {sortedJobs.map(job => {
           const { id } = job;
 
           return (

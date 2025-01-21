@@ -107,7 +107,7 @@ const SingleJob = ({ job }) => {
       </div>
       <div className="btn-container">
         <button
-          className="btn"
+          className="btn single-job-btn"
           type="button"
           onClick={() => deleteJob(job.id, job.owner)}
         >

@@ -39,6 +39,7 @@ html {
   --black: #16191b;
   --white: #fff;
   --red-light: #f8d7da;
+  --red: #ff0000;
   --red-dark: #842029;
   --green-light: #d1e7dd;
   --green-dark: #0f5132;
@@ -475,16 +476,13 @@ Single Owner
   align-items: center;
   gap: 0.2rem;
   text-transform: capitalize;
-  color: var(--primary-500);
+  color: var(--red);
   letter-spacing: var(--letterSpacing);
   cursor: pointer;
   font-size: 0.85rem;
   background: transparent;
   border-color: transparent;
   transition: var(--transition);
-}
-.remove-btn:hover {
-  color: var(--primary-600);
 }
 
 @media screen and (min-width: 768px) {
@@ -669,4 +667,8 @@ Single Job
   width: 80%;
   max-width: 300px;
   resize: none;
+}
+
+.single-job-btn {
+  background: var(--red);
 }
