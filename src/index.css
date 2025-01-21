@@ -596,6 +596,11 @@ Current Owner
   box-shadow: var(--shadow-3);
 }
 
+.jobs-item-no-jobs-heading {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
 .jobs-item {
   background: var(--black);
   color: var(--white);

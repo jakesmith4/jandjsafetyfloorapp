@@ -29,7 +29,7 @@ const CurrentOwner = () => {
     job => job.completed === false
   );
 
-  const lifeTimeAmount = currentOwner.jobs
+  const lifeTimeAmount = currentOwner?.jobs
     .map(job => +job.price)
     .reduce((accumulator, current) => accumulator + current, 0);
 
@@ -39,9 +39,9 @@ const CurrentOwner = () => {
     ? (currentJobs = unCompletedJobs)
     : (currentJobs = completedJobs);
 
-  const sortedJobs = currentJobs.slice();
+  const sortedJobs = currentJobs?.slice();
 
-  sortedJobs.sort((a, b) => new Date(a.date) - new Date(b.date));
+  sortedJobs?.sort((a, b) => new Date(a.date) - new Date(b.date));
 
   const currentDate = new Date();
 
@@ -152,6 +152,10 @@ const CurrentOwner = () => {
 
       <h2 className="jobs-item-heading">Jobs</h2>
 
+      {currentJobs.length === 0 && (
+        <h3 className="jobs-item-no-jobs-heading">No jobs to display</h3>
+      )}
+
       <ul className="current-owner-list">
         {sortedJobs.map(job => {
           const { id } = job;
@@ -199,32 +203,36 @@ const CurrentOwner = () => {
 
       <footer>
         <hr />
-        <div>
-          <div className="owner-total">
-            <span className="owner-total-heading">uncompleted jobs:</span>
-            <span className="owner-total-value">{unCompletedJobs.length}</span>
+        {currentOwner.jobs.length > 0 && (
+          <div>
+            <div className="owner-total">
+              <span className="owner-total-heading">uncompleted jobs:</span>
+              <span className="owner-total-value">
+                {unCompletedJobs.length}
+              </span>
+            </div>
+            <div className="owner-total">
+              <span className="owner-total-heading">completed jobs:</span>
+              <span className="owner-total-value">{completedJobs.length}</span>
+            </div>
+            <div className="owner-total">
+              <span className="owner-total-heading">jake's cut:</span>
+              <span className="owner-total-value">${jakesCut}</span>
+            </div>
+            <div className="owner-total">
+              <span className="owner-total-heading">john's cut:</span>
+              <span className="owner-total-value">${johnsCut}</span>
+            </div>
+            <div className="owner-total">
+              <span className="owner-total-heading">total amount:</span>
+              <span className="owner-total-value">${thisTimesPrice}</span>
+            </div>
+            <div className="owner-total">
+              <span className="owner-total-heading">lifetime amount:</span>
+              <span className="owner-total-value">${lifeTimeAmount}</span>
+            </div>
           </div>
-          <div className="owner-total">
-            <span className="owner-total-heading">completed jobs:</span>
-            <span className="owner-total-value">{completedJobs.length}</span>
-          </div>
-          <div className="owner-total">
-            <span className="owner-total-heading">jake's cut:</span>
-            <span className="owner-total-value">${jakesCut}</span>
-          </div>
-          <div className="owner-total">
-            <span className="owner-total-heading">john's cut:</span>
-            <span className="owner-total-value">${johnsCut}</span>
-          </div>
-          <div className="owner-total">
-            <span className="owner-total-heading">total amount:</span>
-            <span className="owner-total-value">${thisTimesPrice}</span>
-          </div>
-          <div className="owner-total">
-            <span className="owner-total-heading">lifetime amount:</span>
-            <span className="owner-total-value">${lifeTimeAmount}</span>
-          </div>
-        </div>
+        )}
       </footer>
     </section>
   );
