@@ -637,7 +637,7 @@ Current Owner
   background: var(--black);
   color: var(--white);
   margin-bottom: 2rem;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0 0;
   box-shadow: var(--shadow-3);
 }
 
@@ -650,15 +650,25 @@ Current Owner
   width: 70%;
 }
 
-.completed {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.3rem;
-  background: var(--green-dark);
+.show-jobs-container {
   padding: var(--padding);
   text-transform: capitalize;
   font-weight: bold;
+}
+
+.show-jobs-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.completed {
+  background: var(--green-dark);
+}
+
+.upcoming {
+  background: var(--grey-800);
 }
 
 /*

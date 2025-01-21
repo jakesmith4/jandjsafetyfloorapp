@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useGlobalContext } from '../context';
 import { convertDateOneDayForward } from '../utils';
-import { FaPlus, FaCheck } from 'react-icons/fa';
+import { FaPlus } from 'react-icons/fa';
+import { GiCheckMark, GiCrossMark } from 'react-icons/gi';
 
 const CurrentOwner = () => {
   const {
@@ -164,7 +165,6 @@ const CurrentOwner = () => {
             <li
               key={id}
               className="jobs-item"
-              style={showCompletedJobs ? { paddingBottom: '0px' } : {}}
               onClick={() => {
                 openCurrentJob();
                 changeCurrentSingleJob(job);
@@ -189,13 +189,31 @@ const CurrentOwner = () => {
 
               <h3>price</h3>
               <span className="jobs-item-info">${job.price}</span>
-
-              {showCompletedJobs && (
-                <span className="completed">
-                  completed
-                  <FaCheck />
-                </span>
-              )}
+              <div
+                className={
+                  showCompletedJobs
+                    ? 'completed show-jobs-container'
+                    : 'upcoming show-jobs-container'
+                }
+              >
+                <div className="show-jobs">
+                  {showCompletedJobs ? (
+                    <div className="show-jobs-item">
+                      <span>completed</span>
+                      <span>
+                        <GiCheckMark />
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="show-jobs-item">
+                      <span>upcoming</span>
+                      <span>
+                        <GiCrossMark />
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </div>
             </li>
           );
         })}
