@@ -54,6 +54,7 @@ html {
   --max-width: 1120px;
   --fixed-width: 800px;
   --view-width: 90vw;
+  --padding: 0.375rem 0.75rem;
   /* box shadow*/
   --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -139,7 +140,7 @@ ul {
   border: transparent;
   border-radius: var(--borderRadius);
   letter-spacing: var(--letterSpacing);
-  padding: 0.375rem 0.75rem;
+  padding: var(--padding);
   box-shadow: var(--shadow-1);
   transition: var(--transition);
   text-transform: capitalize;
@@ -163,7 +164,7 @@ ul {
 
 /* alerts */
 .alert {
-  padding: 0.375rem 0.75rem;
+  padding: var(--padding);
   margin-bottom: 1rem;
   border-color: transparent;
   border-radius: var(--borderRadius);
@@ -189,11 +190,13 @@ ul {
   background: var(--primary-300);
 }
 .form-heading {
+  color: var(--white);
+  font-weight: bold;
   margin-bottom: 0.5rem;
   text-transform: capitalize;
-  background: var(--primary-500);
-  padding: 0.375rem 0.75rem;
-  box-shadow: var(--shadow-2);
+  background: var(--primary-100);
+  padding: var(--padding);
+  border-radius: 5px;
 }
 .form-label {
   display: block;
@@ -205,7 +208,7 @@ ul {
 .form-input,
 .form-textarea {
   width: 100%;
-  padding: 0.375rem 0.75rem;
+  padding: var(--padding);
   border-radius: var(--borderRadius);
   background: var(--backgroundColor);
   border: 1px solid var(--grey-200);
@@ -214,7 +217,9 @@ ul {
 
 .form-input:focus,
 .form-textarea:focus {
-  outline: 2px solid var(--primary-700);
+  /* outline: 2px solid var(--primary-700); */
+  outline-color: var(--primary-500);
+  /* border: transparent; */
   box-shadow: var(--shadow-4);
 }
 
@@ -380,7 +385,7 @@ Owner
   font-size: 2rem;
   color: var(--black);
   background: var(--primary-500);
-  padding: 0.375rem 0.75rem;
+  padding: var(--padding);
   max-width: var(--max-width);
   max-width: var(--fixed-width);
   margin: 0 auto;
@@ -426,7 +431,7 @@ Single Owner
   margin: 1.5rem 0;
   background: var(--black);
   color: var(--white);
-  padding: 0.375rem 0.75rem;
+  padding: var(--padding);
   cursor: pointer;
   border-radius: var(--borderRadius);
   box-shadow: var(--shadow-3);
@@ -444,7 +449,7 @@ Single Owner
   display: block;
   margin-bottom: 0.5rem;
   background: #333;
-  padding: 0.375rem 0.75rem;
+  padding: var(--padding);
   font-weight: bold;
   border-radius: var(--borderRadius);
 }
@@ -511,11 +516,67 @@ Current Owner
   margin-bottom: 3rem;
 }
 
+.current-owner .form-input:not(.current-owner-name) {
+  width: 100px;
+}
+
+.current-owner label {
+  display: block;
+  text-transform: capitalize;
+  margin-bottom: 0.4rem;
+  letter-spacing: var(--letterSpacing);
+}
+
+.add-job-btn {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-3);
+}
+
+.plus-icon {
+  font-size: 2rem;
+}
+
+.jobs-item-heading {
+  background: var(--primary-500);
+  padding: var(--padding);
+  max-width: fit-content;
+  margin: 0 auto 1rem;
+  border-radius: var(--borderRadius);
+  box-shadow: var(--shadow-3);
+}
+
+.jobs-item-btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  margin-bottom: 1rem;
+}
+
+.jobs-item-btn {
+  padding: var(--padding);
+  cursor: pointer;
+  text-transform: capitalize;
+  letter-spacing: var(--letterSpacing);
+  border: none;
+  background: var(--grey-200);
+  box-shadow: var(--shadow-3);
+}
+
 .jobs-item {
-  background: #333;
+  background: var(--black);
   color: var(--white);
   margin-bottom: 2rem;
   padding: 0.5rem 0;
+  box-shadow: var(--shadow-3);
 }
 
 .job-item h3 {
@@ -524,9 +585,21 @@ Current Owner
 .jobs-item-info {
   margin: 0.5rem auto;
   display: block;
-  background: orangered;
+  background: var(--grey-500);
+  border-radius: var(--borderRadius);
   padding: 0.3rem 0;
   width: 70%;
+}
+
+.completed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  background: var(--green-dark);
+  padding: var(--padding);
+  text-transform: capitalize;
+  font-weight: bold;
 }
 
 /*

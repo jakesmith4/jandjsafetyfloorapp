@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useGlobalContext } from '../context';
 import { convertDateOneDayForward } from '../utils';
+import { FaPlus, FaCheck } from 'react-icons/fa';
 
 const CurrentOwner = () => {
   const {
@@ -72,7 +73,7 @@ const CurrentOwner = () => {
     <section className="current-owner">
       <header>
         <input
-          className="current-owner-name"
+          className="current-owner-name form-input"
           type="text"
           id="name"
           value={name}
@@ -85,8 +86,9 @@ const CurrentOwner = () => {
 
       <div className="owner-inputs">
         <div className="form-row">
-          <label htmlFor="number-of-stores">number of stores</label>
+          <label htmlFor="number-of-stores">number of stores:</label>
           <input
+            className="form-input"
             type="number"
             name="number-of-stores"
             id="number-of-stores"
@@ -98,8 +100,9 @@ const CurrentOwner = () => {
           />
         </div>
         <div className="form-row">
-          <label htmlFor="owner-price">owner price</label>
+          <label htmlFor="owner-price">owner price:</label>
           <input
+            className="form-input"
             type="number"
             name="owner-price"
             id="owner-price"
@@ -113,26 +116,28 @@ const CurrentOwner = () => {
       </div>
 
       <button
-        className="btn"
+        className="btn add-job-btn"
         onClick={() => {
           openCurrentOwnerForm();
           openModal();
         }}
       >
-        add job
+        <FaPlus className="plus-icon" title="Add Owner" />
       </button>
 
-      <h2>Jobs</h2>
+      <h2 className="jobs-item-heading">Jobs</h2>
 
-      <div className="btn-container">
+      <div className="jobs-item-btn-container">
         <button
-          style={!showCompletedJobs ? { background: 'green' } : {}}
+          className="jobs-item-btn"
+          style={!showCompletedJobs ? { background: '#ff4500' } : {}}
           onClick={() => setShowCompletedJobs(false)}
         >
           upcoming jobs
         </button>
         <button
-          style={showCompletedJobs ? { background: 'green' } : {}}
+          className="jobs-item-btn"
+          style={showCompletedJobs ? { background: '#ff4500' } : {}}
           onClick={() => setShowCompletedJobs(true)}
         >
           completed jobs
@@ -147,6 +152,7 @@ const CurrentOwner = () => {
             <li
               key={id}
               className="jobs-item"
+              style={showCompletedJobs ? { paddingBottom: '0px' } : {}}
               onClick={() => {
                 openCurrentJob();
                 changeCurrentSingleJob(job);
@@ -169,6 +175,13 @@ const CurrentOwner = () => {
 
               <h3>price</h3>
               <span className="jobs-item-info">${job.price}</span>
+
+              {showCompletedJobs && (
+                <span className="completed">
+                  completed
+                  <FaCheck />
+                </span>
+              )}
             </li>
           );
         })}
