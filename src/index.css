@@ -372,7 +372,7 @@ Owner
   /* max-width: var(--fixed-width); */
   /* margin: 0 auto; */
   /* margin-top: 40px; */
-  padding: 2.5rem;
+  padding: 0.2rem;
 }
 .current-owner h2,
 .owner-info h2 {
@@ -425,6 +425,30 @@ hr {
   display: inline-block;
   padding: var(--padding);
   color: var(--white);
+}
+
+@media screen and (min-width: 360px) {
+  .current-owner,
+  .owner-info,
+  .completed-jobs {
+    padding: 0.5rem;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .current-owner,
+  .owner-info,
+  .completed-jobs {
+    padding: 1rem;
+  }
+}
+
+@media screen and (min-width: 450px) {
+  .current-owner,
+  .owner-info,
+  .completed-jobs {
+    padding: 2rem;
+  }
 }
 
 /*
