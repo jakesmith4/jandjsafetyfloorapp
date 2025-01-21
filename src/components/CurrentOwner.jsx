@@ -203,6 +203,7 @@ const CurrentOwner = () => {
 
       <footer>
         <hr />
+        <h2 className="jobs-item-heading">analytics</h2>
         {currentOwner.jobs.length > 0 && (
           <div>
             <div className="owner-total">
