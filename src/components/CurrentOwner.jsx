@@ -164,7 +164,7 @@ const CurrentOwner = () => {
               <h3>date:</h3>
               <span className="jobs-item-info">
                 {Intl.DateTimeFormat('en-US').format(
-                  convertDateOneDayForward(job.date)
+                  convertDateOneDayForward(job.date || '2025-01-01')
                 )}
               </span>
 
