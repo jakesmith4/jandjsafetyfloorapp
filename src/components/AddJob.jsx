@@ -1,9 +1,29 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useGlobalContext } from '../context';
 import { toast } from 'react-toastify';
 import { convertDateOneDayForward, fixName } from '../utils';
+import {
+  GoogleMap,
+  useJsApiLoader,
+  StandaloneSearchBox,
+} from '@react-google-maps/api';
+
+const places = ['places'];
 
 const AddJob = () => {
+  const inputRef = useRef(null);
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: import.meta.env.VITE_GOOGLEMAPS_API_KEY,
+
+    libraries: places,
+  });
+
+  const handleOnPlacesChanged = () => {
+    let address = inputRef.current.getPlaces();
+    console.log(address);
+  };
+
   const {
     addJobToCurrentOwner,
     closeCurrentOwnerForm,
@@ -86,12 +106,26 @@ const AddJob = () => {
         <label htmlFor="address" className="form-label">
           address:
         </label>
-        <textarea
+        {/* <textarea
           id="address"
           className="form-textarea"
           value={address}
           onChange={e => setAddress(e.target.value)}
-        ></textarea>
+        ></textarea> */}
+        {isLoaded && (
+          <StandaloneSearchBox
+            onLoad={ref => (inputRef.current = ref)}
+            onPlacesChanged={handleOnPlacesChanged}
+          >
+            <input
+              type="text"
+              id="address"
+              className="form-textarea"
+              value={address}
+              onChange={e => setAddress(e.target.value)}
+            />
+          </StandaloneSearchBox>
+        )}
       </div>
       <div className="form-row">
         <label htmlFor="price" className="form-label">
