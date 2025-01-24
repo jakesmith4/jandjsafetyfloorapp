@@ -3,8 +3,6 @@ import { useGlobalContext } from '../context';
 
 import logo from '../img/j-and-logo-1-min.png';
 
-console.log(logo);
-
 const Home = () => {
   const { openModal, owners, openAddOwnerForm } = useGlobalContext();
 
