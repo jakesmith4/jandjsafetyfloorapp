@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useGlobalContext } from '../context';
+import { toast } from 'react-toastify';
+import { convertDateOneDayForward, fixName } from '../utils';
 
 const AddJob = () => {
   const {
@@ -18,11 +20,36 @@ const AddJob = () => {
     <form
       className="form"
       onSubmit={e => {
-        if (!storeNumber || !address || !price || !date) {
-          e.preventDefault();
+        e.preventDefault();
+
+        if (!date) {
+          toast.error(`Please enter a "Date"`);
           return;
         }
+
+        if (!storeNumber) {
+          toast.error(`Please enter a "Store Number"`);
+          return;
+        }
+
+        if (!address) {
+          toast.error(`Please enter an "Address"`);
+          return;
+        }
+
+        if (!price) {
+          toast.error(`Please enter a "Price"`);
+          return;
+        }
+
         addJobToCurrentOwner(e, storeNumber, address, price, date);
+        toast.success(
+          `Successfully added store number "${storeNumber}" to "${fixName(
+            currentOwner.name
+          )}" on ${Intl.DateTimeFormat('en-US').format(
+            new Date(convertDateOneDayForward(date))
+          )}`
+        );
         closeCurrentOwnerForm();
         closeModal();
         setStoreNumber('');

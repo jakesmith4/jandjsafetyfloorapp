@@ -36,3 +36,10 @@ export function getLocalStorage() {
   const defaultList = JSON.parse(localStorage.getItem('owners') || '[]');
   return defaultList;
 }
+
+export const fixName = str =>
+  str
+    .toLowerCase()
+    .split(' ')
+    .map(str => `${str[0].toUpperCase()}${str.slice(1)}`)
+    .join(' ');

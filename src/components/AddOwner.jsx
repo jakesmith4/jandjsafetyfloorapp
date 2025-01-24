@@ -1,6 +1,7 @@
 import { useGlobalContext } from '../context';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { fixName } from '../utils';
 
 const AddOwner = () => {
   const { addOwner, changeNewOwnerInfo, closeAddOwnerForm } =
@@ -75,7 +76,7 @@ const AddOwner = () => {
           changeNewOwnerInfo(name, price, amount);
           addOwner(e);
           closeAddOwnerForm();
-          toast.success(`Owner added: ${name.toUpperCase()}`);
+          toast.success(`Owner added: "${fixName(name)}"`);
           setName('');
           setPrice('');
           setAmount('');
