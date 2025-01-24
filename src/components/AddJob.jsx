@@ -11,10 +11,12 @@ import {
 const places = ['places'];
 
 const AddJob = () => {
+  // console.log(import.meta.env.VITE_GOOGLEMAPS_API_KEY);
+
   const inputRef = useRef(null);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: import.meta.env.VITE_GOOGLEMAPS_API_KEY,
+    googleMapsApiKey: 'AIzaSyB0rLqZ5ov3ufr6ZZXpPaKVSyGcMdLkJ2o',
 
     libraries: places,
   });
