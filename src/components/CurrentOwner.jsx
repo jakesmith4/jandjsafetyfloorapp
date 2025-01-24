@@ -140,14 +140,20 @@ const CurrentOwner = () => {
           style={!showCompletedJobs ? { background: '#ff4500' } : {}}
           onClick={() => setShowCompletedJobs(false)}
         >
-          upcoming jobs
+          <span>upcoming jobs</span>
+          <span>
+            <GiCrossMark />
+          </span>
         </button>
         <button
           className="jobs-item-btn"
           style={showCompletedJobs ? { background: '#ff4500' } : {}}
           onClick={() => setShowCompletedJobs(true)}
         >
-          completed jobs
+          <span>completed jobs</span>
+          <span>
+            <GiCheckMark />
+          </span>
         </button>
       </div>
 

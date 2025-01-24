@@ -619,6 +619,7 @@ Current Owner
 }
 
 .jobs-item-btn {
+  display: flex;
   padding: var(--padding);
   cursor: pointer;
   text-transform: capitalize;
@@ -670,6 +671,12 @@ Current Owner
 
 .upcoming {
   background: var(--grey-800);
+}
+
+@media screen and (min-width: 420px) {
+  .jobs-item-btn {
+    gap: 0.4rem;
+  }
 }
 
 /*
