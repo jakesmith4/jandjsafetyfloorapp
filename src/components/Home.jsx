@@ -1,5 +1,10 @@
 import SingleOwner from './SingleOwner';
 import { useGlobalContext } from '../context';
+
+import logo from '../img/j-and-logo-1-min.png';
+
+console.log(logo);
+
 const Home = () => {
   const { openModal, owners, openAddOwnerForm } = useGlobalContext();
 
@@ -9,7 +14,14 @@ const Home = () => {
     return (
       <section className="owner-info">
         <header>
-          <h2>J&J Safety Floor</h2>
+          <div className="owner-info-heading">
+            <h2>J&J Safety Floor</h2>
+            <img
+              src={logo}
+              alt="J and J Safety Floor Logo"
+              className="owner-info-heading-img"
+            />
+          </div>
           <h4 className="empty-owners">Add an owner to display info</h4>
           <button
             className="btn btn-hipster"
@@ -27,7 +39,14 @@ const Home = () => {
   return (
     <section className="owner-info">
       <header>
-        <h2>J&J Safety Floor</h2>
+        <div className="owner-info-heading">
+          <h2>J&J Safety Floor</h2>
+          <img
+            src={logo}
+            alt="J and J Safety Floor Logo"
+            className="owner-info-heading-img"
+          />
+        </div>
       </header>
       <div className="single-owner-container">
         {ownersArray.map(owner => {
