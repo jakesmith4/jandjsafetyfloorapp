@@ -75,7 +75,7 @@ const AddJob = () => {
           store number:
         </label>
         <input
-          type="text"
+          type="number"
           id="store-number"
           className="form-input"
           value={storeNumber}
