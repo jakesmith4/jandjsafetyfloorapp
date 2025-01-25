@@ -9,6 +9,7 @@ import {
   useJsApiLoader,
   StandaloneSearchBox,
 } from '@react-google-maps/api';
+import { convertDateOneDayForward } from '../utils';
 
 const places = ['places'];
 
@@ -38,7 +39,7 @@ const SingleJob = ({ job }) => {
 
     editJob(job.id, date, storeNumber, currentAddress, price, job.owner);
 
-    toast.success(`Successfully changed Store Address`);
+    toast.success(`Successfully changed store address`);
   };
 
   const { editJob, deleteJob, markJobAsCompleted } = useGlobalContext();
@@ -73,6 +74,11 @@ const SingleJob = ({ job }) => {
               price,
               job.owner,
               e
+            );
+            toast.success(
+              `Date changed to: ${Intl.DateTimeFormat('en-US').format(
+                new Date(convertDateOneDayForward(e.target.value))
+              )}`
             );
           }}
         />
