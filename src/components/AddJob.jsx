@@ -23,7 +23,7 @@ const AddJob = () => {
 
   const handleOnPlacesChanged = () => {
     let address = inputRef.current.getPlaces();
-    setAddress(address[0].formatted_address);
+    setAddress(`McDonald's, ${address[0].formatted_address}`);
   };
 
   const {
