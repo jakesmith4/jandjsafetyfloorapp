@@ -169,7 +169,7 @@ const SingleJob = ({ job }) => {
           <span>
             <GiAcid />
           </span>
-          <span>{toFraction(lobbyAcid)}</span>
+          <span>{toFraction(lobbyAcid)} Cup</span>
         </div>
       </div>
       <div className="form-row">
@@ -201,7 +201,7 @@ const SingleJob = ({ job }) => {
           <span>
             <GiAcid className="single-job-acid-icon" />
           </span>
-          <span>{toFraction(kitchenAcid)}</span>
+          <span>{toFraction(kitchenAcid)} Cup</span>
         </div>
       </div>
       <div className="form-row">
