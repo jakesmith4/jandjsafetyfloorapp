@@ -205,8 +205,7 @@ const reducer = (state, action) => {
   }
 
   if (action.type === EDIT_JOB) {
-    const { e, id, date, price, address, storeNumber, owner } = action.payload;
-    e.preventDefault();
+    const { id, date, price, address, storeNumber, owner } = action.payload;
 
     const currentOwnerFromArray = getCurrentOwner(state.owners, owner);
 

@@ -1,7 +1,36 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useGlobalContext } from '../context';
+import { toast } from 'react-toastify';
+
+import {
+  GoogleMap,
+  useJsApiLoader,
+  StandaloneSearchBox,
+} from '@react-google-maps/api';
+
+const places = ['places'];
 
 const SingleJob = ({ job }) => {
+  const inputRef = useRef(null);
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: 'AIzaSyB0rLqZ5ov3ufr6ZZXpPaKVSyGcMdLkJ2o',
+
+    libraries: places,
+  });
+
+  const handleOnPlacesChanged = () => {
+    let address = inputRef.current.getPlaces();
+
+    const currentAddress = `McDonald's, ${address[0].formatted_address}`;
+
+    setAddress(currentAddress);
+
+    editJob(job.id, date, storeNumber, currentAddress, price, job.owner);
+
+    toast.success(`Successfully changed Store Address`);
+  };
+
   const { editJob, deleteJob, markJobAsCompleted } = useGlobalContext();
   const [date, setDate] = useState(job.date);
   const [storeNumber, setStoreNumber] = useState(job.storeNumber);
@@ -52,23 +81,21 @@ const SingleJob = ({ job }) => {
         <label htmlFor="address" className="form-label">
           address:
         </label>
-        <textarea
-          className="form-input single-job-textarea"
-          id="address"
-          value={address}
-          onChange={e => {
-            setAddress(e.target.value);
-            editJob(
-              job.id,
-              date,
-              storeNumber,
-              e.target.value,
-              price,
-              job.owner,
-              e
-            );
-          }}
-        ></textarea>
+        {/* ADDRESS */}
+        {isLoaded && (
+          <StandaloneSearchBox
+            onLoad={ref => (inputRef.current = ref)}
+            onPlacesChanged={handleOnPlacesChanged}
+          >
+            <input
+              type="text"
+              id="address"
+              className="form-textarea"
+              value={address}
+              onChange={e => setAddress(e.target.value)}
+            />
+          </StandaloneSearchBox>
+        )}
       </div>
       <div className="form-row">
         <label htmlFor="price" className="form-label">

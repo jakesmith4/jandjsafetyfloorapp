@@ -55,7 +55,7 @@ const AddJob = () => {
         }
 
         if (!address) {
-          toast.error(`Please enter an "Address"`);
+          toast.error(`Please enter a "Valid Address"`);
           return;
         }
 
