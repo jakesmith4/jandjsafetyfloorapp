@@ -33,6 +33,7 @@ const Sidebar = () => {
             className={
               isHomeOpen ? 'sidebar-btn sidebar-btn-open' : 'sidebar-btn'
             }
+            title="Home"
             onClick={openHome}
           >
             <FaHome />
@@ -45,6 +46,7 @@ const Sidebar = () => {
                 ? 'sidebar-btn sidebar-btn-open'
                 : 'sidebar-btn'
             }
+            title="Current Owner"
             onClick={openCurrentOwner}
           >
             <FaUser />
@@ -55,6 +57,7 @@ const Sidebar = () => {
             className={
               isCurrentJobOpen ? 'sidebar-btn sidebar-btn-open' : 'sidebar-btn'
             }
+            title="Current Jobs"
             onClick={openCurrentJob}
           >
             <FaCalendarDay />

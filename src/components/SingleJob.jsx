@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react';
 import { useGlobalContext } from '../context';
 import { toast } from 'react-toastify';
+import { IoMapSharp } from 'react-icons/io5';
+import { FaTrashAlt } from 'react-icons/fa';
 
 import {
   GoogleMap,
@@ -11,6 +13,15 @@ import {
 const places = ['places'];
 
 const SingleJob = ({ job }) => {
+  let globalAddress = job.address;
+
+  const showInMapClicked = () => {
+    // window.open('https://maps.google.com?q=' + your_lat + ',' + your_lng);
+
+    window.open(`https://maps.google.com?q=${globalAddress}`);
+  };
+
+  console.log(globalAddress);
   const inputRef = useRef(null);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -25,6 +36,8 @@ const SingleJob = ({ job }) => {
     const currentAddress = `McDonald's, ${address[0].formatted_address}`;
 
     setAddress(currentAddress);
+
+    globalAddress = currentAddress;
 
     editJob(job.id, date, storeNumber, currentAddress, price, job.owner);
 
@@ -132,13 +145,27 @@ const SingleJob = ({ job }) => {
           onChange={() => markJobAsCompleted(job.id, job.owner)}
         />
       </div>
+
+      <div className="btn-container">
+        <button
+          className="btn maps-btn"
+          title="Open In Maps"
+          onClick={showInMapClicked}
+        >
+          <span>open in maps</span>
+          <IoMapSharp />
+        </button>
+      </div>
+
       <div className="btn-container">
         <button
           className="btn single-job-btn"
           type="button"
+          title="Delete Job"
           onClick={() => deleteJob(job.id, job.owner)}
         >
-          delete job
+          <span>delete job</span>
+          <FaTrashAlt />
         </button>
       </div>
     </form>

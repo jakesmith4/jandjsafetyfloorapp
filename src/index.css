@@ -226,9 +226,6 @@ ul {
   margin-bottom: 1rem;
 }
 
-.form-textarea {
-  /* height: 7rem; */
-}
 ::placeholder {
   font-family: inherit;
   color: var(--grey-400);
@@ -736,6 +733,24 @@ Single Job
   min-height: 80px;
 }
 
+.btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.maps-btn {
+  margin-bottom: 0.5rem;
+  gap: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .single-job-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
   background: var(--red);
 }
