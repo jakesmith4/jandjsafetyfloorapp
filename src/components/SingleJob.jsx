@@ -56,12 +56,12 @@ const SingleJob = ({ job }) => {
     >
       <h2 className="single-job-header">{job.owner}</h2>
       <div className="form-row">
-        <label htmlFor="date" className="form-label">
+        <label htmlFor="date" className="form-label single-job-date-label">
           date:
         </label>
         <input
           type="date"
-          className="form-input single-job-input"
+          className="form-input single-job-input single-job-date-input "
           value={date}
           onChange={e => {
             setDate(e.target.value);

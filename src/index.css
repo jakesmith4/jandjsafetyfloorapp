@@ -789,10 +789,23 @@ Single Job
 
 .single-job-header {
   padding: var(--padding);
-  /* margin-bottom: 1rem; */
   background: var(--primary-500);
   max-width: fit-content;
   margin: 0 auto 0.3rem;
+}
+
+.single-job-date-label {
+  font-weight: bold;
+  font-size: 1rem;
+  background: var(--highlight);
+  color: var(--black);
+  width: 80%;
+  margin: 0.5rem auto;
+  padding: 0.3rem 0.5rem;
+}
+
+.single-job-date-input {
+  font-weight: bold;
 }
 
 .single-job {
