@@ -214,11 +214,6 @@ const CurrentOwner = () => {
                 <h3>address:</h3>
                 <span className="jobs-item-info">{job.address}</span>
               </div>
-
-              <div>
-                <h3>price</h3>
-                <span className="jobs-item-info">${job.price}</span>
-              </div>
               <div
                 className={
                   showCompletedJobs
