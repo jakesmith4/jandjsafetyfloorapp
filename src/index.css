@@ -699,6 +699,27 @@ Current Owner
   width: 80%;
 }
 
+.jobs-item-date {
+  background: var(--primary-500);
+  position: relative;
+}
+
+.jobs-item-icon {
+  font-size: 0.7rem;
+  color: var(--black);
+  position: absolute;
+  left: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  color: yellow;
+  font-size: 0.9rem;
+}
+
+.jobs-item-text {
+  font-weight: bold;
+  font-style: italic;
+}
+
 .show-jobs-container {
   padding: var(--padding);
   text-transform: capitalize;

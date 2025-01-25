@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useGlobalContext } from '../context';
 import { convertDateOneDayForward } from '../utils';
-import { FaPlus } from 'react-icons/fa';
+import { FaPlus, FaCalendarDay } from 'react-icons/fa';
 import { GiCheckMark, GiCrossMark } from 'react-icons/gi';
 
 const formatNum = num => new Intl.NumberFormat(navigator.language).format(num);
@@ -178,25 +178,38 @@ const CurrentOwner = () => {
                 changeCurrentSingleJob(job);
               }}
             >
-              <h3>store number:</h3>
-              <span className="jobs-item-info">#{job.storeNumber}</span>
+              <div>
+                <h3>date:</h3>
+                <div className="jobs-item-info jobs-item-date">
+                  <span className="jobs-item-icon">
+                    <FaCalendarDay />
+                  </span>
+                  <span className="jobs-item-text">
+                    {job.date === ''
+                      ? 'Please enter a valid date!'
+                      : Intl.DateTimeFormat('en-US').format(
+                          convertDateOneDayForward(job.date || '2025-01-01')
+                        )}
+                  </span>
+                </div>
+              </div>
 
-              <h3>date:</h3>
-              <span className="jobs-item-info">
-                {job.date === ''
-                  ? 'Please enter a valid date!'
-                  : Intl.DateTimeFormat('en-US').format(
-                      convertDateOneDayForward(job.date || '2025-01-01')
-                    )}
-              </span>
+              <div>
+                <h3>store number:</h3>
+                <span className="jobs-item-info">#{job.storeNumber}</span>
+              </div>
 
               {/* <input type="date" defaultValue={job.date} /> */}
 
-              <h3>address:</h3>
-              <span className="jobs-item-info">{job.address}</span>
+              <div>
+                <h3>address:</h3>
+                <span className="jobs-item-info">{job.address}</span>
+              </div>
 
-              <h3>price</h3>
-              <span className="jobs-item-info">${job.price}</span>
+              <div>
+                <h3>price</h3>
+                <span className="jobs-item-info">${job.price}</span>
+              </div>
               <div
                 className={
                   showCompletedJobs
