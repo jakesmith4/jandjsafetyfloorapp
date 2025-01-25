@@ -78,26 +78,6 @@ const SingleJob = ({ job }) => {
         />
       </div>
       <div className="form-row">
-        <label htmlFor="address" className="form-label">
-          address:
-        </label>
-        {/* ADDRESS */}
-        {isLoaded && (
-          <StandaloneSearchBox
-            onLoad={ref => (inputRef.current = ref)}
-            onPlacesChanged={handleOnPlacesChanged}
-          >
-            <input
-              type="text"
-              id="address"
-              className="form-textarea"
-              value={address}
-              onChange={e => setAddress(e.target.value)}
-            />
-          </StandaloneSearchBox>
-        )}
-      </div>
-      <div className="form-row">
         <label htmlFor="price" className="form-label">
           price:
         </label>
@@ -119,6 +99,26 @@ const SingleJob = ({ job }) => {
             );
           }}
         />
+      </div>
+      <div className="form-row">
+        <label htmlFor="address" className="form-label">
+          address:
+        </label>
+        {/* ADDRESS */}
+        {isLoaded && (
+          <StandaloneSearchBox
+            onLoad={ref => (inputRef.current = ref)}
+            onPlacesChanged={handleOnPlacesChanged}
+          >
+            <input
+              type="text"
+              id="address"
+              className="form-textarea"
+              value={address}
+              onChange={e => setAddress(e.target.value)}
+            />
+          </StandaloneSearchBox>
+        )}
       </div>
       <div className="form-row">
         <label htmlFor="completed" className="form-label">

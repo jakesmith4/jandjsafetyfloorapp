@@ -4,6 +4,8 @@ import { convertDateOneDayForward } from '../utils';
 import { FaPlus } from 'react-icons/fa';
 import { GiCheckMark, GiCrossMark } from 'react-icons/gi';
 
+const formatNum = num => new Intl.NumberFormat(navigator.language).format(num);
+
 const CurrentOwner = () => {
   const {
     currentOwner,
@@ -242,19 +244,23 @@ const CurrentOwner = () => {
             </div>
             <div className="owner-total">
               <span className="owner-total-heading">jake's cut:</span>
-              <span className="owner-total-value">${jakesCut}</span>
+              <span className="owner-total-value">${formatNum(jakesCut)}</span>
             </div>
             <div className="owner-total">
               <span className="owner-total-heading">john's cut:</span>
-              <span className="owner-total-value">${johnsCut}</span>
+              <span className="owner-total-value">${formatNum(johnsCut)}</span>
             </div>
             <div className="owner-total">
               <span className="owner-total-heading">total amount:</span>
-              <span className="owner-total-value">${thisTimesPrice}</span>
+              <span className="owner-total-value">
+                ${formatNum(thisTimesPrice)}
+              </span>
             </div>
             <div className="owner-total">
               <span className="owner-total-heading">lifetime amount:</span>
-              <span className="owner-total-value">${lifeTimeAmount}</span>
+              <span className="owner-total-value">
+                ${formatNum(lifeTimeAmount)}
+              </span>
             </div>
           </div>
         )}
