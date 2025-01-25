@@ -24,7 +24,7 @@ function App() {
       {isCurrentJobOpen && <CurrentJob />}
       {isCompletedJobsOpen && <CompletedJobs />}
       <Modal />
-      <ToastContainer position="top-center" />
+      <ToastContainer position="top-center" theme="dark" />
     </main>
   );
 }
