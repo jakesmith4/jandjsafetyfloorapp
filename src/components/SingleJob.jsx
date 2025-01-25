@@ -3,6 +3,7 @@ import { useGlobalContext } from '../context';
 import { toast } from 'react-toastify';
 import { IoMapSharp } from 'react-icons/io5';
 import { FaTrashAlt } from 'react-icons/fa';
+import { GiAcid } from 'react-icons/gi';
 import Fraction from 'fraction.js';
 
 import {
@@ -164,7 +165,12 @@ const SingleJob = ({ job }) => {
             );
           }}
         />
-        <span className="single-job-acid">{toFraction(lobbyAcid)}</span>
+        <div className="single-job-acid">
+          <span>
+            <GiAcid />
+          </span>
+          <span>{toFraction(lobbyAcid)}</span>
+        </div>
       </div>
       <div className="form-row">
         <label htmlFor="kitchen-acid">acid used in kitchen</label>
@@ -191,7 +197,12 @@ const SingleJob = ({ job }) => {
             );
           }}
         />
-        <span className="single-job-acid">{toFraction(kitchenAcid)}</span>
+        <div className="single-job-acid">
+          <span>
+            <GiAcid className="single-job-acid-icon" />
+          </span>
+          <span>{toFraction(kitchenAcid)}</span>
+        </div>
       </div>
       <div className="form-row">
         <label htmlFor="address" className="form-label">

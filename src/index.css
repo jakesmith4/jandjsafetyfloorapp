@@ -839,6 +839,7 @@ Single Job
 
 .single-job-range {
   width: 70%;
+  accent-color: var(--primary-500);
 }
 
 .single-job-acid {
@@ -849,6 +850,10 @@ Single Job
   margin: 0.3rem auto 0;
   padding: var(--padding);
   font-weight: bold;
+}
+
+.single-job-acid-icon {
+  color: var(--black);
 }
 
 .btn-container {
