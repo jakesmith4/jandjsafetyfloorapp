@@ -125,10 +125,28 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: CHANGE_CURRENT_SINGLE_JOB, payload: { id } });
   }
 
-  function editJob(id, date, storeNumber, address, price, owner) {
+  function editJob(
+    id,
+    date,
+    storeNumber,
+    address,
+    price,
+    owner,
+    lobbyAcid,
+    kitchenAcid
+  ) {
     dispatch({
       type: EDIT_JOB,
-      payload: { id, date, storeNumber, address, price, owner },
+      payload: {
+        id,
+        date,
+        storeNumber,
+        address,
+        price,
+        owner,
+        lobbyAcid,
+        kitchenAcid,
+      },
     });
   }
 

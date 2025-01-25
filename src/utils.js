@@ -1,3 +1,7 @@
+import Fraction from 'fraction.js';
+
+export const toFraction = num => new Fraction(num).toFraction(true);
+
 export function convertDateOneDayForward(date) {
   // Convert Date One Day Forward Because Of Time Zone Issues
   const dateArray = date.split('-');

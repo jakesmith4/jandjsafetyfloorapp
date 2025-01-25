@@ -154,6 +154,7 @@ const reducer = (state, action) => {
     const { currentOwnerId, currentOwner, owners } = state;
     const { name, amount, price } = action.payload;
     const newOwners = new Map(owners);
+
     newOwners.set(currentOwnerId, {
       ...currentOwner,
       name,
@@ -187,6 +188,8 @@ const reducer = (state, action) => {
       price,
       date,
       completed: false,
+      lobbyAcid: 0,
+      kitchenAcid: 0,
     });
 
     // Set Local Storage
@@ -205,7 +208,16 @@ const reducer = (state, action) => {
   }
 
   if (action.type === EDIT_JOB) {
-    const { id, date, price, address, storeNumber, owner } = action.payload;
+    const {
+      id,
+      date,
+      price,
+      address,
+      storeNumber,
+      owner,
+      lobbyAcid,
+      kitchenAcid,
+    } = action.payload;
 
     const currentOwnerFromArray = getCurrentOwner(state.owners, owner);
 
@@ -218,6 +230,8 @@ const reducer = (state, action) => {
     currentJob.price = price;
     currentJob.address = address;
     currentJob.storeNumber = storeNumber;
+    currentJob.lobbyAcid = +lobbyAcid;
+    currentJob.kitchenAcid = +kitchenAcid;
 
     // Set Local Storage
     const ownersArray = turnMapIntoArray(newOwners);

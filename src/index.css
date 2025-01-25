@@ -771,6 +771,8 @@ Single Job
 .single-job-heading {
   background: var(--grey-200);
   padding: var(--padding);
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .single-job-heading-today {
@@ -833,6 +835,20 @@ Single Job
   width: 80%;
   resize: none;
   min-height: 80px;
+}
+
+.single-job-range {
+  width: 70%;
+}
+
+.single-job-acid {
+  display: block;
+  background: var(--highlight);
+  color: var(--black);
+  width: fit-content;
+  margin: 0.3rem auto 0;
+  padding: var(--padding);
+  font-weight: bold;
 }
 
 .btn-container {

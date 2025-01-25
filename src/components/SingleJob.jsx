@@ -3,13 +3,15 @@ import { useGlobalContext } from '../context';
 import { toast } from 'react-toastify';
 import { IoMapSharp } from 'react-icons/io5';
 import { FaTrashAlt } from 'react-icons/fa';
+import Fraction from 'fraction.js';
 
 import {
   GoogleMap,
   useJsApiLoader,
   StandaloneSearchBox,
 } from '@react-google-maps/api';
-import { convertDateOneDayForward } from '../utils';
+
+import { convertDateOneDayForward, toFraction } from '../utils';
 
 const places = ['places'];
 
@@ -47,6 +49,8 @@ const SingleJob = ({ job }) => {
   const [storeNumber, setStoreNumber] = useState(job.storeNumber);
   const [address, setAddress] = useState(job.address);
   const [price, setPrice] = useState(job.price);
+  const [lobbyAcid, setLobbyAcid] = useState(job.lobbyAcid);
+  const [kitchenAcid, setKitchenAcid] = useState(job.kitchenAcid);
 
   return (
     <form
@@ -73,6 +77,8 @@ const SingleJob = ({ job }) => {
               address,
               price,
               job.owner,
+              lobbyAcid,
+              kitchenAcid,
               e
             );
             toast.success(
@@ -94,7 +100,17 @@ const SingleJob = ({ job }) => {
           value={storeNumber}
           onChange={e => {
             setStoreNumber(e.target.value);
-            editJob(job.id, date, e.target.value, address, price, job.owner, e);
+            editJob(
+              job.id,
+              date,
+              e.target.value,
+              address,
+              price,
+              job.owner,
+              lobbyAcid,
+              kitchenAcid,
+              e
+            );
           }}
         />
       </div>
@@ -116,10 +132,66 @@ const SingleJob = ({ job }) => {
               address,
               e.target.value,
               job.owner,
+              lobbyAcid,
+              kitchenAcid,
               e
             );
           }}
         />
+      </div>
+      <div className="form-row">
+        <label htmlFor="lobby-acid">acid used in lobby</label>
+        <input
+          type="range"
+          className="single-job-range"
+          id="lobby-acid"
+          min="0"
+          max=".5"
+          step="0.125"
+          value={lobbyAcid}
+          onChange={e => {
+            setLobbyAcid(e.target.value);
+            editJob(
+              job.id,
+              date,
+              storeNumber,
+              address,
+              price,
+              job.owner,
+              e.target.value,
+              kitchenAcid,
+              e
+            );
+          }}
+        />
+        <span className="single-job-acid">{toFraction(lobbyAcid)}</span>
+      </div>
+      <div className="form-row">
+        <label htmlFor="kitchen-acid">acid used in kitchen</label>
+        <input
+          type="range"
+          className="single-job-range"
+          id="kitchen-acid"
+          min="0"
+          max="1.25"
+          step="0.125"
+          value={kitchenAcid}
+          onChange={e => {
+            setKitchenAcid(e.target.value);
+            editJob(
+              job.id,
+              date,
+              storeNumber,
+              address,
+              price,
+              job.owner,
+              lobbyAcid,
+              e.target.value,
+              e
+            );
+          }}
+        />
+        <span className="single-job-acid">{toFraction(kitchenAcid)}</span>
       </div>
       <div className="form-row">
         <label htmlFor="address" className="form-label">
