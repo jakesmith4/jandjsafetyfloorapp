@@ -292,7 +292,7 @@ ul {
 
 main {
   display: grid;
-  grid-template-columns: 75px auto;
+  grid-template-columns: 65px auto;
 }
 
 /*
@@ -306,7 +306,7 @@ Sidebar
 
 .sidebar-list {
   position: fixed;
-  width: 75px;
+  width: 65px;
 }
 
 .sidebar-item {
@@ -332,6 +332,16 @@ Sidebar
 .sidebar-btn-open {
   background: var(--primary-500);
   color: #333;
+}
+
+@media screen and (min-width: 370px) {
+  main {
+    grid-template-columns: 75px auto;
+  }
+
+  .sidebar-list {
+    width: 75px;
+  }
 }
 
 /*
@@ -462,7 +472,7 @@ hr {
   color: var(--white);
 }
 
-@media screen and (min-width: 360px) {
+@media screen and (min-width: 370px) {
   .current-owner,
   .owner-info,
   .completed-jobs {
@@ -601,7 +611,7 @@ Current Owner
 .add-job-btn {
   position: fixed;
   bottom: 0.8rem;
-  left: 0.8rem;
+  left: 0.5rem;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -613,6 +623,12 @@ Current Owner
 
 .plus-icon {
   font-size: 2rem;
+}
+
+@media screen and (min-width: 370px) {
+  .add-job-btn {
+    left: 0.8rem;
+  }
 }
 
 @media screen and (min-width: 768px) {
