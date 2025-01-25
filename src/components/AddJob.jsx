@@ -23,7 +23,7 @@ const AddJob = () => {
 
   const handleOnPlacesChanged = () => {
     let address = inputRef.current.getPlaces();
-    console.log(address);
+    setAddress(address[0].formatted_address);
   };
 
   const {
@@ -119,13 +119,7 @@ const AddJob = () => {
             onLoad={ref => (inputRef.current = ref)}
             onPlacesChanged={handleOnPlacesChanged}
           >
-            <input
-              type="text"
-              id="address"
-              className="form-textarea"
-              value={address}
-              onChange={e => setAddress(e.target.value)}
-            />
+            <input type="text" id="address" className="form-textarea" />
           </StandaloneSearchBox>
         )}
       </div>
