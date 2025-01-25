@@ -66,6 +66,28 @@ html {
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
+/* Toastify */
+.Toastify__toast {
+  --toastify-toast-width: 80% !important;
+  margin-top: 1rem;
+}
+
+.Toastify__close-button {
+  color: var(--red-dark) !important;
+}
+
+.Toastify__close-button > svg {
+  height: 25px !important;
+  width: 25px !important;
+}
+
+@media screen and (min-width: 480px) {
+  .Toastify__toast {
+    --toastify-toast-width: 100% !important;
+    margin-top: 0;
+  }
+}
+
 body {
   background: var(--backgroundColor);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,

@@ -45,28 +45,28 @@ const AddJob = () => {
         e.preventDefault();
 
         if (!date) {
-          toast.error(`Please enter a "Date"`);
+          toast.warning(`Please enter a "Date"`);
           return;
         }
 
         if (!storeNumber) {
-          toast.error(`Please enter a "Store Number"`);
+          toast.warning(`Please enter a "Store Number"`);
           return;
         }
 
         if (!address) {
-          toast.error(`Please enter a "Valid Address"`);
+          toast.warning(`Please enter a "Valid Address"`);
           return;
         }
 
         if (!price) {
-          toast.error(`Please enter a "Price"`);
+          toast.warning(`Please enter a "Price"`);
           return;
         }
 
         addJobToCurrentOwner(e, storeNumber, address, price, date);
         toast.success(
-          `Successfully added store number "${storeNumber}" to "${fixName(
+          `Successfully added #${storeNumber} to "${fixName(
             currentOwner.name
           )}" on ${Intl.DateTimeFormat('en-US').format(
             new Date(convertDateOneDayForward(date))

@@ -57,17 +57,17 @@ const AddOwner = () => {
         onClick={e => {
           e.preventDefault();
           if (!name) {
-            toast.error(`Please enter a "name"`);
+            toast.warning(`Please enter a "name"`);
             return;
           }
 
           if (!price) {
-            toast.error(`Please enter a "price"`);
+            toast.warning(`Please enter a "price"`);
             return;
           }
 
           if (!amount) {
-            toast.error(`Please enter an "amount of stores"`);
+            toast.warning(`Please enter an "amount of stores"`);
             return;
           }
 
