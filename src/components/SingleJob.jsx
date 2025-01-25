@@ -16,12 +16,9 @@ const SingleJob = ({ job }) => {
   let globalAddress = job.address;
 
   const showInMapClicked = () => {
-    // window.open('https://maps.google.com?q=' + your_lat + ',' + your_lng);
-
     window.open(`https://maps.google.com?q=${globalAddress}`);
   };
 
-  console.log(globalAddress);
   const inputRef = useRef(null);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -51,7 +48,12 @@ const SingleJob = ({ job }) => {
   const [price, setPrice] = useState(job.price);
 
   return (
-    <form className="single-job">
+    <form
+      className="single-job"
+      style={
+        job.completed ? { background: '#0f5132' } : { background: '#16191b' }
+      }
+    >
       <h2 className="single-job-header">{job.owner}</h2>
       <div className="form-row">
         <label htmlFor="date" className="form-label">

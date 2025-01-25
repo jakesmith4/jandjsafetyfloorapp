@@ -773,6 +773,20 @@ Single Job
   padding: var(--padding);
 }
 
+.single-job-heading-today {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: var(--highlight);
+}
+
+.single-job-heading-today-amount {
+  background: var(--primary-500);
+  color: var(--white);
+  padding: 0 0.5rem;
+}
+
 .single-job-header {
   padding: var(--padding);
   /* margin-bottom: 1rem; */
@@ -789,6 +803,7 @@ Single Job
   box-shadow: var(--shadow-3);
   max-width: 400px;
   margin: 1.5rem auto;
+  transition: var(--transition);
 }
 
 .single-job-input,
