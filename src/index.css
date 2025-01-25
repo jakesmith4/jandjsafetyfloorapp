@@ -43,6 +43,7 @@ html {
   --red-dark: #842029;
   --green-light: #d1e7dd;
   --green-dark: #0f5132;
+  --highlight: yellow;
 
   --small-text: 0.875rem;
   --extra-small-text: 0.7em;
@@ -667,6 +668,7 @@ Current Owner
 
 .jobs-item-btn {
   display: flex;
+  align-items: center;
   padding: var(--padding);
   cursor: pointer;
   text-transform: capitalize;
@@ -681,6 +683,15 @@ Current Owner
   font-size: 1.5rem;
 }
 
+.jobs-item-number {
+  background: var(--highlight);
+  padding: 0.05rem 0.08rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.01rem;
+}
+
 .jobs-item {
   background: var(--black);
   color: var(--white);
@@ -688,6 +699,10 @@ Current Owner
   padding: 0.5rem 0 0;
   box-shadow: var(--shadow-3);
   cursor: pointer;
+}
+
+.jobs-item-date-heading {
+  font-weight: bold;
 }
 
 .jobs-item-info {
@@ -711,7 +726,7 @@ Current Owner
   left: 5%;
   top: 50%;
   transform: translateY(-50%);
-  color: yellow;
+  color: var(--highlight);
   font-size: 0.9rem;
 }
 

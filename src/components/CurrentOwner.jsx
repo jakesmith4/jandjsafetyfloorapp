@@ -144,7 +144,10 @@ const CurrentOwner = () => {
         >
           <span>upcoming jobs</span>
           <span>
-            <GiCrossMark />
+            <span>
+              <GiCrossMark />
+            </span>
+            <span className="jobs-item-number">{unCompletedJobs.length}</span>
           </span>
         </button>
         <button
@@ -154,7 +157,10 @@ const CurrentOwner = () => {
         >
           <span>completed jobs</span>
           <span>
-            <GiCheckMark />
+            <span>
+              <GiCheckMark />
+            </span>
+            <span className="jobs-item-number">{completedJobs.length}</span>
           </span>
         </button>
       </div>
@@ -179,7 +185,7 @@ const CurrentOwner = () => {
               }}
             >
               <div>
-                <h3>date:</h3>
+                <h3 className="jobs-item-date-heading">date:</h3>
                 <div className="jobs-item-info jobs-item-date">
                   <span className="jobs-item-icon">
                     <FaCalendarDay />
@@ -245,16 +251,6 @@ const CurrentOwner = () => {
         <h2 className="jobs-item-heading">analytics</h2>
         {currentOwner.jobs.length > 0 && (
           <div>
-            <div className="owner-total">
-              <span className="owner-total-heading">uncompleted jobs:</span>
-              <span className="owner-total-value">
-                {unCompletedJobs.length}
-              </span>
-            </div>
-            <div className="owner-total">
-              <span className="owner-total-heading">completed jobs:</span>
-              <span className="owner-total-value">{completedJobs.length}</span>
-            </div>
             <div className="owner-total">
               <span className="owner-total-heading">jake's cut:</span>
               <span className="owner-total-value">${formatNum(jakesCut)}</span>
