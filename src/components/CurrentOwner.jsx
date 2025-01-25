@@ -140,6 +140,7 @@ const CurrentOwner = () => {
         <button
           className="jobs-item-btn"
           style={!showCompletedJobs ? { background: '#ff4500' } : {}}
+          title="Upcoming Jobs"
           onClick={() => setShowCompletedJobs(false)}
         >
           <span>upcoming jobs</span>
@@ -153,6 +154,7 @@ const CurrentOwner = () => {
         <button
           className="jobs-item-btn"
           style={showCompletedJobs ? { background: '#ff4500' } : {}}
+          title="Completed Jobs"
           onClick={() => setShowCompletedJobs(true)}
         >
           <span>completed jobs</span>
@@ -179,6 +181,7 @@ const CurrentOwner = () => {
             <li
               key={id}
               className="jobs-item"
+              title="Edit Job"
               onClick={() => {
                 openCurrentJob();
                 changeCurrentSingleJob(job);
