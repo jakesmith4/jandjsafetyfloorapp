@@ -40,7 +40,16 @@ const SingleJob = ({ job }) => {
 
     globalAddress = currentAddress;
 
-    editJob(job.id, date, storeNumber, currentAddress, price, job.owner);
+    editJob(
+      job.id,
+      date,
+      storeNumber,
+      currentAddress,
+      price,
+      job.owner,
+      lobbyAcid,
+      kitchenAcid
+    );
 
     toast.success(`Successfully changed store address`);
   };
@@ -219,7 +228,9 @@ const SingleJob = ({ job }) => {
               id="address"
               className="form-textarea"
               value={address}
-              onChange={e => setAddress(e.target.value)}
+              onChange={e => {
+                setAddress(e.target.value);
+              }}
             />
           </StandaloneSearchBox>
         )}
