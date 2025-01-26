@@ -1,7 +1,6 @@
 import { toast } from 'react-toastify';
 import { useGlobalContext } from '../context';
 import { FaTrashAlt } from 'react-icons/fa';
-import { fixName } from '../utils';
 
 const SingleOwner = ({ id, name, price, amount }) => {
   const { removeOwner, setCurrentOwner } = useGlobalContext();
@@ -20,9 +19,9 @@ const SingleOwner = ({ id, name, price, amount }) => {
         <div className="owner-amount">{amount} stores</div>
         <button
           className="remove-btn"
-          onClick={() => {
-            removeOwner(id);
-            toast.error(`"${fixName(name)}" removed`);
+          onClick={e => {
+            e.stopPropagation();
+            removeOwner(id, name);
           }}
         >
           <span>remove</span>

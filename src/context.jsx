@@ -91,8 +91,8 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: OPEN_COMPLETED_JOBS });
   }
 
-  function removeOwner(id) {
-    dispatch({ type: REMOVE_OWNER, payload: { id } });
+  function removeOwner(id, name) {
+    dispatch({ type: REMOVE_OWNER, payload: { id, name } });
   }
 
   function addOwner(e) {

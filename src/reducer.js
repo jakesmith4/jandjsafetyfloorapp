@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+
 import {
   OPEN_MODAL,
   CLOSE_MODAL,
@@ -22,7 +23,14 @@ import {
   MARK_JOB_AS_COMPLETED,
 } from './actions';
 
-import { getCurrentOwner, setLocalStorage, turnMapIntoArray } from './utils';
+import {
+  fixName,
+  getCurrentOwner,
+  setLocalStorage,
+  turnMapIntoArray,
+} from './utils';
+
+import { toast } from 'react-toastify';
 
 const reducer = (state, action) => {
   if (action.type === OPEN_MODAL) {
@@ -104,6 +112,8 @@ const reducer = (state, action) => {
       // Set Local Storage
       const ownersArray = turnMapIntoArray(newOwners);
       setLocalStorage(ownersArray);
+
+      toast.error(`"${fixName(action.payload.name)}" removed`);
 
       return { ...state, owners: newOwners };
     }
