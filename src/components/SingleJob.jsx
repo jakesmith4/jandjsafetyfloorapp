@@ -96,7 +96,7 @@ const SingleJob = ({ job }) => {
         </label>
         <input
           className="form-input single-job-input"
-          type="text"
+          type="number"
           id="store-number"
           value={storeNumber}
           onChange={e => {
