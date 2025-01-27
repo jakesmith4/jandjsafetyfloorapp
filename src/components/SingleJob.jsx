@@ -385,7 +385,10 @@ const SingleJob = ({ job }) => {
             style={
               job.notes
                 ? { background: 'gray', borderColor: 'white' }
-                : { background: '#7e27d0' }
+                : {
+                    background: '#7e27d0',
+                    borderColor: isNoteOpen ? 'white' : 'transparent',
+                  }
             }
             disabled={job.completed}
             onClick={() =>
