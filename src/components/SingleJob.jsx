@@ -311,6 +311,39 @@ const SingleJob = ({ job }) => {
         />
       </div>
 
+      <div className="form-row">
+        {isNoteOpen && (
+          <>
+            <label htmlFor="notes" className="form-label">
+              notes:
+            </label>
+            <textarea
+              name=""
+              id="notes"
+              className="form-input single-job-input note-text-textarea"
+              disabled={job.completed}
+              value={notes}
+              onChange={e => {
+                setNotes(e.target.value);
+                editJob(
+                  job.id,
+                  date,
+                  storeNumber,
+                  address,
+                  price,
+                  job.owner,
+                  lobbyAcid,
+                  kitchenAcid,
+                  phoneNumber,
+                  e.target.value,
+                  e
+                );
+              }}
+            ></textarea>
+          </>
+        )}
+      </div>
+
       <div className="call-to-action-btns">
         <div className="btn-container">
           <a
@@ -361,38 +394,6 @@ const SingleJob = ({ job }) => {
             <MdEdit />
           </button>
         </div>
-      </div>
-      <div className="form-row">
-        {isNoteOpen && (
-          <>
-            <label htmlFor="notes" className="form-label">
-              notes:
-            </label>
-            <textarea
-              name=""
-              id="notes"
-              className="form-input single-job-input note-text-textarea"
-              disabled={job.completed}
-              value={notes}
-              onChange={e => {
-                setNotes(e.target.value);
-                editJob(
-                  job.id,
-                  date,
-                  storeNumber,
-                  address,
-                  price,
-                  job.owner,
-                  lobbyAcid,
-                  kitchenAcid,
-                  phoneNumber,
-                  e.target.value,
-                  e
-                );
-              }}
-            ></textarea>
-          </>
-        )}
       </div>
     </form>
   );
