@@ -842,9 +842,8 @@ Single Job
   accent-color: var(--primary-500);
 }
 
-.single-job-acid {
+.single-job-acid-container {
   display: block;
-  background: var(--highlight);
   color: var(--black);
   width: fit-content;
   margin: 0.3rem auto 0;
@@ -852,8 +851,19 @@ Single Job
   font-weight: bold;
 }
 
+.single-job-soap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+}
+
 .single-job-acid-icon {
   color: var(--black);
+}
+
+.single-job-soap-icon {
+  margin-right: 0.2rem;
 }
 
 .btn-container {

@@ -3,8 +3,7 @@ import { useGlobalContext } from '../context';
 import { toast } from 'react-toastify';
 import { IoMapSharp } from 'react-icons/io5';
 import { FaTrashAlt } from 'react-icons/fa';
-import { GiAcid } from 'react-icons/gi';
-import Fraction from 'fraction.js';
+import { GiAcid, GiBubbles } from 'react-icons/gi';
 
 import {
   GoogleMap,
@@ -174,11 +173,25 @@ const SingleJob = ({ job }) => {
             );
           }}
         />
-        <div className="single-job-acid">
-          <span>
-            <GiAcid />
-          </span>
-          <span>{toFraction(lobbyAcid)} Cup</span>
+        <div
+          className="single-job-acid-container"
+          style={{ background: lobbyAcid > 0 ? 'yellow' : '#0f5132' }}
+        >
+          {lobbyAcid > 0 ? (
+            <div className="single-job-acid">
+              <span>
+                <GiAcid />
+              </span>
+              <span>{toFraction(lobbyAcid)} Cup</span>
+            </div>
+          ) : (
+            <div className="single-job-soap">
+              <span className="single-job-soap-icon">
+                <GiBubbles />
+              </span>
+              <span>Soap only</span>
+            </div>
+          )}
         </div>
       </div>
       <div className="form-row">
@@ -206,11 +219,25 @@ const SingleJob = ({ job }) => {
             );
           }}
         />
-        <div className="single-job-acid">
-          <span>
-            <GiAcid className="single-job-acid-icon" />
-          </span>
-          <span>{toFraction(kitchenAcid)} Cup</span>
+        <div
+          className="single-job-acid-container"
+          style={{ background: kitchenAcid > 0 ? 'yellow' : '#0f5132' }}
+        >
+          {kitchenAcid > 0 ? (
+            <div className="single-job-acid">
+              <span>
+                <GiAcid />
+              </span>
+              <span>{toFraction(kitchenAcid)} Cup</span>
+            </div>
+          ) : (
+            <div className="single-job-soap">
+              <span className="single-job-soap-icon">
+                <GiBubbles />
+              </span>
+              <span>Soap only</span>
+            </div>
+          )}
         </div>
       </div>
       <div className="form-row">
