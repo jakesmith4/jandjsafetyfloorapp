@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { IoMapSharp } from 'react-icons/io5';
 import { FaTrashAlt } from 'react-icons/fa';
 import { GiAcid, GiBubbles } from 'react-icons/gi';
+import { BsFillTelephoneOutboundFill } from 'react-icons/bs';
 
 import {
   GoogleMap,
@@ -35,7 +36,10 @@ const SingleJob = ({ job }) => {
 
     const currentAddress = `McDonald's, ${address[0].formatted_address}`;
 
+    const currentNumber = address[0].formatted_phone_number;
+
     setAddress(currentAddress);
+    setPhoneNumber(currentNumber);
 
     globalAddress = currentAddress;
 
@@ -47,7 +51,8 @@ const SingleJob = ({ job }) => {
       price,
       job.owner,
       lobbyAcid,
-      kitchenAcid
+      kitchenAcid,
+      currentNumber
     );
 
     toast.success(`Successfully changed store address`);
@@ -60,6 +65,7 @@ const SingleJob = ({ job }) => {
   const [price, setPrice] = useState(job.price);
   const [lobbyAcid, setLobbyAcid] = useState(job.lobbyAcid);
   const [kitchenAcid, setKitchenAcid] = useState(job.kitchenAcid);
+  const [phoneNumber, setPhoneNumber] = useState(job.phoneNumber);
 
   return (
     <form
@@ -88,6 +94,7 @@ const SingleJob = ({ job }) => {
               job.owner,
               lobbyAcid,
               kitchenAcid,
+              phoneNumber,
               e
             );
             toast.success(
@@ -118,6 +125,7 @@ const SingleJob = ({ job }) => {
               job.owner,
               lobbyAcid,
               kitchenAcid,
+              phoneNumber,
               e
             );
           }}
@@ -143,6 +151,7 @@ const SingleJob = ({ job }) => {
               job.owner,
               lobbyAcid,
               kitchenAcid,
+              phoneNumber,
               e
             );
           }}
@@ -169,13 +178,17 @@ const SingleJob = ({ job }) => {
               job.owner,
               e.target.value,
               kitchenAcid,
+              phoneNumber,
               e
             );
           }}
         />
         <div
           className="single-job-acid-container"
-          style={{ background: lobbyAcid > 0 ? 'yellow' : '#0f5132' }}
+          style={{
+            background:
+              lobbyAcid > 0 ? 'yellow' : job.completed ? 'black' : '#0f5132',
+          }}
         >
           {lobbyAcid > 0 ? (
             <div className="single-job-acid">
@@ -215,13 +228,17 @@ const SingleJob = ({ job }) => {
               job.owner,
               lobbyAcid,
               e.target.value,
+              phoneNumber,
               e
             );
           }}
         />
         <div
           className="single-job-acid-container"
-          style={{ background: kitchenAcid > 0 ? 'yellow' : '#0f5132' }}
+          style={{
+            background:
+              kitchenAcid > 0 ? 'yellow' : job.completed ? 'black' : '#0f5132',
+          }}
         >
           {kitchenAcid > 0 ? (
             <div className="single-job-acid">
@@ -273,6 +290,20 @@ const SingleJob = ({ job }) => {
           checked={job.completed}
           onChange={() => markJobAsCompleted(job.id, job.owner)}
         />
+      </div>
+
+      <div className="btn-container">
+        <a
+          href={`tel:${phoneNumber}`}
+          className="btn call-btn"
+          title="Call Store"
+          style={job.completed ? { background: 'black' } : {}}
+        >
+          <span>call store</span>
+          <span>
+            <BsFillTelephoneOutboundFill />
+          </span>
+        </a>
       </div>
 
       <div className="btn-container">

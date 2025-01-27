@@ -114,10 +114,10 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: EDIT_OWNER, payload: { name, amount, price } });
   }
 
-  function addJobToCurrentOwner(e, storeNumber, address, price, date) {
+  function addJobToCurrentOwner(e, storeNumber, address, price, date, number) {
     dispatch({
       type: ADD_JOB_TO_CURRENT_OWNER,
-      payload: { e, storeNumber, address, price, date },
+      payload: { e, storeNumber, address, price, date, number },
     });
   }
 
@@ -133,7 +133,8 @@ export const AppProvider = ({ children }) => {
     price,
     owner,
     lobbyAcid,
-    kitchenAcid
+    kitchenAcid,
+    phoneNumber
   ) {
     dispatch({
       type: EDIT_JOB,
@@ -146,6 +147,7 @@ export const AppProvider = ({ children }) => {
         owner,
         lobbyAcid,
         kitchenAcid,
+        phoneNumber,
       },
     });
   }

@@ -23,7 +23,9 @@ const AddJob = () => {
 
   const handleOnPlacesChanged = () => {
     let address = inputRef.current.getPlaces();
+    const currentNumber = address[0].formatted_phone_number;
     setAddress(`McDonald's, ${address[0].formatted_address}`);
+    setNumber(currentNumber);
   };
 
   const {
@@ -37,6 +39,7 @@ const AddJob = () => {
   const [storeNumber, setStoreNumber] = useState('');
   const [address, setAddress] = useState('');
   const [price, setPrice] = useState(currentOwner.price);
+  const [number, setNumber] = useState('');
 
   return (
     <form
@@ -64,7 +67,7 @@ const AddJob = () => {
           return;
         }
 
-        addJobToCurrentOwner(e, storeNumber, address, price, date);
+        addJobToCurrentOwner(e, storeNumber, address, price, date, number);
         toast.success(
           `Successfully added #${storeNumber} to "${fixName(
             currentOwner.name

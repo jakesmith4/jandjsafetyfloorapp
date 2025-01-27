@@ -184,7 +184,7 @@ const reducer = (state, action) => {
   }
 
   if (action.type === ADD_JOB_TO_CURRENT_OWNER) {
-    const { storeNumber, address, price, e, date } = action.payload;
+    const { storeNumber, address, price, e, date, number } = action.payload;
     e.preventDefault();
     const newOwners = new Map(state.owners);
     const currentOwner = newOwners.get(state.currentOwnerId);
@@ -200,6 +200,7 @@ const reducer = (state, action) => {
       completed: false,
       lobbyAcid: 0,
       kitchenAcid: 0,
+      phoneNumber: number,
     });
 
     // Set Local Storage
@@ -227,6 +228,7 @@ const reducer = (state, action) => {
       owner,
       lobbyAcid,
       kitchenAcid,
+      phoneNumber,
     } = action.payload;
 
     const currentOwnerFromArray = getCurrentOwner(state.owners, owner);
@@ -242,6 +244,7 @@ const reducer = (state, action) => {
     currentJob.storeNumber = storeNumber;
     currentJob.lobbyAcid = +lobbyAcid;
     currentJob.kitchenAcid = +kitchenAcid;
+    currentJob.phoneNumber = phoneNumber;
 
     // Set Local Storage
     const ownersArray = turnMapIntoArray(newOwners);
