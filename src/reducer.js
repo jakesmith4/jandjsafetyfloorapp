@@ -201,6 +201,7 @@ const reducer = (state, action) => {
       lobbyAcid: 0,
       kitchenAcid: 0,
       phoneNumber: number,
+      notes: '',
     });
 
     // Set Local Storage
@@ -229,6 +230,7 @@ const reducer = (state, action) => {
       lobbyAcid,
       kitchenAcid,
       phoneNumber,
+      notes,
     } = action.payload;
 
     const currentOwnerFromArray = getCurrentOwner(state.owners, owner);
@@ -245,6 +247,7 @@ const reducer = (state, action) => {
     currentJob.lobbyAcid = +lobbyAcid;
     currentJob.kitchenAcid = +kitchenAcid;
     currentJob.phoneNumber = phoneNumber;
+    currentJob.notes = notes;
 
     // Set Local Storage
     const ownersArray = turnMapIntoArray(newOwners);

@@ -134,7 +134,8 @@ export const AppProvider = ({ children }) => {
     owner,
     lobbyAcid,
     kitchenAcid,
-    phoneNumber
+    phoneNumber,
+    notes
   ) {
     dispatch({
       type: EDIT_JOB,
@@ -148,6 +149,7 @@ export const AppProvider = ({ children }) => {
         lobbyAcid,
         kitchenAcid,
         phoneNumber,
+        notes,
       },
     });
   }

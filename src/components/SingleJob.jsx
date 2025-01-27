@@ -5,6 +5,7 @@ import { IoMapSharp } from 'react-icons/io5';
 import { FaTrashAlt } from 'react-icons/fa';
 import { GiAcid, GiBubbles } from 'react-icons/gi';
 import { BsFillTelephoneOutboundFill } from 'react-icons/bs';
+import { MdEdit } from 'react-icons/md';
 
 import {
   GoogleMap,
@@ -52,7 +53,8 @@ const SingleJob = ({ job }) => {
       job.owner,
       lobbyAcid,
       kitchenAcid,
-      currentNumber
+      currentNumber,
+      notes
     );
 
     toast.success(`Successfully changed store address`);
@@ -66,6 +68,8 @@ const SingleJob = ({ job }) => {
   const [lobbyAcid, setLobbyAcid] = useState(job.lobbyAcid);
   const [kitchenAcid, setKitchenAcid] = useState(job.kitchenAcid);
   const [phoneNumber, setPhoneNumber] = useState(job.phoneNumber);
+  const [notes, setNotes] = useState(job.notes);
+  const [isNoteOpen, setIsNoteOpen] = useState(job.notes);
 
   return (
     <form
@@ -96,6 +100,7 @@ const SingleJob = ({ job }) => {
               lobbyAcid,
               kitchenAcid,
               phoneNumber,
+              notes,
               e
             );
             toast.success(
@@ -128,6 +133,7 @@ const SingleJob = ({ job }) => {
               lobbyAcid,
               kitchenAcid,
               phoneNumber,
+              notes,
               e
             );
           }}
@@ -155,6 +161,7 @@ const SingleJob = ({ job }) => {
               lobbyAcid,
               kitchenAcid,
               phoneNumber,
+              notes,
               e
             );
           }}
@@ -183,6 +190,7 @@ const SingleJob = ({ job }) => {
               e.target.value,
               kitchenAcid,
               phoneNumber,
+              notes,
               e
             );
           }}
@@ -234,6 +242,7 @@ const SingleJob = ({ job }) => {
               lobbyAcid,
               e.target.value,
               phoneNumber,
+              notes,
               e
             );
           }}
@@ -334,6 +343,56 @@ const SingleJob = ({ job }) => {
             <FaTrashAlt />
           </button>
         </div>
+        <div className="btn-container">
+          <button
+            className="btn note-btn"
+            type="button"
+            title="Take Note"
+            style={
+              job.notes
+                ? { background: 'gray', borderColor: 'white' }
+                : { background: '#7e27d0' }
+            }
+            disabled={job.completed}
+            onClick={() =>
+              setIsNoteOpen(noteOpen => (job.notes ? true : !noteOpen))
+            }
+          >
+            <MdEdit />
+          </button>
+        </div>
+      </div>
+      <div className="form-row">
+        {isNoteOpen && (
+          <>
+            <label htmlFor="notes" className="form-label">
+              notes:
+            </label>
+            <textarea
+              name=""
+              id="notes"
+              className="form-input single-job-input note-text-textarea"
+              disabled={job.completed}
+              value={notes}
+              onChange={e => {
+                setNotes(e.target.value);
+                editJob(
+                  job.id,
+                  date,
+                  storeNumber,
+                  address,
+                  price,
+                  job.owner,
+                  lobbyAcid,
+                  kitchenAcid,
+                  phoneNumber,
+                  e.target.value,
+                  e
+                );
+              }}
+            ></textarea>
+          </>
+        )}
       </div>
     </form>
   );
