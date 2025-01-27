@@ -230,7 +230,7 @@ ul {
   letter-spacing: var(--letterSpacing);
 }
 .form-input,
-.form-textarea {
+.form-address {
   width: 100%;
   padding: var(--padding);
   border-radius: var(--borderRadius);
@@ -240,7 +240,7 @@ ul {
 }
 
 .form-input:focus,
-.form-textarea:focus {
+.form-address:focus {
   outline-color: var(--primary-500);
   box-shadow: var(--shadow-4);
 }
@@ -865,6 +865,10 @@ Single Job
   margin-right: 0.2rem;
 }
 
+.form-address {
+  border-radius: 0px;
+}
+
 .call-to-action-btns {
   display: flex;
   align-items: center;
@@ -872,15 +876,12 @@ Single Job
   gap: 0.5rem;
 }
 
-.maps-btn,
-.call-btn,
-.single-job-btn,
-.note-btn {
+.call-to-action-btn {
   margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   padding: 0.5rem 1rem;
   border: 2px solid transparent;
 }
@@ -906,7 +907,7 @@ Single Job
 }
 
 .note-btn:hover {
-  background: #7e27d0;
+  background: #7526c0 !important;
 }
 
 .note-btn:disabled {
@@ -937,4 +938,13 @@ Single Job
   font-size: 1.2rem;
 
   grid-area: 1 / 1 / 2 / 2;
+}
+
+@media screen and (min-width: 383px) {
+  .call-to-action-btn {
+    font-size: 1.5rem;
+  }
+  .form-address {
+    font-size: 0.9rem;
+  }
 }

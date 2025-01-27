@@ -288,7 +288,7 @@ const SingleJob = ({ job }) => {
             <input
               type="text"
               id="address"
-              className="form-textarea"
+              className="form-address"
               value={address}
               disabled={job.completed}
               onChange={e => {
@@ -348,7 +348,7 @@ const SingleJob = ({ job }) => {
         <div className="btn-container">
           <a
             href={`tel:${phoneNumber}`}
-            className="btn call-btn"
+            className="btn call-to-action-btn call-btn"
             title="Call Store"
             style={job.completed ? { background: '#16191b' } : {}}
           >
@@ -358,7 +358,7 @@ const SingleJob = ({ job }) => {
 
         <div className="btn-container">
           <button
-            className="btn maps-btn"
+            className="btn call-to-action-btn maps-btn"
             title="Open In Maps"
             onClick={showInMapClicked}
           >
@@ -368,7 +368,7 @@ const SingleJob = ({ job }) => {
 
         <div className="btn-container">
           <button
-            className="btn single-job-btn"
+            className="btn call-to-action-btn single-job-btn"
             type="button"
             title="Delete Job"
             onClick={() => deleteJob(job.id, job.owner)}
@@ -379,7 +379,7 @@ const SingleJob = ({ job }) => {
 
         <div className="btn-container">
           <button
-            className="btn note-btn"
+            className="btn call-to-action-btn note-btn"
             type="button"
             title="Take Note"
             style={
