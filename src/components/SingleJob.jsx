@@ -83,6 +83,7 @@ const SingleJob = ({ job }) => {
           type="date"
           className="form-input single-job-input single-job-date-input "
           value={date}
+          disabled={job.completed}
           onChange={e => {
             setDate(e.target.value);
             editJob(
@@ -114,6 +115,7 @@ const SingleJob = ({ job }) => {
           type="number"
           id="store-number"
           value={storeNumber}
+          disabled={job.completed}
           onChange={e => {
             setStoreNumber(e.target.value);
             editJob(
@@ -140,6 +142,7 @@ const SingleJob = ({ job }) => {
           type="number"
           id="price"
           value={price}
+          disabled={job.completed}
           onChange={e => {
             setPrice(e.target.value);
             editJob(
@@ -167,6 +170,7 @@ const SingleJob = ({ job }) => {
           max=".5"
           step="0.125"
           value={lobbyAcid}
+          disabled={job.completed}
           onChange={e => {
             setLobbyAcid(e.target.value);
             editJob(
@@ -217,6 +221,7 @@ const SingleJob = ({ job }) => {
           max="1.25"
           step="0.125"
           value={kitchenAcid}
+          disabled={job.completed}
           onChange={e => {
             setKitchenAcid(e.target.value);
             editJob(
@@ -276,6 +281,7 @@ const SingleJob = ({ job }) => {
               id="address"
               className="form-textarea"
               value={address}
+              disabled={job.completed}
               onChange={e => {
                 setAddress(e.target.value);
               }}
