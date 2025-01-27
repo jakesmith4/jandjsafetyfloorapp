@@ -376,6 +376,7 @@ const SingleJob = ({ job }) => {
             <FaTrashAlt />
           </button>
         </div>
+
         <div className="btn-container">
           <button
             className="btn note-btn"

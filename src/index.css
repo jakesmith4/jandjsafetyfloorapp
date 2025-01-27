@@ -810,6 +810,11 @@ Single Job
   font-weight: bold;
 }
 
+.single-job-date-input:disabled,
+.single-job-input:disabled {
+  background: var(--grey-400);
+}
+
 .single-job {
   background: var(--black);
   color: var(--white);
@@ -821,21 +826,14 @@ Single Job
   transition: var(--transition);
 }
 
-.single-job-input,
-.single-job-textarea {
+.single-job-input {
   width: 80%;
-  background: var(--grey-500);
+  background: var(--grey-600);
   color: var(--white);
   letter-spacing: var(--letterSpacing);
   text-align: center;
   border-radius: 0px;
   font: inherit;
-}
-
-.single-job-textarea {
-  width: 80%;
-  resize: none;
-  min-height: 80px;
 }
 
 .single-job-range {
@@ -912,8 +910,8 @@ Single Job
 }
 
 .note-btn:disabled {
-  background: var(--grey-500) !important;
-  color: var(--grey-300) !important;
+  background: var(--grey-400) !important;
+  color: var(--grey-100) !important;
   border-color: transparent !important;
 }
 
@@ -925,6 +923,11 @@ Single Job
   border: none;
   resize: none;
   overflow: hidden;
+}
+
+.note-text-textarea:disabled {
+  background: var(--grey-400);
+  color: var(--grey-100);
 }
 
 .note-text-textarea,
