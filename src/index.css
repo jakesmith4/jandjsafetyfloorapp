@@ -230,7 +230,7 @@ ul {
   letter-spacing: var(--letterSpacing);
 }
 .form-input,
-.form-address {
+.single-job-input-address {
   width: 100%;
   padding: var(--padding);
   border-radius: var(--borderRadius);
@@ -240,7 +240,7 @@ ul {
 }
 
 .form-input:focus,
-.form-address:focus {
+.single-job-input-address:focus {
   outline-color: var(--primary-500);
   box-shadow: var(--shadow-4);
 }
@@ -865,8 +865,13 @@ Single Job
   margin-right: 0.2rem;
 }
 
-.form-address {
+.single-job-input-address {
   border-radius: 0px;
+}
+
+.single-job-checkbox-label {
+  width: fit-content;
+  margin: 0 auto 0.4rem;
 }
 
 .call-to-action-btns {
@@ -946,7 +951,7 @@ Single Job
   .call-to-action-btn {
     font-size: 1.5rem;
   }
-  .form-address {
+  .single-job-input-address {
     font-size: 0.9rem;
   }
 }

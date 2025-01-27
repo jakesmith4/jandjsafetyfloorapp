@@ -288,7 +288,7 @@ const SingleJob = ({ job }) => {
             <input
               type="text"
               id="address"
-              className="form-address"
+              className="single-job-input-address"
               value={address}
               disabled={job.completed}
               onChange={e => {
@@ -299,7 +299,10 @@ const SingleJob = ({ job }) => {
         )}
       </div>
       <div className="form-row">
-        <label htmlFor="completed" className="form-label">
+        <label
+          htmlFor="completed"
+          className="form-label single-job-checkbox-label"
+        >
           completed:
         </label>
         <input
