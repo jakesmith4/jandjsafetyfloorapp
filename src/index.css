@@ -335,7 +335,7 @@ Sidebar
   color: #333;
 }
 
-@media screen and (min-width: 370px) {
+@media screen and (min-width: 380px) {
   main {
     grid-template-columns: 75px auto;
   }
@@ -938,6 +938,12 @@ Single Job
   font-size: 1.2rem;
 
   grid-area: 1 / 1 / 2 / 2;
+}
+
+@media screen and (min-width: 360px) {
+  .call-to-action-btn {
+    font-size: 1.4rem;
+  }
 }
 
 @media screen and (min-width: 383px) {
