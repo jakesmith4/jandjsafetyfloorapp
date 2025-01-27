@@ -187,7 +187,7 @@ const SingleJob = ({ job }) => {
           className="single-job-acid-container"
           style={{
             background:
-              lobbyAcid > 0 ? 'yellow' : job.completed ? 'black' : '#0f5132',
+              lobbyAcid > 0 ? 'yellow' : job.completed ? '#16191b' : '#0f5132',
           }}
         >
           {lobbyAcid > 0 ? (
@@ -237,7 +237,11 @@ const SingleJob = ({ job }) => {
           className="single-job-acid-container"
           style={{
             background:
-              kitchenAcid > 0 ? 'yellow' : job.completed ? 'black' : '#0f5132',
+              kitchenAcid > 0
+                ? 'yellow'
+                : job.completed
+                ? '#16191b'
+                : '#0f5132',
           }}
         >
           {kitchenAcid > 0 ? (
@@ -292,41 +296,38 @@ const SingleJob = ({ job }) => {
         />
       </div>
 
-      <div className="btn-container">
-        <a
-          href={`tel:${phoneNumber}`}
-          className="btn call-btn"
-          title="Call Store"
-          style={job.completed ? { background: 'black' } : {}}
-        >
-          <span>call store</span>
-          <span>
+      <div className="call-to-action-btns">
+        <div className="btn-container">
+          <a
+            href={`tel:${phoneNumber}`}
+            className="btn call-btn"
+            title="Call Store"
+            style={job.completed ? { background: '#16191b' } : {}}
+          >
             <BsFillTelephoneOutboundFill />
-          </span>
-        </a>
-      </div>
+          </a>
+        </div>
 
-      <div className="btn-container">
-        <button
-          className="btn maps-btn"
-          title="Open In Maps"
-          onClick={showInMapClicked}
-        >
-          <span>open in maps</span>
-          <IoMapSharp />
-        </button>
-      </div>
+        <div className="btn-container">
+          <button
+            className="btn maps-btn"
+            title="Open In Maps"
+            onClick={showInMapClicked}
+          >
+            <IoMapSharp />
+          </button>
+        </div>
 
-      <div className="btn-container">
-        <button
-          className="btn single-job-btn"
-          type="button"
-          title="Delete Job"
-          onClick={() => deleteJob(job.id, job.owner)}
-        >
-          <span>delete job</span>
-          <FaTrashAlt />
-        </button>
+        <div className="btn-container">
+          <button
+            className="btn single-job-btn"
+            type="button"
+            title="Delete Job"
+            onClick={() => deleteJob(job.id, job.owner)}
+          >
+            <FaTrashAlt />
+          </button>
+        </div>
       </div>
     </form>
   );
