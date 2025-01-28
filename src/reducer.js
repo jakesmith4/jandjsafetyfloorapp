@@ -21,9 +21,11 @@ import {
   CHANGE_CURRENT_SINGLE_JOB,
   OPEN_COMPLETED_JOBS,
   MARK_JOB_AS_COMPLETED,
+  SEARCH_JOB,
 } from './actions';
 
 import {
+  convertDateOneDayForward,
   fixName,
   getCurrentOwner,
   setLocalStorage,
@@ -306,6 +308,28 @@ const reducer = (state, action) => {
     setLocalStorage(ownersArray);
 
     return { ...state, owners: newOwners };
+  }
+
+  if (action.type === SEARCH_JOB) {
+    const searchInput = action.payload.searchInput;
+
+    const newOwners = new Map(state.owners);
+
+    const ownersArray = turnMapIntoArray(newOwners);
+    const allJobsArray = ownersArray.flatMap(owner => owner.jobs);
+    const currentJobs = allJobsArray.filter(job => {
+      return (
+        job.owner === searchInput ||
+        new Date(convertDateOneDayForward(job.date)).setHours(0, 0, 0, 0) ===
+          new Date(searchInput).setHours(0, 0, 0, 0) ||
+        job.address === searchInput ||
+        job.storeNumber == searchInput ||
+        job.phoneNumber === searchInput ||
+        job.price === +searchInput
+      );
+    });
+
+    return { ...state, jobsFound: currentJobs, searchInputValue: searchInput };
   }
 
   throw new Error(`no matching action type : ${action.type}`);

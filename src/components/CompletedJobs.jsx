@@ -1,4 +1,26 @@
+import { useGlobalContext } from '../context';
+import SingleJob from './SingleJob';
+
 const CompletedJobs = () => {
-  return <section className="completed-jobs">CompletedJobs</section>;
+  const { searchJob, jobsFound, searchInputValue } = useGlobalContext();
+
+  return (
+    <section className="completed-jobs current-owner">
+      <input
+        type="text"
+        id="search"
+        value={searchInputValue}
+        onChange={e => {
+          searchJob(e.target.value);
+        }}
+      />
+      <h2>
+        {jobsFound?.length} jobs found for "{searchInputValue}"
+      </h2>
+      {jobsFound?.length > 0
+        ? jobsFound.map(job => <SingleJob job={job} key={job.id} />)
+        : null}
+    </section>
+  );
 };
 export default CompletedJobs;

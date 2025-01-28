@@ -5,6 +5,7 @@ import {
   FaUser,
   FaCalendarDay,
   FaCalendarCheck,
+  FaSearch,
 } from 'react-icons/fa';
 import { links } from '../data';
 import { useGlobalContext } from '../context';
@@ -64,7 +65,7 @@ const Sidebar = () => {
           </button>
         </li>
         <li className="sidebar-item">
-          {/* <button
+          <button
             className={
               isCompletedJobsOpen
                 ? 'sidebar-btn sidebar-btn-open'
@@ -72,8 +73,8 @@ const Sidebar = () => {
             }
             onClick={openCompletedJobs}
           >
-            <FaCalendarCheck />
-          </button> */}
+            <FaSearch />
+          </button>
         </li>
       </ul>
     </aside>

@@ -22,6 +22,7 @@ import {
   DELETE_JOB,
   OPEN_COMPLETED_JOBS,
   MARK_JOB_AS_COMPLETED,
+  SEARCH_JOB,
 } from './actions';
 // import { owners } from './data';
 import { getLocalStorage } from './utils';
@@ -46,6 +47,8 @@ const initialState = {
   currentOwner: null,
   currentJob: null,
   currentSingleJob: null,
+  jobsFound: null,
+  searchInputValue: '',
 };
 
 export const AppProvider = ({ children }) => {
@@ -162,6 +165,10 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: MARK_JOB_AS_COMPLETED, payload: { id, owner } });
   }
 
+  function searchJob(searchInput) {
+    dispatch({ type: SEARCH_JOB, payload: { searchInput } });
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -186,6 +193,7 @@ export const AppProvider = ({ children }) => {
         editJob,
         deleteJob,
         markJobAsCompleted,
+        searchJob,
       }}
     >
       {children}
