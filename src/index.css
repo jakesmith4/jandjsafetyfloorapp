@@ -874,6 +874,40 @@ Single Job
   margin: 0 auto 0.4rem;
 }
 
+.single-job-flip-switch-container {
+  position: relative;
+  width: 120px;
+  height: 40px;
+  background: var(--grey-700);
+  border-radius: var(--borderRadius);
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.single-job-flip-switch {
+  position: absolute;
+  top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45%;
+  height: 90%;
+  background: #fff;
+  transition: var(--transition);
+  border: 2px solid var(--white);
+  border-radius: var(--borderRadius);
+  background: var(--black);
+  color: var(--white);
+  font-size: 1rem;
+  cursor: pointer;
+  left: 2%;
+}
+
+.single-job-flip-switch-checked {
+  left: 53%;
+  background: var(--green-dark);
+}
+
 .call-to-action-btns {
   display: flex;
   align-items: center;
@@ -899,11 +933,15 @@ Single Job
   background: #0d472c;
 }
 
-.single-job-btn {
+.maps-btn {
+  background: var(--primary-500);
+}
+
+.delete-job-btn {
   background: var(--red);
 }
 
-.single-job-btn:hover {
+.delete-job-btn:hover {
   background: #e20101;
 }
 

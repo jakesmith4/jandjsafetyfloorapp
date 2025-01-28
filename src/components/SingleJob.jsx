@@ -3,7 +3,7 @@ import { useGlobalContext } from '../context';
 import { toast } from 'react-toastify';
 import { IoMapSharp } from 'react-icons/io5';
 import { FaTrashAlt } from 'react-icons/fa';
-import { GiAcid, GiBubbles } from 'react-icons/gi';
+import { GiAcid, GiBubbles, GiCheckMark, GiCrossMark } from 'react-icons/gi';
 import { BsFillTelephoneOutboundFill } from 'react-icons/bs';
 import { MdEdit } from 'react-icons/md';
 
@@ -303,15 +303,23 @@ const SingleJob = ({ job }) => {
           htmlFor="completed"
           className="form-label single-job-checkbox-label"
         >
-          completed:
+          {job.completed ? 'completed' : 'upcoming'}
         </label>
-        <input
-          type="checkbox"
-          name="completed"
-          id="completed"
-          checked={job.completed}
-          onChange={() => markJobAsCompleted(job.id, job.owner)}
-        />
+        <div
+          className="single-job-flip-switch-container"
+          onClick={() => markJobAsCompleted(job.id, job.owner)}
+        >
+          <button
+            className={
+              job.completed
+                ? 'single-job-flip-switch single-job-flip-switch-checked'
+                : 'single-job-flip-switch'
+            }
+            type="button"
+          >
+            {job.completed ? <GiCheckMark /> : <GiCrossMark />}
+          </button>
+        </div>
       </div>
 
       <div className="form-row">
@@ -371,7 +379,7 @@ const SingleJob = ({ job }) => {
 
         <div className="btn-container">
           <button
-            className="btn call-to-action-btn single-job-btn"
+            className="btn call-to-action-btn delete-job-btn"
             type="button"
             title="Delete Job"
             onClick={() => deleteJob(job.id, job.owner)}
