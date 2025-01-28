@@ -11,7 +11,7 @@ import {
 const places = ['places'];
 
 const AddJob = () => {
-  console.log(import.meta.env.VITE_GOOGLEMAPS_API_KEY);
+  // console.log(import.meta.env.VITE_GOOGLEMAPS_API_KEY);
 
   const inputRef = useRef(null);
   const { isLoaded } = useJsApiLoader({
