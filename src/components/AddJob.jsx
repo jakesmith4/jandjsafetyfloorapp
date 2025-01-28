@@ -11,7 +11,7 @@ import {
 const places = ['places'];
 
 const AddJob = () => {
-  // console.log(import.meta.env.VITE_GOOGLEMAPS_API_KEY);
+  console.log(import.meta.env.VITE_GOOGLEMAPS_API_KEY);
 
   const inputRef = useRef(null);
   const { isLoaded } = useJsApiLoader({
@@ -111,18 +111,12 @@ const AddJob = () => {
         <label htmlFor="address" className="form-label">
           address:
         </label>
-        {/* <textarea
-          id="address"
-          className="form-textarea"
-          value={address}
-          onChange={e => setAddress(e.target.value)}
-        ></textarea> */}
         {isLoaded && (
           <StandaloneSearchBox
             onLoad={ref => (inputRef.current = ref)}
             onPlacesChanged={handleOnPlacesChanged}
           >
-            <input type="text" id="address" className="form-textarea" />
+            <input type="text" id="address" className="form-input" />
           </StandaloneSearchBox>
         )}
       </div>
