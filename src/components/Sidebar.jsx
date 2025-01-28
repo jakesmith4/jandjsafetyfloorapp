@@ -20,6 +20,8 @@ const Sidebar = () => {
     isCurrentOwnerOpen,
     isCurrentJobOpen,
     isCompletedJobsOpen,
+    searchJob,
+    searchInputValue,
   } = useGlobalContext();
   return (
     <aside className="sidebar sidebar-item-open">
@@ -71,7 +73,10 @@ const Sidebar = () => {
                 ? 'sidebar-btn sidebar-btn-open'
                 : 'sidebar-btn'
             }
-            onClick={openCompletedJobs}
+            onClick={() => {
+              openCompletedJobs();
+              searchJob(searchInputValue);
+            }}
           >
             <FaSearch />
           </button>

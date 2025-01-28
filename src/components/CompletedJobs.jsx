@@ -4,6 +4,8 @@ import SingleJob from './SingleJob';
 const CompletedJobs = () => {
   const { searchJob, jobsFound, searchInputValue } = useGlobalContext();
 
+  jobsFound?.sort((a, b) => new Date(a.date) - new Date(b.date));
+
   return (
     <section className="completed-jobs current-owner">
       <input
