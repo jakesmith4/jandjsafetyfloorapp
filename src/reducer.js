@@ -98,6 +98,7 @@ const reducer = (state, action) => {
       isCurrentJobOpen: false,
       isHomeOpen: false,
       isCurrentOwnerOpen: false,
+      currentSingleJob: null,
     };
   }
 
