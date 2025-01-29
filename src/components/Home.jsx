@@ -3,11 +3,16 @@ import { useGlobalContext } from '../context';
 
 import logo from '../img/j-and-logo-1-min.png';
 import Logo from './Logo';
+import { turnMapIntoArray } from '../utils';
 
 const Home = () => {
   const { openModal, owners, openAddOwnerForm } = useGlobalContext();
 
-  const ownersArray = Array.from(owners.entries());
+  const ownersArray = turnMapIntoArray(owners);
+
+  const sortedOwners = ownersArray.slice();
+
+  sortedOwners.sort((a, b) => a.name.localeCompare(b.name));
 
   if (ownersArray.length === 0) {
     return (
@@ -34,10 +39,9 @@ const Home = () => {
         <Logo logo={logo} />
       </header>
       <div className="single-owner-container">
-        {ownersArray.map(owner => {
-          const [id, item] = owner;
-          return <SingleOwner key={id} {...item} />;
-        })}
+        {sortedOwners.map(owner => (
+          <SingleOwner key={owner.id} {...owner} />
+        ))}
       </div>
       <footer>
         <hr />
