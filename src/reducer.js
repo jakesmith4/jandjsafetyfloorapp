@@ -146,7 +146,7 @@ const reducer = (state, action) => {
   if (action.type === CHANGE_NEW_OWNER_INFO) {
     return {
       ...state,
-      newOwnerName: action.payload.name,
+      newOwnerName: action.payload.name.trimEnd(),
       newOwnerPrice: action.payload.price,
       newOwnerAmount: action.payload.amount,
     };
@@ -170,7 +170,7 @@ const reducer = (state, action) => {
 
     newOwners.set(currentOwnerId, {
       ...currentOwner,
-      name,
+      name: name.trimEnd(),
       amount,
       price,
     });

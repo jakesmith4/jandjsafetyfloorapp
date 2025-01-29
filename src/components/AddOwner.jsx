@@ -76,7 +76,7 @@ const AddOwner = () => {
           changeNewOwnerInfo(name, price, amount);
           addOwner(e);
           closeAddOwnerForm();
-          toast.success(`Owner added: "${fixName(name)}"`);
+          toast.success(`Owner added: "${fixName(name.trimEnd())}"`);
           setName('');
           setPrice('');
           setAmount('');
