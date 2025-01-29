@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { useGlobalContext } from '../context';
 import { toast } from 'react-toastify';
 import { IoMapSharp } from 'react-icons/io5';
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt, FaClipboardCheck } from 'react-icons/fa';
 import { GiAcid, GiBubbles, GiCheckMark, GiCrossMark } from 'react-icons/gi';
 import { BsFillTelephoneOutboundFill } from 'react-icons/bs';
 import { MdEdit } from 'react-icons/md';
@@ -58,6 +58,19 @@ const SingleJob = ({ job }) => {
     );
 
     toast.success(`Successfully changed store address`);
+  };
+
+  const saveToClipboard = async () => {
+    if (navigator.clipboard) {
+      try {
+        await navigator.clipboard.writeText(address);
+        toast.success('Address copied to clipboard');
+      } catch (error) {
+        toast.error('Failed to copy to clipboard');
+      }
+    } else {
+      toast.error('CLipboard access not available');
+    }
   };
 
   const { editJob, deleteJob, markJobAsCompleted } = useGlobalContext();
@@ -299,6 +312,14 @@ const SingleJob = ({ job }) => {
           </StandaloneSearchBox>
         )}
       </div>
+      <button
+        type="button"
+        className="single-job-clipboard-copy"
+        title="Copy address to clipboard"
+        onClick={saveToClipboard}
+      >
+        <FaClipboardCheck />
+      </button>
       <div className="form-row">
         <label
           htmlFor="completed"

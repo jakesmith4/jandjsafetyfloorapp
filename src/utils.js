@@ -10,6 +10,10 @@ export function convertDateOneDayForward(date) {
   const date1 = dateArray[2];
   const dateObject = new Date(year, month, date1);
 
+  // dateObject.setHours(4, 0, 0, 0);
+
+  // console.log(dateObject);
+
   return dateObject;
 }
 

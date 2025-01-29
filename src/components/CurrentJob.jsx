@@ -7,6 +7,7 @@ const CurrentJob = () => {
 
   const currentDate = new Date();
 
+  // currentDate.setHours(4, 0, 0, 0);
   currentDate.setHours(0, 0, 0, 0);
 
   const currentTime = currentDate.getTime();

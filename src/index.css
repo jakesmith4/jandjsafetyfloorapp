@@ -870,6 +870,15 @@ Single Job
   border-radius: 0px;
 }
 
+.single-job-clipboard-copy {
+  cursor: pointer;
+  margin-left: 18rem;
+  font-size: 1rem;
+  padding: 0.03rem 0.05rem;
+  color: var(--primary-500);
+  box-shadow: var(--shadow-3);
+}
+
 .single-job-checkbox-label {
   width: fit-content;
   margin: 0 auto 0.4rem;
