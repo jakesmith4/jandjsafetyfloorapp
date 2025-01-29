@@ -1,7 +1,7 @@
 import { useGlobalContext } from '../context';
 import SingleJob from './SingleJob';
 
-const CompletedJobs = () => {
+const SearchJobs = () => {
   const { searchJob, jobsFound, searchInputValue } = useGlobalContext();
 
   jobsFound?.sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -25,4 +25,4 @@ const CompletedJobs = () => {
     </section>
   );
 };
-export default CompletedJobs;
+export default SearchJobs;

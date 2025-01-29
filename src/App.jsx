@@ -1,9 +1,9 @@
 // components
-import CompletedJobs from './components/CompletedJobs';
 import CurrentJob from './components/CurrentJob';
 import CurrentOwner from './components/CurrentOwner';
 import Home from './components/Home';
 import Modal from './components/Modal';
+import SearchJobs from './components/SearchJobs';
 import Sidebar from './components/Sidebar';
 import { useGlobalContext } from './context';
 import { ToastContainer, toast } from 'react-toastify';
@@ -22,7 +22,7 @@ function App() {
       {isHomeOpen && <Home />}
       {isCurrentOwnerOpen && <CurrentOwner />}
       {isCurrentJobOpen && <CurrentJob />}
-      {isCompletedJobsOpen && <CompletedJobs />}
+      {isCompletedJobsOpen && <SearchJobs />}
       <Modal />
       <ToastContainer position="top-center" theme="dark" />
     </main>
