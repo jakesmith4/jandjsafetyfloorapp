@@ -38,7 +38,7 @@ const initialState = {
   isCurrentOwnerFormOpen: false,
   isAddOwnerFormOpen: false,
   isCurrentJobOpen: false,
-  isCompletedJobsOpen: false,
+  isSearchJobsOpen: false,
   owners: new Map(owners.map(owner => [owner.id, owner])),
   newOwnerName: '',
   newOwnerPrice: '',

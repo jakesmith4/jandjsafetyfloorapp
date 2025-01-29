@@ -65,7 +65,7 @@ const reducer = (state, action) => {
       isHomeOpen: true,
       isCurrentOwnerOpen: false,
       isCurrentJobOpen: false,
-      isCompletedJobsOpen: false,
+      isSearchJobsOpen: false,
       currentSingleJob: null,
     };
   }
@@ -76,7 +76,7 @@ const reducer = (state, action) => {
       isCurrentOwnerOpen: true,
       isHomeOpen: false,
       isCurrentJobOpen: false,
-      isCompletedJobsOpen: false,
+      isSearchJobsOpen: false,
       currentSingleJob: null,
     };
   }
@@ -87,14 +87,14 @@ const reducer = (state, action) => {
       isCurrentJobOpen: true,
       isHomeOpen: false,
       isCurrentOwnerOpen: false,
-      isCompletedJobsOpen: false,
+      isSearchJobsOpen: false,
     };
   }
 
   if (action.type === OPEN_SEARCH_JOBS) {
     return {
       ...state,
-      isCompletedJobsOpen: true,
+      isSearchJobsOpen: true,
       isCurrentJobOpen: false,
       isHomeOpen: false,
       isCurrentOwnerOpen: false,

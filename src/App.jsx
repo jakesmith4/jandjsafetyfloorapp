@@ -9,12 +9,8 @@ import { useGlobalContext } from './context';
 import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
-  const {
-    isHomeOpen,
-    isCurrentOwnerOpen,
-    isCurrentJobOpen,
-    isCompletedJobsOpen,
-  } = useGlobalContext();
+  const { isHomeOpen, isCurrentOwnerOpen, isCurrentJobOpen, isSearchJobsOpen } =
+    useGlobalContext();
 
   return (
     <main>
@@ -22,7 +18,7 @@ function App() {
       {isHomeOpen && <Home />}
       {isCurrentOwnerOpen && <CurrentOwner />}
       {isCurrentJobOpen && <CurrentJob />}
-      {isCompletedJobsOpen && <SearchJobs />}
+      {isSearchJobsOpen && <SearchJobs />}
       <Modal />
       <ToastContainer position="top-center" theme="dark" />
     </main>

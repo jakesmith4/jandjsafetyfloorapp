@@ -19,7 +19,7 @@ const Sidebar = () => {
     isHomeOpen,
     isCurrentOwnerOpen,
     isCurrentJobOpen,
-    isCompletedJobsOpen,
+    isSearchJobsOpen,
     searchJob,
     searchInputValue,
   } = useGlobalContext();
@@ -69,9 +69,7 @@ const Sidebar = () => {
         <li className="sidebar-item">
           <button
             className={
-              isCompletedJobsOpen
-                ? 'sidebar-btn sidebar-btn-open'
-                : 'sidebar-btn'
+              isSearchJobsOpen ? 'sidebar-btn sidebar-btn-open' : 'sidebar-btn'
             }
             onClick={() => {
               openSearchJobs();
