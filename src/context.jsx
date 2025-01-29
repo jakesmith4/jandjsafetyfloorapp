@@ -20,7 +20,7 @@ import {
   CHANGE_CURRENT_SINGLE_JOB,
   EDIT_JOB,
   DELETE_JOB,
-  OPEN_COMPLETED_JOBS,
+  OPEN_SEARCH_JOBS,
   MARK_JOB_AS_COMPLETED,
   SEARCH_JOB,
 } from './actions';
@@ -90,8 +90,8 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: OPEN_CURRENT_JOB });
   }
 
-  function openCompletedJobs() {
-    dispatch({ type: OPEN_COMPLETED_JOBS });
+  function openSearchJobs() {
+    dispatch({ type: OPEN_SEARCH_JOBS });
   }
 
   function removeOwner(id, name) {
@@ -178,7 +178,7 @@ export const AppProvider = ({ children }) => {
         openHome,
         openCurrentOwner,
         openCurrentJob,
-        openCompletedJobs,
+        openSearchJobs,
         removeOwner,
         addOwner,
         changeNewOwnerInfo,

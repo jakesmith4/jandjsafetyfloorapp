@@ -15,7 +15,7 @@ const Sidebar = () => {
     openHome,
     openCurrentOwner,
     openCurrentJob,
-    openCompletedJobs,
+    openSearchJobs,
     isHomeOpen,
     isCurrentOwnerOpen,
     isCurrentJobOpen,
@@ -74,7 +74,7 @@ const Sidebar = () => {
                 : 'sidebar-btn'
             }
             onClick={() => {
-              openCompletedJobs();
+              openSearchJobs();
               searchJob(searchInputValue);
             }}
           >

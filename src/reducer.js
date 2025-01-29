@@ -19,7 +19,7 @@ import {
   OPEN_ADD_OWNER_FORM,
   CLOSE_ADD_OWNER_FORM,
   CHANGE_CURRENT_SINGLE_JOB,
-  OPEN_COMPLETED_JOBS,
+  OPEN_SEARCH_JOBS,
   MARK_JOB_AS_COMPLETED,
   SEARCH_JOB,
 } from './actions';
@@ -91,7 +91,7 @@ const reducer = (state, action) => {
     };
   }
 
-  if (action.type === OPEN_COMPLETED_JOBS) {
+  if (action.type === OPEN_SEARCH_JOBS) {
     return {
       ...state,
       isCompletedJobsOpen: true,
