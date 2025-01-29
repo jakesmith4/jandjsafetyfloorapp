@@ -1,13 +1,4 @@
-import {
-  FaCog,
-  FaHome,
-  FaMap,
-  FaUser,
-  FaCalendarDay,
-  FaCalendarCheck,
-  FaSearch,
-} from 'react-icons/fa';
-import { links } from '../data';
+import { FaHome, FaUser, FaCalendarDay, FaSearch } from 'react-icons/fa';
 import { useGlobalContext } from '../context';
 
 const Sidebar = () => {
