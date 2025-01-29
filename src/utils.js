@@ -13,6 +13,12 @@ export function convertDateOneDayForward(date) {
   return dateObject;
 }
 
+export function formatDate(date) {
+  return Intl.DateTimeFormat('en-US').format(
+    new Date(convertDateOneDayForward(date))
+  );
+}
+
 export function turnMapIntoArray(stateOwners) {
   const ownersArray = Array.from(stateOwners.entries());
 

@@ -71,6 +71,7 @@ const Sidebar = () => {
             className={
               isSearchJobsOpen ? 'sidebar-btn sidebar-btn-open' : 'sidebar-btn'
             }
+            title="Search Jobs"
             onClick={() => {
               openSearchJobs();
               searchJob(searchInputValue);

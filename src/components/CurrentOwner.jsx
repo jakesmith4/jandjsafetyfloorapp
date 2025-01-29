@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useGlobalContext } from '../context';
-import { convertDateOneDayForward } from '../utils';
+import { formatDate } from '../utils';
 import { FaPlus, FaCalendarDay } from 'react-icons/fa';
 import { GiCheckMark, GiCrossMark } from 'react-icons/gi';
 
@@ -196,9 +196,7 @@ const CurrentOwner = () => {
                   <span className="jobs-item-text">
                     {job.date === ''
                       ? 'Please enter a valid date!'
-                      : Intl.DateTimeFormat('en-US').format(
-                          convertDateOneDayForward(job.date || '2025-01-01')
-                        )}
+                      : formatDate(job.date || '2025-01-01')}
                   </span>
                 </div>
               </div>

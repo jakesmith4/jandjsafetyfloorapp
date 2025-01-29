@@ -13,7 +13,7 @@ import {
   StandaloneSearchBox,
 } from '@react-google-maps/api';
 
-import { convertDateOneDayForward, toFraction } from '../utils';
+import { formatDate, toFraction } from '../utils';
 
 const places = ['places'];
 
@@ -103,11 +103,12 @@ const SingleJob = ({ job }) => {
               notes,
               e
             );
-            toast.success(
-              `Date changed to: ${Intl.DateTimeFormat('en-US').format(
-                new Date(convertDateOneDayForward(e.target.value))
-              )}`
-            );
+
+            if (e.target.value) {
+              toast.success(`Date changed to: ${formatDate(e.target.value)}`);
+            } else {
+              toast.error('Please enter a valid date');
+            }
           }}
         />
       </div>

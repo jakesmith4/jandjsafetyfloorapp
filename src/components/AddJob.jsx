@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useGlobalContext } from '../context';
 import { toast } from 'react-toastify';
-import { convertDateOneDayForward, fixName } from '../utils';
+import { fixName, formatDate } from '../utils';
 import {
   GoogleMap,
   useJsApiLoader,
@@ -71,9 +71,7 @@ const AddJob = () => {
         toast.success(
           `Successfully added #${storeNumber} to "${fixName(
             currentOwner.name
-          )}" on ${Intl.DateTimeFormat('en-US').format(
-            new Date(convertDateOneDayForward(date))
-          )}`
+          )}" on ${formatDate(date)}`
         );
         closeCurrentOwnerForm();
         closeModal();
