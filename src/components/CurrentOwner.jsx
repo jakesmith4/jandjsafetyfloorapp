@@ -210,7 +210,9 @@ const CurrentOwner = () => {
 
               <div>
                 <h3>address:</h3>
-                <span className="jobs-item-info">{job.address}</span>
+                <span className="jobs-item-info jobs-item-address">
+                  {job.address}
+                </span>
               </div>
               <div
                 className={

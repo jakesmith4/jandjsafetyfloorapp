@@ -716,6 +716,11 @@ Current Owner
   width: 90%;
 }
 
+.jobs-item-address {
+  background: var(--grey-700);
+  font-style: italic;
+}
+
 .jobs-item-date {
   background: var(--primary-500);
   position: relative;
