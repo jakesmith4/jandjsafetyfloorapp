@@ -712,7 +712,7 @@ Current Owner
   display: block;
   background: var(--grey-500);
   border-radius: var(--borderRadius);
-  padding: 0.3rem 0;
+  padding: 0.3rem 0.4rem;
   width: 90%;
 }
 
