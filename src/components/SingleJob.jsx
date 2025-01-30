@@ -88,7 +88,9 @@ const SingleJob = ({ job }) => {
     <form
       className="single-job"
       style={
-        job.completed ? { background: '#024325' } : { background: '#16191b' }
+        job.completed
+          ? { background: '#024325', borderColor: '#475569' }
+          : { background: '#16191b' }
       }
     >
       <h2 className="single-job-header">{job.owner}</h2>
