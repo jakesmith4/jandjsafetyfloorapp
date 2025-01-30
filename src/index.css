@@ -209,7 +209,7 @@ ul {
   max-width: var(--fixed-width);
   border-radius: var(--borderRadius);
   box-shadow: var(--shadow-2);
-  padding: 2rem 2.5rem;
+  padding: 1rem 1rem;
   margin: 4rem auto;
   background: var(--primary-300);
 }
