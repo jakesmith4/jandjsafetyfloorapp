@@ -694,6 +694,7 @@ Current Owner
 }
 
 .jobs-item {
+  font-size: 1.2rem;
   background: var(--black);
   color: var(--white);
   margin-bottom: 2rem;
