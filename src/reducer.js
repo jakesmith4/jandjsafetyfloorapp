@@ -283,6 +283,8 @@ const reducer = (state, action) => {
       const ownersArray = turnMapIntoArray(newOwners);
       setLocalStorage(ownersArray);
 
+      toast.error(`Job deleted`);
+
       return { ...state, owners: newOwners, currentSingleJob: null };
     }
 

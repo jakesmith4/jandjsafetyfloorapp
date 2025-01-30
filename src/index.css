@@ -825,6 +825,7 @@ Single Job
   max-width: 400px;
   margin: 1.5rem auto;
   transition: var(--transition);
+  border: 3px solid var(--grey-600);
 }
 
 .single-job-input {
@@ -1020,6 +1021,14 @@ Search Jobs
   width: 70%;
   margin-bottom: 1rem;
   font-family: inherit;
+}
+
+.search-input:focus {
+  outline-color: var(--black);
+}
+
+.search-input-found:focus {
+  outline-color: var(--primary-500);
 }
 
 .jobs-found-text {

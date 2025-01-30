@@ -4,7 +4,9 @@ import SingleJob from './SingleJob';
 const SearchJobs = () => {
   const { searchJob, jobsFound, searchInputValue } = useGlobalContext();
 
-  jobsFound?.sort((a, b) => new Date(a.date) - new Date(b.date));
+  const jobsFoundCopy = jobsFound.slice();
+
+  jobsFoundCopy?.sort((a, b) => new Date(a.date) - new Date(b.date));
 
   return (
     <section className="search-jobs current-owner">
@@ -12,7 +14,11 @@ const SearchJobs = () => {
       <input
         type="text"
         id="search"
-        className="form-input search-input"
+        className={
+          jobsFound.length > 0
+            ? 'form-input search-input search-input-found'
+            : 'form-input search-input'
+        }
         value={searchInputValue}
         onChange={e => {
           searchJob(e.target.value);
@@ -30,7 +36,7 @@ const SearchJobs = () => {
         </span>
       </h3>
       {jobsFound?.length > 0
-        ? jobsFound.map(job => <SingleJob job={job} key={job.id} />)
+        ? jobsFoundCopy.map(job => <SingleJob job={job} key={job.id} />)
         : null}
     </section>
   );
