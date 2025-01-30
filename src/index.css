@@ -712,7 +712,7 @@ Current Owner
   background: var(--grey-500);
   border-radius: var(--borderRadius);
   padding: 0.3rem 0;
-  width: 80%;
+  width: 90%;
 }
 
 .jobs-item-date {
@@ -760,6 +760,9 @@ Current Owner
 @media screen and (min-width: 420px) {
   .jobs-item-btn {
     gap: 0.4rem;
+  }
+  .jobs-item-info {
+    width: 80%;
   }
 }
 
