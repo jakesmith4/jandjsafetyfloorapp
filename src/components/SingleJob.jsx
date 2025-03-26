@@ -19,12 +19,14 @@ const places = ['places'];
 
 const SingleJob = ({ job }) => {
   let globalAddress = job.address;
+  let globalAddressStay = job.staySpot;
 
   const showInMapClicked = () => {
     window.open(`https://maps.google.com?q=${globalAddress}`);
   };
 
   const inputRef = useRef(null);
+  const inputRefStay = useRef(null);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyB0rLqZ5ov3ufr6ZZXpPaKVSyGcMdLkJ2o',
@@ -32,44 +34,54 @@ const SingleJob = ({ job }) => {
     libraries: places,
   });
 
-  const handleOnPlacesChanged = () => {
-    let address = inputRef.current.getPlaces();
+  const handleOnPlacesChanged = inputRef => {
+    let addressObject = inputRef.current.getPlaces()[0];
 
-    const currentAddress = `McDonald's, ${address[0].formatted_address}`;
+    let storeAddress = address || '';
+    let storeStaySpot = staySpot || '';
 
-    const currentNumber = address[0].formatted_phone_number;
+    console.log(addressObject);
 
-    setAddress(currentAddress);
-    setPhoneNumber(currentNumber);
+    const currentNumber = addressObject.formatted_phone_number;
 
-    globalAddress = currentAddress;
+    if (inputRef === inputRefStay) {
+      storeStaySpot = `${addressObject.name}, ${addressObject.formatted_address}`;
+      setStaySpot(storeStaySpot);
+      globalAddressStay = storeStaySpot;
+    } else {
+      storeAddress = `${addressObject.name}, ${addressObject.formatted_address}`;
+      setAddress(storeAddress);
+      setPhoneNumber(currentNumber);
+      globalAddress = storeAddress;
+    }
 
     editJob(
       job.id,
       date,
       storeNumber,
-      currentAddress,
+      storeAddress,
       price,
       job.owner,
       lobbyAcid,
       kitchenAcid,
       currentNumber,
-      notes
+      notes,
+      storeStaySpot
     );
 
     toast.success(`Successfully changed store address`);
   };
 
-  const saveToClipboard = async () => {
+  const saveToClipboard = async address => {
     if (navigator.clipboard) {
       try {
         await navigator.clipboard.writeText(address);
-        toast.success('Address copied to clipboard');
+        toast.success(`address copied to clipboard`);
       } catch (error) {
         toast.error('Failed to copy to clipboard');
       }
     } else {
-      toast.error('CLipboard access not available');
+      toast.error('Clipboard access not available');
     }
   };
 
@@ -77,6 +89,7 @@ const SingleJob = ({ job }) => {
   const [date, setDate] = useState(job.date);
   const [storeNumber, setStoreNumber] = useState(job.storeNumber);
   const [address, setAddress] = useState(job.address);
+  const [staySpot, setStaySpot] = useState(job.staySpot);
   const [price, setPrice] = useState(job.price);
   const [lobbyAcid, setLobbyAcid] = useState(job.lobbyAcid);
   const [kitchenAcid, setKitchenAcid] = useState(job.kitchenAcid);
@@ -116,6 +129,7 @@ const SingleJob = ({ job }) => {
               kitchenAcid,
               phoneNumber,
               notes,
+              staySpot,
               e
             );
 
@@ -150,6 +164,7 @@ const SingleJob = ({ job }) => {
               kitchenAcid,
               phoneNumber,
               notes,
+              staySpot,
               e
             );
           }}
@@ -178,6 +193,7 @@ const SingleJob = ({ job }) => {
               kitchenAcid,
               phoneNumber,
               notes,
+              staySpot,
               e
             );
           }}
@@ -207,6 +223,7 @@ const SingleJob = ({ job }) => {
               kitchenAcid,
               phoneNumber,
               notes,
+              staySpot,
               e
             );
           }}
@@ -259,6 +276,7 @@ const SingleJob = ({ job }) => {
               e.target.value,
               phoneNumber,
               notes,
+              staySpot,
               e
             );
           }}
@@ -293,13 +311,13 @@ const SingleJob = ({ job }) => {
       </div>
       <div className="form-row">
         <label htmlFor="address" className="form-label">
-          address:
+          store address:
         </label>
         {/* ADDRESS */}
         {isLoaded && (
           <StandaloneSearchBox
             onLoad={ref => (inputRef.current = ref)}
-            onPlacesChanged={handleOnPlacesChanged}
+            onPlacesChanged={() => handleOnPlacesChanged(inputRef)}
           >
             <input
               type="text"
@@ -313,15 +331,49 @@ const SingleJob = ({ job }) => {
             />
           </StandaloneSearchBox>
         )}
+        <button
+          type="button"
+          className="single-job-clipboard-copy"
+          title="Copy address to clipboard"
+          onClick={() => {
+            saveToClipboard(address);
+          }}
+        >
+          <FaClipboardCheck />
+        </button>
       </div>
-      <button
-        type="button"
-        className="single-job-clipboard-copy"
-        title="Copy address to clipboard"
-        onClick={saveToClipboard}
-      >
-        <FaClipboardCheck />
-      </button>
+      <div className="form-row">
+        <label htmlFor="address" className="form-label">
+          stay spot:
+        </label>
+        {isLoaded && (
+          <StandaloneSearchBox
+            onLoad={ref => (inputRefStay.current = ref)}
+            onPlacesChanged={() => handleOnPlacesChanged(inputRefStay)}
+          >
+            <input
+              type="text"
+              id="address"
+              className="single-job-input-address"
+              value={staySpot}
+              disabled={job.completed}
+              onChange={e => {
+                setStaySpot(e.target.value);
+              }}
+            />
+          </StandaloneSearchBox>
+        )}
+        <button
+          type="button"
+          className="single-job-clipboard-copy"
+          title="Copy address to clipboard"
+          onClick={() => {
+            saveToClipboard(staySpot);
+          }}
+        >
+          <FaClipboardCheck />
+        </button>
+      </div>
       <div className="form-row">
         <label
           htmlFor="completed"
@@ -371,6 +423,7 @@ const SingleJob = ({ job }) => {
                   kitchenAcid,
                   phoneNumber,
                   e.target.value,
+                  staySpot,
                   e
                 );
               }}
