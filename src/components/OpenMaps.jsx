@@ -35,10 +35,11 @@ const OpenMaps = () => {
           <h3>Store</h3>
           <McdonaldsIcon />
         </button>
-        <button
-          className={`btn btn-maps ${
-            checkBusinessName('Walmart') && 'walmart-btn'
-          } ${checkBusinessName(`Love's`) && 'loves-btn'}
+        {currentSingleJob.staySpot && (
+          <button
+            className={`btn btn-maps ${
+              checkBusinessName('Walmart') && 'walmart-btn'
+            } ${checkBusinessName(`Love's`) && 'loves-btn'}
           ${checkBusinessName('Pilot') && 'pilot-btn'}
           ${checkBusinessName('Flying J') && 'flying-j-btn'}
           ${checkBusinessName('TA') && 'ta-btn'}
@@ -47,28 +48,29 @@ const OpenMaps = () => {
           ${checkBusinessName('La Quinta') && 'la-quinta-btn'}
           ${checkBusinessName('Super 8') && 'super-8-btn'}
           `}
-          onClick={e => {
-            e.preventDefault();
-            if (!currentSingleJob.staySpot) {
-              toast.warning(`Please enter a "Stay Spot" for this job`);
-              return;
-            }
-            window.open(
-              `https://maps.google.com?q=${currentSingleJob.staySpot}`
-            );
-          }}
-        >
-          <h3>motel</h3>
-          {checkBusinessName('Walmart') && <WalmartIcon />}
-          {checkBusinessName(`Love's`) && <LovesIcon />}
-          {checkBusinessName('Pilot') && <PilotIcon />}
-          {checkBusinessName('Flying J') && <FlyingJIcon />}
-          {checkBusinessName('TA') && <TaIcon />}
-          {checkBusinessName('Petro') && <PetroIcon />}
-          {checkBusinessName('Days Inn') && <DaysInnIcon />}
-          {checkBusinessName('La Quinta') && <LaQuintaIcon />}
-          {checkBusinessName('Super 8') && <Super8Icon />}
-        </button>
+            onClick={e => {
+              e.preventDefault();
+              if (!currentSingleJob.staySpot) {
+                toast.warning(`Please enter a "Stay Spot" for this job`);
+                return;
+              }
+              window.open(
+                `https://maps.google.com?q=${currentSingleJob.staySpot}`
+              );
+            }}
+          >
+            <h3>motel</h3>
+            {checkBusinessName('Walmart') && <WalmartIcon />}
+            {checkBusinessName(`Love's`) && <LovesIcon />}
+            {checkBusinessName('Pilot') && <PilotIcon />}
+            {checkBusinessName('Flying J') && <FlyingJIcon />}
+            {checkBusinessName('TA') && <TaIcon />}
+            {checkBusinessName('Petro') && <PetroIcon />}
+            {checkBusinessName('Days Inn') && <DaysInnIcon />}
+            {checkBusinessName('La Quinta') && <LaQuintaIcon />}
+            {checkBusinessName('Super 8') && <Super8Icon />}
+          </button>
+        )}
       </div>
     </form>
   );
