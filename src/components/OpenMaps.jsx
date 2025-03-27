@@ -14,8 +14,6 @@ import Super8Icon from '../../brand-icons/Super8Icon';
 const OpenMaps = () => {
   const { currentSingleJob } = useGlobalContext();
 
-  console.log(currentSingleJob);
-
   const checkBusinessName = businessName =>
     currentSingleJob.staySpot.startsWith(businessName);
 

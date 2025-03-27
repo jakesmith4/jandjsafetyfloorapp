@@ -27,7 +27,7 @@ const SingleJob = ({ job }) => {
     openMapsForm();
   };
 
-  const inputRef = useRef(null);
+  const inputRefStore = useRef(null);
   const inputRefStay = useRef(null);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -42,7 +42,8 @@ const SingleJob = ({ job }) => {
     let storeAddress = address || '';
     let storeStaySpot = staySpot || '';
 
-    const currentNumber = addressObject.formatted_phone_number;
+    const currentNumber =
+      inputRefStore.current.getPlaces()[0].formatted_phone_number;
 
     if (inputRef === inputRefStay) {
       storeStaySpot = `${addressObject.name}, ${addressObject.formatted_address}`;
@@ -317,8 +318,8 @@ const SingleJob = ({ job }) => {
         {/* ADDRESS */}
         {isLoaded && (
           <StandaloneSearchBox
-            onLoad={ref => (inputRef.current = ref)}
-            onPlacesChanged={() => handleOnPlacesChanged(inputRef)}
+            onLoad={ref => (inputRefStore.current = ref)}
+            onPlacesChanged={() => handleOnPlacesChanged(inputRefStore)}
           >
             <input
               type="text"
