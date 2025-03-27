@@ -16,6 +16,8 @@ import {
   OPEN_CURRENT_OWNER_FORM,
   CLOSE_CURRENT_OWNER_FORM,
   OPEN_ADD_OWNER_FORM,
+  OPEN_MAPS_FORM,
+  CLOSE_MAPS_FORM,
   CLOSE_ADD_OWNER_FORM,
   CHANGE_CURRENT_SINGLE_JOB,
   EDIT_JOB,
@@ -37,6 +39,7 @@ const initialState = {
   isCurrentOwnerOpen: false,
   isCurrentOwnerFormOpen: false,
   isAddOwnerFormOpen: false,
+  isMapsFormOpen: false,
   isCurrentJobOpen: false,
   isSearchJobsOpen: false,
   owners: new Map(owners.map(owner => [owner.id, owner])),
@@ -76,6 +79,14 @@ export const AppProvider = ({ children }) => {
 
   function closeAddOwnerForm() {
     dispatch({ type: CLOSE_ADD_OWNER_FORM });
+  }
+
+  function openMapsForm() {
+    dispatch({ type: OPEN_MAPS_FORM });
+  }
+
+  function closeMapsForm() {
+    dispatch({ type: CLOSE_MAPS_FORM });
   }
 
   function openHome() {
@@ -191,6 +202,8 @@ export const AppProvider = ({ children }) => {
         closeCurrentOwnerForm,
         openAddOwnerForm,
         closeAddOwnerForm,
+        openMapsForm,
+        closeMapsForm,
         changeCurrentSingleJob,
         editJob,
         deleteJob,

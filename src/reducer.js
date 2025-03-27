@@ -18,6 +18,8 @@ import {
   CLOSE_CURRENT_OWNER_FORM,
   OPEN_ADD_OWNER_FORM,
   CLOSE_ADD_OWNER_FORM,
+  OPEN_MAPS_FORM,
+  CLOSE_MAPS_FORM,
   CHANGE_CURRENT_SINGLE_JOB,
   OPEN_SEARCH_JOBS,
   MARK_JOB_AS_COMPLETED,
@@ -57,6 +59,14 @@ const reducer = (state, action) => {
 
   if (action.type === CLOSE_ADD_OWNER_FORM) {
     return { ...state, isAddOwnerFormOpen: false };
+  }
+
+  if (action.type === OPEN_MAPS_FORM) {
+    return { ...state, isMapsFormOpen: true };
+  }
+
+  if (action.type === CLOSE_MAPS_FORM) {
+    return { ...state, isMapsFormOpen: false };
   }
 
   if (action.type === OPEN_HOME) {

@@ -21,8 +21,10 @@ const SingleJob = ({ job }) => {
   let globalAddress = job.address;
   let globalAddressStay = job.staySpot;
 
-  const showInMapClicked = () => {
-    window.open(`https://maps.google.com?q=${globalAddress}`);
+  const showInMapClicked = e => {
+    e.preventDefault();
+    openModal();
+    openMapsForm();
   };
 
   const inputRef = useRef(null);
@@ -40,19 +42,19 @@ const SingleJob = ({ job }) => {
     let storeAddress = address || '';
     let storeStaySpot = staySpot || '';
 
-    console.log(addressObject);
-
     const currentNumber = addressObject.formatted_phone_number;
 
     if (inputRef === inputRefStay) {
       storeStaySpot = `${addressObject.name}, ${addressObject.formatted_address}`;
       setStaySpot(storeStaySpot);
       globalAddressStay = storeStaySpot;
+      toast.success(`Successfully changed Stay Spot`);
     } else {
       storeAddress = `${addressObject.name}, ${addressObject.formatted_address}`;
       setAddress(storeAddress);
       setPhoneNumber(currentNumber);
       globalAddress = storeAddress;
+      toast.success(`Successfully changed Store Address`);
     }
 
     editJob(
@@ -68,8 +70,6 @@ const SingleJob = ({ job }) => {
       notes,
       storeStaySpot
     );
-
-    toast.success(`Successfully changed store address`);
   };
 
   const saveToClipboard = async address => {
@@ -85,7 +85,8 @@ const SingleJob = ({ job }) => {
     }
   };
 
-  const { editJob, deleteJob, markJobAsCompleted } = useGlobalContext();
+  const { editJob, deleteJob, markJobAsCompleted, openMapsForm, openModal } =
+    useGlobalContext();
   const [date, setDate] = useState(job.date);
   const [storeNumber, setStoreNumber] = useState(job.storeNumber);
   const [address, setAddress] = useState(job.address);

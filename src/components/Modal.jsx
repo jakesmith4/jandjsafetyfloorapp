@@ -2,6 +2,7 @@ import { FaTimes } from 'react-icons/fa';
 import { useGlobalContext } from '../context';
 import AddJob from './AddJob';
 import AddOwner from './AddOwner';
+import OpenMaps from './OpenMaps';
 
 const Modal = () => {
   const {
@@ -11,6 +12,8 @@ const Modal = () => {
     closeAddOwnerForm,
     closeCurrentOwnerForm,
     isCurrentOwnerFormOpen,
+    isMapsFormOpen,
+    closeMapsForm,
   } = useGlobalContext();
 
   return (
@@ -20,11 +23,14 @@ const Modal = () => {
 
         {isCurrentOwnerFormOpen && <AddJob />}
 
+        {isMapsFormOpen && <OpenMaps />}
+
         <button
           className="close-modal-btn"
           onClick={() => {
             closeModal();
             closeAddOwnerForm();
+            closeMapsForm();
             closeCurrentOwnerForm();
           }}
         >
