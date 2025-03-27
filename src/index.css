@@ -1062,3 +1062,78 @@ Search Jobs
   color: var(--primary-500);
   font-weight: bold;
 }
+
+/*
+=============== 
+Open Maps
+===============
+*/
+.maps-btns-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.mcdonalds-btn,
+.mcdonalds-btn:hover {
+  background: #dc0008;
+}
+
+.walmart-btn,
+.walmart-btn:hover {
+  background: #0072ce;
+}
+
+.loves-btn,
+.loves-btn:hover {
+  background: #ed1d24;
+}
+
+.pilot-btn,
+.pilot-btn:hover {
+  background: #cf0a2c;
+}
+
+.flying-j-btn,
+.flying-j-btn:hover {
+  background: #404041;
+}
+
+.ta-btn,
+.ta-btn:hover {
+  background: #000000;
+}
+
+.petro-btn,
+.petro-btn:hover {
+  background: #0a9a53;
+}
+
+.days-inn-btn,
+.days-inn-btn:hover {
+  background: #f6a71c;
+}
+
+.la-quinta-btn,
+.la-quinta-btn:hover {
+  background: hsl(0, 0%, 90%);
+  color: #214c3d;
+}
+
+.super-8-btn,
+.super-8-btn:hover {
+  background: #ed3151;
+}
+
+.maps-btn-icon {
+  font-size: 5rem;
+}
+
+.mcdonalds-icon {
+  color: #ffbf0f;
+}
+
+.walmart-icon {
+  color: #ffb81c;
+}
