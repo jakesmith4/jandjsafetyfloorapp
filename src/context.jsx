@@ -13,16 +13,19 @@ import {
   CHANGE_NEW_OWNER_INFO,
   SET_CURRENT_OWNER,
   ADD_JOB_TO_CURRENT_OWNER,
+  RESCHEDULE_JOB,
   OPEN_CURRENT_OWNER_FORM,
   CLOSE_CURRENT_OWNER_FORM,
   OPEN_ADD_OWNER_FORM,
+  CLOSE_ADD_OWNER_FORM,
   OPEN_MAPS_FORM,
   CLOSE_MAPS_FORM,
-  CLOSE_ADD_OWNER_FORM,
   CHANGE_CURRENT_SINGLE_JOB,
   EDIT_JOB,
   DELETE_JOB,
   OPEN_SEARCH_JOBS,
+  OPEN_RESCHEDULE_JOB_FORM,
+  CLOSE_RESCHEDULE_JOB_FORM,
   MARK_JOB_AS_COMPLETED,
   SEARCH_JOB,
 } from './actions';
@@ -40,6 +43,7 @@ const initialState = {
   isCurrentOwnerFormOpen: false,
   isAddOwnerFormOpen: false,
   isMapsFormOpen: false,
+  isRescheduleJobFormOpen: false,
   isCurrentJobOpen: false,
   isSearchJobsOpen: false,
   owners: new Map(owners.map(owner => [owner.id, owner])),
@@ -89,6 +93,14 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: CLOSE_MAPS_FORM });
   }
 
+  function openRescheduleJobForm() {
+    dispatch({ type: OPEN_RESCHEDULE_JOB_FORM });
+  }
+
+  function closeRescheduleJobForm() {
+    dispatch({ type: CLOSE_RESCHEDULE_JOB_FORM });
+  }
+
   function openHome() {
     dispatch({ type: OPEN_HOME });
   }
@@ -132,6 +144,31 @@ export const AppProvider = ({ children }) => {
     dispatch({
       type: ADD_JOB_TO_CURRENT_OWNER,
       payload: { e, storeNumber, address, price, date, number },
+    });
+  }
+
+  function rescheduleJob(
+    e,
+    storeNumber,
+    address,
+    price,
+    date,
+    phoneNumber,
+    notes,
+    staySpot
+  ) {
+    dispatch({
+      type: RESCHEDULE_JOB,
+      payload: {
+        e,
+        storeNumber,
+        address,
+        price,
+        date,
+        phoneNumber,
+        notes,
+        staySpot,
+      },
     });
   }
 
@@ -198,12 +235,15 @@ export const AppProvider = ({ children }) => {
         setCurrentOwner,
         editOwner,
         addJobToCurrentOwner,
+        rescheduleJob,
         openCurrentOwnerForm,
         closeCurrentOwnerForm,
         openAddOwnerForm,
         closeAddOwnerForm,
         openMapsForm,
         closeMapsForm,
+        openRescheduleJobForm,
+        closeRescheduleJobForm,
         changeCurrentSingleJob,
         editJob,
         deleteJob,

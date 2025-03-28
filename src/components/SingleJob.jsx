@@ -3,6 +3,7 @@ import { useGlobalContext } from '../context';
 import { toast } from 'react-toastify';
 import { IoMapSharp } from 'react-icons/io5';
 import { FaTrashAlt, FaClipboardCheck } from 'react-icons/fa';
+import { FaArrowsRotate } from 'react-icons/fa6';
 import { GiAcid, GiBubbles, GiCheckMark, GiCrossMark } from 'react-icons/gi';
 import { BsFillTelephoneOutboundFill } from 'react-icons/bs';
 import { MdEdit } from 'react-icons/md';
@@ -42,8 +43,14 @@ const SingleJob = ({ job }) => {
     let storeAddress = address || '';
     let storeStaySpot = staySpot || '';
 
-    const currentNumber =
-      inputRefStore.current.getPlaces()[0].formatted_phone_number;
+    let currentNumber;
+
+    if (inputRef === inputRefStay) {
+      currentNumber = currentSingleJob.phoneNumber;
+    } else {
+      currentNumber =
+        inputRefStore.current.getPlaces()[0]?.formatted_phone_number;
+    }
 
     if (inputRef === inputRefStay) {
       storeStaySpot = `${addressObject.name}, ${addressObject.formatted_address}`;
@@ -86,8 +93,15 @@ const SingleJob = ({ job }) => {
     }
   };
 
-  const { editJob, deleteJob, markJobAsCompleted, openMapsForm, openModal } =
-    useGlobalContext();
+  const {
+    editJob,
+    deleteJob,
+    markJobAsCompleted,
+    openMapsForm,
+    openModal,
+    openRescheduleJobForm,
+    currentSingleJob,
+  } = useGlobalContext();
   const [date, setDate] = useState(job.date);
   const [storeNumber, setStoreNumber] = useState(job.storeNumber);
   const [address, setAddress] = useState(job.address);
@@ -376,6 +390,17 @@ const SingleJob = ({ job }) => {
           <FaClipboardCheck />
         </button>
       </div>
+      <button
+        className="btn reschedule-btn"
+        title="Reschedule Job"
+        onClick={e => {
+          e.preventDefault();
+          openModal();
+          openRescheduleJobForm();
+        }}
+      >
+        <FaArrowsRotate />
+      </button>
       <div className="form-row">
         <label
           htmlFor="completed"

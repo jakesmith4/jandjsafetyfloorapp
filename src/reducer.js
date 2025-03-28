@@ -14,11 +14,14 @@ import {
   CHANGE_NEW_OWNER_INFO,
   SET_CURRENT_OWNER,
   ADD_JOB_TO_CURRENT_OWNER,
+  RESCHEDULE_JOB,
   OPEN_CURRENT_OWNER_FORM,
   CLOSE_CURRENT_OWNER_FORM,
   OPEN_ADD_OWNER_FORM,
   CLOSE_ADD_OWNER_FORM,
   OPEN_MAPS_FORM,
+  OPEN_RESCHEDULE_JOB_FORM,
+  CLOSE_RESCHEDULE_JOB_FORM,
   CLOSE_MAPS_FORM,
   CHANGE_CURRENT_SINGLE_JOB,
   OPEN_SEARCH_JOBS,
@@ -67,6 +70,14 @@ const reducer = (state, action) => {
 
   if (action.type === CLOSE_MAPS_FORM) {
     return { ...state, isMapsFormOpen: false };
+  }
+
+  if (action.type === OPEN_RESCHEDULE_JOB_FORM) {
+    return { ...state, isRescheduleJobFormOpen: true };
+  }
+
+  if (action.type === CLOSE_RESCHEDULE_JOB_FORM) {
+    return { ...state, isRescheduleJobFormOpen: false };
   }
 
   if (action.type === OPEN_HOME) {
@@ -226,6 +237,48 @@ const reducer = (state, action) => {
       ...state,
       owners: newOwners,
       isCurrentOwnerFormOpen: !state.isCurrentOwnerFormOpen,
+    };
+  }
+
+  if (action.type === RESCHEDULE_JOB) {
+    const {
+      storeNumber,
+      address,
+      price,
+      e,
+      date,
+      phoneNumber,
+      notes,
+      staySpot,
+    } = action.payload;
+    e.preventDefault();
+    const newOwners = new Map(state.owners);
+    const currentOwner = newOwners.get(state.currentOwnerId);
+    const newId = nanoid();
+
+    currentOwner.jobs.push({
+      id: newId,
+      owner: currentOwner.name,
+      storeNumber,
+      address,
+      price,
+      date,
+      completed: false,
+      lobbyAcid: 0,
+      kitchenAcid: 0,
+      phoneNumber: phoneNumber,
+      notes: notes,
+      staySpot: staySpot,
+    });
+
+    // Set Local Storage
+    const ownersArray = turnMapIntoArray(newOwners);
+    setLocalStorage(ownersArray);
+
+    return {
+      ...state,
+      owners: newOwners,
+      isRescheduleJobFormOpen: !state.isRescheduleJobFormOpen,
     };
   }
 

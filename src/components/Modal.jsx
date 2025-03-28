@@ -3,6 +3,7 @@ import { useGlobalContext } from '../context';
 import AddJob from './AddJob';
 import AddOwner from './AddOwner';
 import OpenMaps from './OpenMaps';
+import OpenRescheduleJob from './OpenRescheduleJob';
 
 const Modal = () => {
   const {
@@ -14,6 +15,8 @@ const Modal = () => {
     isCurrentOwnerFormOpen,
     isMapsFormOpen,
     closeMapsForm,
+    isRescheduleJobFormOpen,
+    closeRescheduleJobForm,
   } = useGlobalContext();
 
   return (
@@ -25,6 +28,8 @@ const Modal = () => {
 
         {isMapsFormOpen && <OpenMaps />}
 
+        {isRescheduleJobFormOpen && <OpenRescheduleJob />}
+
         <button
           className="close-modal-btn"
           onClick={() => {
@@ -32,6 +37,7 @@ const Modal = () => {
             closeAddOwnerForm();
             closeMapsForm();
             closeCurrentOwnerForm();
+            closeRescheduleJobForm();
           }}
         >
           <FaTimes />
