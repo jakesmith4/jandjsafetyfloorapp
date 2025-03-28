@@ -14,7 +14,6 @@ import {
   CHANGE_NEW_OWNER_INFO,
   SET_CURRENT_OWNER,
   ADD_JOB_TO_CURRENT_OWNER,
-  RESCHEDULE_JOB,
   OPEN_CURRENT_OWNER_FORM,
   CLOSE_CURRENT_OWNER_FORM,
   OPEN_ADD_OWNER_FORM,
@@ -208,48 +207,16 @@ const reducer = (state, action) => {
   }
 
   if (action.type === ADD_JOB_TO_CURRENT_OWNER) {
-    const { storeNumber, address, price, e, date, number } = action.payload;
-    e.preventDefault();
-    const newOwners = new Map(state.owners);
-    const currentOwner = newOwners.get(state.currentOwnerId);
-    const newId = nanoid();
-
-    currentOwner.jobs.push({
-      id: newId,
-      owner: currentOwner.name,
-      storeNumber,
-      address,
-      price,
-      date,
-      completed: false,
-      lobbyAcid: 0,
-      kitchenAcid: 0,
-      phoneNumber: number,
-      notes: '',
-      staySpot: '',
-    });
-
-    // Set Local Storage
-    const ownersArray = turnMapIntoArray(newOwners);
-    setLocalStorage(ownersArray);
-
-    return {
-      ...state,
-      owners: newOwners,
-      isCurrentOwnerFormOpen: !state.isCurrentOwnerFormOpen,
-    };
-  }
-
-  if (action.type === RESCHEDULE_JOB) {
     const {
       storeNumber,
       address,
       price,
       e,
       date,
-      phoneNumber,
-      notes,
-      staySpot,
+      number,
+      notes = '',
+      staySpot = '',
+      reschedule = false,
     } = action.payload;
     e.preventDefault();
     const newOwners = new Map(state.owners);
@@ -266,7 +233,7 @@ const reducer = (state, action) => {
       completed: false,
       lobbyAcid: 0,
       kitchenAcid: 0,
-      phoneNumber: phoneNumber,
+      phoneNumber: number,
       notes: notes,
       staySpot: staySpot,
     });
@@ -275,10 +242,18 @@ const reducer = (state, action) => {
     const ownersArray = turnMapIntoArray(newOwners);
     setLocalStorage(ownersArray);
 
+    if (reschedule) {
+      return {
+        ...state,
+        owners: newOwners,
+        isRescheduleJobFormOpen: !state.isRescheduleJobFormOpen,
+      };
+    }
+
     return {
       ...state,
       owners: newOwners,
-      isRescheduleJobFormOpen: !state.isRescheduleJobFormOpen,
+      isCurrentOwnerFormOpen: !state.isCurrentOwnerFormOpen,
     };
   }
 

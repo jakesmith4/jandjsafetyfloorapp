@@ -5,14 +5,19 @@ import { formatDate } from '../utils';
 
 const OpenRescheduleJob = () => {
   const [date, setDate] = useState('');
-  const { currentSingleJob, rescheduleJob, closeModal } = useGlobalContext();
+  const { currentSingleJob, addJobToCurrentOwner, closeModal } =
+    useGlobalContext();
 
   return (
     <form className="form">
       <h3 className="form-heading">please enter a date</h3>
       <div className="form-row">
-        <h4>old date</h4>
-        {formatDate(currentSingleJob.date)}
+        {currentSingleJob.date && (
+          <div>
+            <h4>old date</h4>
+            {formatDate(currentSingleJob.date)}
+          </div>
+        )}
       </div>
       <div className="form-row">
         <input
@@ -29,7 +34,13 @@ const OpenRescheduleJob = () => {
         className="btn"
         onClick={e => {
           e.preventDefault();
-          rescheduleJob(
+
+          if (!date) {
+            toast.warning('Please Enter A Valid Date');
+            return;
+          }
+
+          addJobToCurrentOwner(
             e,
             currentSingleJob.storeNumber,
             currentSingleJob.address,
@@ -37,7 +48,8 @@ const OpenRescheduleJob = () => {
             date,
             currentSingleJob.phoneNumber,
             currentSingleJob.notes,
-            currentSingleJob.staySpot
+            currentSingleJob.staySpot,
+            true
           );
           closeModal();
           toast.success(

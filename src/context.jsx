@@ -13,7 +13,6 @@ import {
   CHANGE_NEW_OWNER_INFO,
   SET_CURRENT_OWNER,
   ADD_JOB_TO_CURRENT_OWNER,
-  RESCHEDULE_JOB,
   OPEN_CURRENT_OWNER_FORM,
   CLOSE_CURRENT_OWNER_FORM,
   OPEN_ADD_OWNER_FORM,
@@ -140,34 +139,29 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: EDIT_OWNER, payload: { name, amount, price } });
   }
 
-  function addJobToCurrentOwner(e, storeNumber, address, price, date, number) {
-    dispatch({
-      type: ADD_JOB_TO_CURRENT_OWNER,
-      payload: { e, storeNumber, address, price, date, number },
-    });
-  }
-
-  function rescheduleJob(
+  function addJobToCurrentOwner(
     e,
     storeNumber,
     address,
     price,
     date,
-    phoneNumber,
+    number,
     notes,
-    staySpot
+    staySpot,
+    reschedule
   ) {
     dispatch({
-      type: RESCHEDULE_JOB,
+      type: ADD_JOB_TO_CURRENT_OWNER,
       payload: {
         e,
         storeNumber,
         address,
         price,
         date,
-        phoneNumber,
+        number,
         notes,
         staySpot,
+        reschedule,
       },
     });
   }
@@ -235,7 +229,6 @@ export const AppProvider = ({ children }) => {
         setCurrentOwner,
         editOwner,
         addJobToCurrentOwner,
-        rescheduleJob,
         openCurrentOwnerForm,
         closeCurrentOwnerForm,
         openAddOwnerForm,
