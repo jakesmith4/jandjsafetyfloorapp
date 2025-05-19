@@ -392,17 +392,19 @@ const SingleJob = ({ job }) => {
           <FaClipboardCheck />
         </button>
       </div>
-      <button
-        className="btn reschedule-btn"
-        title="Reschedule Job"
-        onClick={e => {
-          e.preventDefault();
-          openModal();
-          openRescheduleJobForm();
-        }}
-      >
-        <FaArrowsRotate />
-      </button>
+      {currentSingleJob && (
+        <button
+          className="btn reschedule-btn"
+          title="Reschedule Job"
+          onClick={e => {
+            e.preventDefault();
+            openModal();
+            openRescheduleJobForm();
+          }}
+        >
+          <FaArrowsRotate />
+        </button>
+      )}
       <div className="form-row">
         <label
           htmlFor="completed"
