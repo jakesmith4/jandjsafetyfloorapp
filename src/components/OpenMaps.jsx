@@ -12,10 +12,18 @@ import LaQuintaIcon from '../../brand-icons/LaQuintaIcon';
 import Super8Icon from '../../brand-icons/Super8Icon';
 
 const OpenMaps = () => {
-  const { currentSingleJob } = useGlobalContext();
+  const { currentSingleJob, closeModal, closeMapsForm } = useGlobalContext();
 
   const checkBusinessName = businessName =>
     currentSingleJob.staySpot.startsWith(businessName);
+
+  const closeFullModal = () => {
+    closeModal();
+    closeMapsForm();
+  };
+
+  console.log('hello world');
+  console.log(currentSingleJob);
 
   return (
     <form className="form">
@@ -28,12 +36,13 @@ const OpenMaps = () => {
             window.open(
               `https://maps.google.com?q=${currentSingleJob.address}`
             );
+            closeFullModal();
           }}
         >
           <h3>Store</h3>
           <McdonaldsIcon />
         </button>
-        {currentSingleJob.staySpot && (
+        {currentSingleJob?.staySpot && (
           <button
             className={`btn btn-maps ${
               checkBusinessName('Walmart') && 'walmart-btn'
@@ -55,6 +64,7 @@ const OpenMaps = () => {
               window.open(
                 `https://maps.google.com?q=${currentSingleJob.staySpot}`
               );
+              closeFullModal();
             }}
           >
             <h3>motel</h3>
