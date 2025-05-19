@@ -101,7 +101,9 @@ const SingleJob = ({ job }) => {
     openModal,
     openRescheduleJobForm,
     currentSingleJob,
+    changeCurrentSingleJob,
   } = useGlobalContext();
+
   const [date, setDate] = useState(job.date);
   const [storeNumber, setStoreNumber] = useState(job.storeNumber);
   const [address, setAddress] = useState(job.address);
@@ -475,7 +477,10 @@ const SingleJob = ({ job }) => {
           <button
             className="btn call-to-action-btn maps-btn"
             title="Open In Maps"
-            onClick={showInMapClicked}
+            onClick={e => {
+              showInMapClicked(e);
+              changeCurrentSingleJob(job);
+            }}
           >
             <IoMapSharp />
           </button>
