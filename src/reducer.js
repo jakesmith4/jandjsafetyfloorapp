@@ -154,6 +154,7 @@ const reducer = (state, action) => {
       price: newOwnerPrice,
       amount: newOwnerAmount,
       jobs: [],
+      currentOwner: false,
     });
 
     // Set Local Storage
@@ -174,8 +175,23 @@ const reducer = (state, action) => {
 
   if (action.type === SET_CURRENT_OWNER) {
     const id = action.payload.id;
+
+    const newOwners = new Map(state.owners);
+
+    newOwners.forEach((value, key) => {
+      newOwners.set(key, { ...value, currentOwner: false });
+    });
+
+    const currentOwner = newOwners.get(id);
+    currentOwner.currentOwner = true;
+
+    // Set Local Storage
+    const ownersArray = turnMapIntoArray(newOwners);
+    setLocalStorage(ownersArray);
+
     return {
       ...state,
+      owners: newOwners,
       currentOwnerId: id,
       currentOwner: state.owners.get(id),
       isHomeOpen: false,

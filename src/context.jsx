@@ -35,6 +35,8 @@ const AppContext = createContext();
 
 const owners = getLocalStorage();
 
+const currentOwner = owners.find(owner => owner.currentOwner === true);
+
 const initialState = {
   isModalOpen: false,
   isHomeOpen: true,
@@ -49,8 +51,8 @@ const initialState = {
   newOwnerName: '',
   newOwnerPrice: '',
   newOwnerAmount: '',
-  currentOwnerId: '',
-  currentOwner: null,
+  currentOwnerId: currentOwner?.id || '',
+  currentOwner: currentOwner || null,
   currentJob: null,
   currentSingleJob: null,
   jobsFound: null,
