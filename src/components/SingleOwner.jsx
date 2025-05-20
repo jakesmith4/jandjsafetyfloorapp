@@ -1,32 +1,57 @@
 import { toast } from 'react-toastify';
 import { useGlobalContext } from '../context';
 import { FaTrashAlt } from 'react-icons/fa';
+import { VscVmActive } from 'react-icons/vsc';
 
-const SingleOwner = ({ id, name, price, amount }) => {
+const SingleOwner = ({ id, name, price, amount, jobs, currentOwner }) => {
   const { removeOwner, setCurrentOwner } = useGlobalContext();
+
+  const completedJobs = jobs.filter(jobs => jobs.completed === true).length;
+
   return (
     <article
       className="single-owner"
+      style={{ background: currentOwner ? '#0f5132' : '#16191b' }}
       onClick={() => {
         setCurrentOwner(id);
       }}
     >
       <div>
-        <h5>{name}</h5>
-        <div className="owner-price">
+        <header className="single-owner-header">
+          <h5>{name}</h5>
+          <button
+            className="remove-btn"
+            onClick={e => {
+              e.stopPropagation();
+              removeOwner(id, name);
+            }}
+          >
+            <FaTrashAlt />
+          </button>
+        </header>
+        <div
+          className="owner-price"
+          style={{ background: currentOwner ? '#3f745b' : '#333' }}
+        >
           <span>${price}</span>
         </div>
-        <div className="owner-amount">{amount} stores</div>
-        <button
-          className="remove-btn"
-          onClick={e => {
-            e.stopPropagation();
-            removeOwner(id, name);
-          }}
+        <div
+          className="owner-amount"
+          style={{ background: currentOwner ? '#3f745b' : '#333' }}
         >
-          <span>remove</span>
-          <FaTrashAlt />
-        </button>
+          {amount} stores
+        </div>
+        {currentOwner && (
+          <div className="active-owner-container">
+            <div className="jobs-completed">
+              <span>{`${completedJobs}/${jobs.length} jobs completed`}</span>
+            </div>
+            <div className="active-badge">
+              <span>active</span>
+              <VscVmActive />
+            </div>
+          </div>
+        )}
       </div>
     </article>
   );

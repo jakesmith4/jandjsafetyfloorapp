@@ -516,6 +516,12 @@ Single Owner
   box-shadow: var(--shadow-3);
 }
 
+.single-owner-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .single-owner h5 {
   margin-bottom: 0.5rem;
   font-weight: 500;
@@ -553,6 +559,26 @@ Single Owner
   background: transparent;
   border-color: transparent;
   transition: var(--transition);
+}
+
+.active-owner-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.active-owner-container > div {
+  padding: 0.275rem 0.6rem;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.active-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 0.2rem;
+  background: var(--red);
+  border-radius: var(--borderRadius);
 }
 
 @media screen and (min-width: 768px) {
