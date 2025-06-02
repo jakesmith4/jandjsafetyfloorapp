@@ -211,6 +211,8 @@ const reducer = (state, action) => {
       price,
     });
 
+    const currentOwnerNew = newOwners.get(currentOwnerId);
+
     newOwners.get(currentOwnerId).jobs.forEach(job => {
       job.owner = name;
     });
@@ -219,7 +221,7 @@ const reducer = (state, action) => {
     const ownersArray = turnMapIntoArray(newOwners);
     setLocalStorage(ownersArray);
 
-    return { ...state, owners: newOwners };
+    return { ...state, owners: newOwners, currentOwner: currentOwnerNew };
   }
 
   if (action.type === ADD_JOB_TO_CURRENT_OWNER) {
@@ -342,7 +344,12 @@ const reducer = (state, action) => {
 
       toast.error(`Job deleted`);
 
-      return { ...state, owners: newOwners, currentSingleJob: null };
+      return {
+        ...state,
+        owners: newOwners,
+        currentOwner: currentOwner,
+        currentSingleJob: null,
+      };
     }
 
     return { ...state };
