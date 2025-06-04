@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { useGlobalContext } from '../context';
 import { toast } from 'react-toastify';
 import { IoMapSharp } from 'react-icons/io5';
-import { FaTrashAlt, FaClipboardCheck } from 'react-icons/fa';
+import { FaTrashAlt, FaClipboardCheck, FaHistory } from 'react-icons/fa';
 import { FaArrowsRotate } from 'react-icons/fa6';
 import { GiAcid, GiBubbles, GiCheckMark, GiCrossMark } from 'react-icons/gi';
 import { BsFillTelephoneOutboundFill } from 'react-icons/bs';
@@ -119,8 +119,10 @@ const SingleJob = ({ job }) => {
     <form
       className="single-job"
       style={
-        job.completed
+        job.completed === true
           ? { background: '#024325', borderColor: '#475569' }
+          : job.completed === null
+          ? { background: '#842029', borderColor: '#475569' }
           : { background: '#16191b' }
       }
     >
@@ -133,7 +135,9 @@ const SingleJob = ({ job }) => {
           type="date"
           className="form-input single-job-input single-job-date-input "
           value={date}
-          disabled={job.completed}
+          disabled={
+            job.completed === true || job.completed === null ? true : false
+          }
           onChange={e => {
             setDate(e.target.value);
             editJob(
@@ -168,7 +172,9 @@ const SingleJob = ({ job }) => {
           type="number"
           id="store-number"
           value={storeNumber}
-          disabled={job.completed}
+          disabled={
+            job.completed === true || job.completed === null ? true : false
+          }
           onChange={e => {
             setStoreNumber(e.target.value);
             editJob(
@@ -197,7 +203,9 @@ const SingleJob = ({ job }) => {
           type="number"
           id="price"
           value={price}
-          disabled={job.completed}
+          disabled={
+            job.completed === true || job.completed === null ? true : false
+          }
           onChange={e => {
             setPrice(e.target.value);
             editJob(
@@ -227,7 +235,9 @@ const SingleJob = ({ job }) => {
           max=".5"
           step="0.125"
           value={lobbyAcid}
-          disabled={job.completed}
+          disabled={
+            job.completed === true || job.completed === null ? true : false
+          }
           onChange={e => {
             setLobbyAcid(e.target.value);
             editJob(
@@ -280,7 +290,9 @@ const SingleJob = ({ job }) => {
           max="1.25"
           step="0.125"
           value={kitchenAcid}
-          disabled={job.completed}
+          disabled={
+            job.completed === true || job.completed === null ? true : false
+          }
           onChange={e => {
             setKitchenAcid(e.target.value);
             editJob(
@@ -342,7 +354,9 @@ const SingleJob = ({ job }) => {
               id="address"
               className="single-job-input-address"
               value={address}
-              disabled={job.completed}
+              disabled={
+                job.completed === true || job.completed === null ? true : false
+              }
               onChange={e => {
                 setAddress(e.target.value);
               }}
@@ -374,7 +388,9 @@ const SingleJob = ({ job }) => {
               id="address"
               className="single-job-input-address"
               value={staySpot}
-              disabled={job.completed}
+              disabled={
+                job.completed === true || job.completed === null ? true : false
+              }
               onChange={e => {
                 setStaySpot(e.target.value);
               }}
@@ -410,21 +426,33 @@ const SingleJob = ({ job }) => {
           htmlFor="completed"
           className="form-label single-job-checkbox-label"
         >
-          {job.completed ? 'completed' : 'upcoming'}
+          {job.completed === true
+            ? 'completed'
+            : job.completed === false
+            ? 'upcoming'
+            : 'old job'}
         </label>
         <div
-          className="single-job-flip-switch-container"
+          className={
+            job.completed === null
+              ? 'single-job-flip-switch-container single-job-flip-switch-no-show'
+              : 'single-job-flip-switch-container'
+          }
           onClick={() => markJobAsCompleted(job.id, job.owner)}
         >
           <button
             className={
-              job.completed
+              job.completed === true
                 ? 'single-job-flip-switch single-job-flip-switch-checked'
-                : 'single-job-flip-switch'
+                : job.completed === false
+                ? 'single-job-flip-switch'
+                : 'single-job-flip-switch single-job-flip-switch-history'
             }
             type="button"
           >
-            {job.completed ? <GiCheckMark /> : <GiCrossMark />}
+            {job.completed === true && <GiCheckMark />}
+            {job.completed === false && <GiCrossMark />}
+            {job.completed === null && <FaHistory />}
           </button>
         </div>
       </div>

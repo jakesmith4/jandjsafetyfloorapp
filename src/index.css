@@ -569,6 +569,7 @@ Single Owner
 .active-owner-container > div {
   padding: 0.275rem 0.6rem;
   text-transform: capitalize;
+  font-size: 0.9rem;
   font-weight: bold;
 }
 
@@ -690,7 +691,12 @@ Current Owner
   align-items: center;
   justify-content: center;
   gap: 0.3rem;
+}
+
+.jobs-item-old-btn-container {
   margin-bottom: 1rem;
+  width: fit-content;
+  margin: 0.5rem auto 1rem;
 }
 
 .jobs-item-btn {
@@ -703,6 +709,10 @@ Current Owner
   border: none;
   background: var(--grey-200);
   box-shadow: var(--shadow-3);
+}
+
+.jobs-item-old-btn {
+  gap: 0.5rem;
 }
 
 .jobs-item-no-jobs-heading {
@@ -787,6 +797,10 @@ Current Owner
 
 .upcoming {
   background: var(--grey-800);
+}
+
+.history {
+  background: var(--red-dark);
 }
 
 @media screen and (min-width: 420px) {
@@ -909,7 +923,9 @@ Single Job
 
 .single-job-clipboard-copy {
   cursor: pointer;
-  margin-left: 80%;
+  display: block;
+  margin-left: calc(100% - 1.5rem);
+  width: 1.5rem;
   font-size: 1rem;
   padding: 0.03rem 0.05rem;
   color: var(--primary-500);
@@ -940,6 +956,10 @@ Single Job
   cursor: pointer;
 }
 
+.single-job-flip-switch-no-show {
+  pointer-events: none;
+}
+
 .single-job-flip-switch {
   position: absolute;
   top: 5%;
@@ -962,6 +982,11 @@ Single Job
 .single-job-flip-switch-checked {
   left: 53%;
   background: var(--green-dark);
+}
+
+.single-job-flip-switch-history {
+  left: 53%;
+  background: var(--red-dark);
 }
 
 .call-to-action-btns {

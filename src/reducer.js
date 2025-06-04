@@ -364,11 +364,25 @@ const reducer = (state, action) => {
     const newOwners = new Map(state.owners);
     const currentOwner = newOwners.get(currentOwnerFromArray.id);
 
+    const currentDate = new Date();
+
+    const date4MonthsAgo = new Date(
+      currentDate.setMonth(currentDate.getMonth() - 4)
+    ).getTime();
+
     const currentJob = currentOwner.jobs.find(
       job => job.id === action.payload.id
     );
 
+    const historyJobs = currentOwner?.jobs.filter(
+      job => new Date(job.date).getTime() <= date4MonthsAgo
+    );
+
     currentJob.completed = !currentJob.completed;
+
+    historyJobs.forEach(job => {
+      if (job.completed !== null) job.completed = null;
+    });
 
     // Set Local Storage
     const ownersArray = turnMapIntoArray(newOwners);

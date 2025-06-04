@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useGlobalContext } from '../context';
 import { formatDate } from '../utils';
-import { FaPlus, FaCalendarDay } from 'react-icons/fa';
+import { FaPlus, FaCalendarDay, FaHistory } from 'react-icons/fa';
 import { GiCheckMark, GiCrossMark } from 'react-icons/gi';
 
 const formatNum = num => new Intl.NumberFormat(navigator.language).format(num);
@@ -32,15 +32,17 @@ const CurrentOwner = () => {
     job => job.completed === false
   );
 
+  const oldJobs = currentOwner?.jobs.filter(job => job.completed === null);
+
   const lifeTimeAmount = currentOwner?.jobs
     .map(job => +job.price)
     .reduce((accumulator, current) => accumulator + current, 0);
 
   let currentJobs;
 
-  showCompletedJobs === false
-    ? (currentJobs = unCompletedJobs)
-    : (currentJobs = completedJobs);
+  if (showCompletedJobs === false) currentJobs = unCompletedJobs;
+  if (showCompletedJobs === true) currentJobs = completedJobs;
+  if (showCompletedJobs === null) currentJobs = oldJobs;
 
   const sortedJobs = currentJobs?.slice();
 
@@ -139,7 +141,7 @@ const CurrentOwner = () => {
       <div className="jobs-item-btn-container">
         <button
           className="jobs-item-btn"
-          style={!showCompletedJobs ? { background: '#ff4500' } : {}}
+          style={showCompletedJobs === false ? { background: '#ff4500' } : {}}
           title="Upcoming Jobs"
           onClick={() => setShowCompletedJobs(false)}
         >
@@ -153,7 +155,7 @@ const CurrentOwner = () => {
         </button>
         <button
           className="jobs-item-btn"
-          style={showCompletedJobs ? { background: '#ff4500' } : {}}
+          style={showCompletedJobs === true ? { background: '#ff4500' } : {}}
           title="Completed Jobs"
           onClick={() => setShowCompletedJobs(true)}
         >
@@ -163,6 +165,23 @@ const CurrentOwner = () => {
               <GiCheckMark />
             </span>
             <span className="jobs-item-number">{completedJobs.length}</span>
+          </span>
+        </button>
+      </div>
+
+      <div className="jobs-item-old-btn-container">
+        <button
+          className="jobs-item-btn jobs-item-old-btn"
+          style={showCompletedJobs === null ? { background: '#ff4500' } : {}}
+          title="Old Jobs"
+          onClick={() => setShowCompletedJobs(null)}
+        >
+          <span>old jobs</span>
+          <span>
+            <span>
+              <FaHistory />
+            </span>
+            <span className="jobs-item-number">{oldJobs.length}</span>
           </span>
         </button>
       </div>
@@ -216,24 +235,36 @@ const CurrentOwner = () => {
               </div>
               <div
                 className={
-                  showCompletedJobs
+                  showCompletedJobs === true
                     ? 'completed show-jobs-container'
-                    : 'upcoming show-jobs-container'
+                    : showCompletedJobs === false
+                    ? 'upcoming show-jobs-container'
+                    : 'history show-jobs-container'
                 }
               >
                 <div className="show-jobs">
-                  {showCompletedJobs ? (
+                  {showCompletedJobs === true && (
                     <div className="show-jobs-item">
                       <span>completed</span>
                       <span>
                         <GiCheckMark />
                       </span>
                     </div>
-                  ) : (
+                  )}
+                  {showCompletedJobs === false && (
                     <div className="show-jobs-item">
                       <span>upcoming</span>
                       <span>
                         <GiCrossMark />
+                      </span>
+                    </div>
+                  )}
+
+                  {showCompletedJobs === null && (
+                    <div className="show-jobs-item">
+                      <span>old job</span>
+                      <span>
+                        <FaHistory />
                       </span>
                     </div>
                   )}

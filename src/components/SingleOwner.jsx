@@ -1,4 +1,3 @@
-import { toast } from 'react-toastify';
 import { useGlobalContext } from '../context';
 import { FaTrashAlt } from 'react-icons/fa';
 import { VscVmActive } from 'react-icons/vsc';
@@ -6,7 +5,13 @@ import { VscVmActive } from 'react-icons/vsc';
 const SingleOwner = ({ id, name, price, amount, jobs, currentOwner }) => {
   const { removeOwner, setCurrentOwner } = useGlobalContext();
 
-  const completedJobs = jobs.filter(jobs => jobs.completed === true).length;
+  const completedJobsLength = jobs.filter(
+    jobs => jobs.completed === true
+  ).length;
+
+  const upcomingJobsLength = jobs.filter(
+    jobs => jobs.completed === false
+  ).length;
 
   return (
     <article
@@ -44,7 +49,9 @@ const SingleOwner = ({ id, name, price, amount, jobs, currentOwner }) => {
         {currentOwner && (
           <div className="active-owner-container">
             <div className="jobs-completed">
-              <span>{`${completedJobs}/${jobs.length} jobs completed`}</span>
+              <span>{`${completedJobsLength}/${
+                upcomingJobsLength + completedJobsLength
+              } jobs completed`}</span>
             </div>
             <div className="active-badge">
               <span>active</span>
