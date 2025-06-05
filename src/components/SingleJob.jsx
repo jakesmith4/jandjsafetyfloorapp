@@ -7,6 +7,7 @@ import { FaArrowsRotate } from 'react-icons/fa6';
 import { GiAcid, GiBubbles, GiCheckMark, GiCrossMark } from 'react-icons/gi';
 import { BsFillTelephoneOutboundFill } from 'react-icons/bs';
 import { MdEdit } from 'react-icons/md';
+import bubbles from '../audio/bubbles.mp3';
 
 import {
   GoogleMap,
@@ -114,6 +115,7 @@ const SingleJob = ({ job }) => {
   const [phoneNumber, setPhoneNumber] = useState(job.phoneNumber);
   const [notes, setNotes] = useState(job.notes);
   const [isNoteOpen, setIsNoteOpen] = useState(job.notes);
+  const audioRef = useRef(null);
 
   return (
     <form
@@ -254,6 +256,9 @@ const SingleJob = ({ job }) => {
               staySpot,
               e
             );
+
+            const audio = audioRef.current;
+            audio.play();
           }}
         />
         <div
@@ -309,6 +314,9 @@ const SingleJob = ({ job }) => {
               staySpot,
               e
             );
+
+            const audio = audioRef.current;
+            audio.play();
           }}
         />
         <div
@@ -339,6 +347,7 @@ const SingleJob = ({ job }) => {
           )}
         </div>
       </div>
+      <audio src={bubbles} ref={audioRef} />
       <div className="form-row">
         <label htmlFor="address" className="form-label">
           store address:
@@ -456,7 +465,6 @@ const SingleJob = ({ job }) => {
           </button>
         </div>
       </div>
-
       <div className="form-row">
         {isNoteOpen && (
           <>
@@ -490,7 +498,6 @@ const SingleJob = ({ job }) => {
           </>
         )}
       </div>
-
       <div className="call-to-action-btns">
         <div className="btn-container">
           <a
