@@ -7,6 +7,7 @@ export const OPEN_SEARCH_JOBS = 'OPEN_SEARCH_JOBS';
 export const ADD_OWNER = 'ADD_OWNER';
 export const REMOVE_OWNER = 'REMOVE_OWNER';
 export const EDIT_OWNER = 'EDIT_OWNER';
+export const EDIT_SHOW_JOBS_INFO = 'EDIT_SHOW_JOBS_INFO';
 export const EDIT_JOB = 'EDIT_JOB';
 export const DELETE_JOB = 'DELETE_JOB';
 export const MARK_JOB_AS_COMPLETED = 'MARK_JOB_AS_COMPLETED';

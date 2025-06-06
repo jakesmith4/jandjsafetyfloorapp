@@ -10,6 +10,7 @@ import {
   ADD_OWNER,
   REMOVE_OWNER,
   EDIT_OWNER,
+  EDIT_SHOW_JOBS_INFO,
   CHANGE_NEW_OWNER_INFO,
   SET_CURRENT_OWNER,
   ADD_JOB_TO_CURRENT_OWNER,
@@ -141,6 +142,10 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: EDIT_OWNER, payload: { name, amount, price } });
   }
 
+  function editShowJobsInfo(showJobs, scrollY) {
+    dispatch({ type: EDIT_SHOW_JOBS_INFO, payload: { showJobs, scrollY } });
+  }
+
   function addJobToCurrentOwner(
     e,
     storeNumber,
@@ -230,6 +235,7 @@ export const AppProvider = ({ children }) => {
         changeNewOwnerInfo,
         setCurrentOwner,
         editOwner,
+        editShowJobsInfo,
         addJobToCurrentOwner,
         openCurrentOwnerForm,
         closeCurrentOwnerForm,

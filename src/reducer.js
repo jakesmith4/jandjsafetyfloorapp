@@ -9,6 +9,7 @@ import {
   ADD_OWNER,
   REMOVE_OWNER,
   EDIT_OWNER,
+  EDIT_SHOW_JOBS_INFO,
   EDIT_JOB,
   DELETE_JOB,
   CHANGE_NEW_OWNER_INFO,
@@ -155,6 +156,7 @@ const reducer = (state, action) => {
       amount: newOwnerAmount,
       jobs: [],
       currentOwner: false,
+      showJobsInfo: { showJobs: false, scrollY: 0 },
     });
 
     // Set Local Storage
@@ -202,6 +204,7 @@ const reducer = (state, action) => {
   if (action.type === EDIT_OWNER) {
     const { currentOwnerId, currentOwner, owners } = state;
     const { name, amount, price } = action.payload;
+
     const newOwners = new Map(owners);
 
     newOwners.set(currentOwnerId, {
@@ -216,6 +219,27 @@ const reducer = (state, action) => {
     newOwners.get(currentOwnerId).jobs.forEach(job => {
       job.owner = name;
     });
+
+    // Set Local Storage
+    const ownersArray = turnMapIntoArray(newOwners);
+    setLocalStorage(ownersArray);
+
+    return { ...state, owners: newOwners, currentOwner: currentOwnerNew };
+  }
+
+  if (action.type === EDIT_SHOW_JOBS_INFO) {
+    const { currentOwnerId, currentOwner } = state;
+    const { showJobs, scrollY } = action.payload;
+
+    const newOwners = new Map(state.owners);
+
+    newOwners.set(currentOwnerId, {
+      ...currentOwner,
+      showJobsInfo: { showJobs, scrollY },
+      currentOwner: true,
+    });
+
+    const currentOwnerNew = newOwners.get(currentOwnerId);
 
     // Set Local Storage
     const ownersArray = turnMapIntoArray(newOwners);

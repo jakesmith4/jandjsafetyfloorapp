@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useGlobalContext } from '../context';
 import { formatDate } from '../utils';
 import { FaPlus, FaCalendarDay, FaHistory } from 'react-icons/fa';
@@ -10,6 +10,7 @@ const CurrentOwner = () => {
   const {
     currentOwner,
     editOwner,
+    editShowJobsInfo,
     openCurrentOwnerForm,
     openCurrentJob,
     openModal,
@@ -20,7 +21,9 @@ const CurrentOwner = () => {
   const [numberOfStores, setNumberOfStores] = useState(currentOwner?.amount);
   const [ownerPrice, setOwnerPrice] = useState(currentOwner?.price);
 
-  const [showCompletedJobs, setShowCompletedJobs] = useState(false);
+  const [showCompletedJobs, setShowCompletedJobs] = useState(
+    currentOwner.showJobsInfo.showJobs
+  );
 
   const jobsArray = currentOwner ? currentOwner.jobs : [];
 
@@ -39,6 +42,14 @@ const CurrentOwner = () => {
     .reduce((accumulator, current) => accumulator + current, 0);
 
   let currentJobs;
+
+  useEffect(() => {
+    window.scrollTo({
+      top: currentOwner.showJobsInfo.scrollY,
+      left: 0,
+      behavior: 'smooth', // Optional: adds smooth scrolling animation
+    });
+  }, []);
 
   if (showCompletedJobs === false) currentJobs = unCompletedJobs;
   if (showCompletedJobs === true) currentJobs = completedJobs;
@@ -143,7 +154,10 @@ const CurrentOwner = () => {
           className="jobs-item-btn"
           style={showCompletedJobs === false ? { background: '#ff4500' } : {}}
           title="Upcoming Jobs"
-          onClick={() => setShowCompletedJobs(false)}
+          onClick={() => {
+            setShowCompletedJobs(false);
+            editShowJobsInfo(false, window.scrollY);
+          }}
         >
           <span>upcoming jobs</span>
           <span>
@@ -157,7 +171,10 @@ const CurrentOwner = () => {
           className="jobs-item-btn"
           style={showCompletedJobs === true ? { background: '#ff4500' } : {}}
           title="Completed Jobs"
-          onClick={() => setShowCompletedJobs(true)}
+          onClick={() => {
+            setShowCompletedJobs(true);
+            editShowJobsInfo(true, window.scrollY);
+          }}
         >
           <span>completed jobs</span>
           <span>
@@ -174,7 +191,10 @@ const CurrentOwner = () => {
           className="jobs-item-btn jobs-item-old-btn"
           style={showCompletedJobs === null ? { background: '#ff4500' } : {}}
           title="Old Jobs"
-          onClick={() => setShowCompletedJobs(null)}
+          onClick={() => {
+            setShowCompletedJobs(null);
+            editShowJobsInfo(null, window.scrollY);
+          }}
         >
           <span>old jobs</span>
           <span>
@@ -204,6 +224,7 @@ const CurrentOwner = () => {
               onClick={() => {
                 openCurrentJob();
                 changeCurrentSingleJob(job);
+                editShowJobsInfo(showCompletedJobs, window.scrollY);
               }}
             >
               <div>
