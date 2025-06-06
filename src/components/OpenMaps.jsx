@@ -22,9 +22,6 @@ const OpenMaps = () => {
     closeMapsForm();
   };
 
-  console.log('hello world');
-  console.log(currentSingleJob);
-
   return (
     <form className="form">
       <h3 className="form-heading">where would you like to go</h3>
@@ -52,6 +49,8 @@ const OpenMaps = () => {
           ${checkBusinessName('TA') && 'ta-btn'}
           ${checkBusinessName('Petro') && 'petro-btn'}
           ${checkBusinessName('Days Inn') && 'days-inn-btn'}
+          ${checkBusinessName('Days Inn') && 'days-inn-btn'}
+          ${checkBusinessName('7060 San Bernardo') && 'days-inn-btn'}
           ${checkBusinessName('La Quinta') && 'la-quinta-btn'}
           ${checkBusinessName('Super 8') && 'super-8-btn'}
           `}
@@ -75,6 +74,7 @@ const OpenMaps = () => {
             {checkBusinessName('TA') && <TaIcon />}
             {checkBusinessName('Petro') && <PetroIcon />}
             {checkBusinessName('Days Inn') && <DaysInnIcon />}
+            {checkBusinessName('7060 San Bernardo') && <DaysInnIcon />}
             {checkBusinessName('La Quinta') && <LaQuintaIcon />}
             {checkBusinessName('Super 8') && <Super8Icon />}
           </button>
