@@ -75,12 +75,26 @@ const CurrentOwner = () => {
 
   thisTimeJobs?.forEach(job => {
     thisTimesPrice += +job.price;
+    // if (+job.price >= 795) {
+    //   jakesCut += +job.price - 250;
+    //   johnsCut += 250;
+    // } else {
+    //   jakesCut += +job.price - 200;
+    //   johnsCut += 200;
+    // }
+    if (+job.price <= 350) {
+      jakesCut += +job.price - 50;
+      johnsCut += 50;
+    }
+
+    if (+job.price < 795 && +job.price > 350) {
+      jakesCut += +job.price - 200;
+      johnsCut += 200;
+    }
+
     if (+job.price >= 795) {
       jakesCut += +job.price - 250;
       johnsCut += 250;
-    } else {
-      jakesCut += +job.price - 200;
-      johnsCut += 200;
     }
   });
 
